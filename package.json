@@ -1,0 +1,47 @@
+{
+  "name": "fluent-ui-vscode",
+  "displayName": "Fluent UI for VSCode",
+  "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad. This was made entirely with CSS.",
+  "version": "0.0.1",
+  "author": "Leandro Rodrigues",
+  "publisher": "LeandroRodrigues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheOld/vscode-fluent-ui"
+  },
+  "engines": {
+    "vscode": "^1.33.0"
+  },
+  "keywords": [
+    "fluent",
+    "windows 11",
+    "w11"
+  ],
+  "categories": [
+    "Themes"
+  ],
+  "activationEvents": [
+    "*",
+    "onCommand:fluent.enableEffects"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "themes": [
+      {
+        "label": "Fluent UI Light",
+        "uiTheme": "vs",
+        "path": "./themes/light.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "fluent.enableEffects",
+        "title": "Fluent UI: Enable Fluent UI effects."
+      },
+      {
+        "command": "fluent.disableEffects",
+        "title": "Fluent UI: Disable Fluent UI effects."
+      }
+    ]
+  }
+}
