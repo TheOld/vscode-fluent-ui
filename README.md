@@ -1,18 +1,42 @@
-# VT220 - VS Code theme
+# VS Code Fluent theme
 
-Just a simple green theme based  on old CRT monitors and their (lovely) flaws, namely scanlines, RGB shift (on some elements when hovered) and (emulated) glow. Made it mostly for myself, but putting it out there in the wild as I know there's other folks that share my dubious taste.
+Inspired by and based on the awesome concept designs by
+[u/zeealeidahmad](https://www.reddit.com/r/Windows11/comments/orbgzl/visual_studio_vs_code_and_github_desktop_with/);
 
-Custom VS Settings:
+The syntax themes are modifications of the awesome
+[Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity) by
+[Michael Andreuzza](https://marketplace.visualstudio.com/publishers/wicked-labs).
+
+To use it
+
+1. Choose your theme, Fluent UI Light or Fluent UI Dark
+2. Run `> Fluent UI: Enable`
+3. ...
+4. Profit! (for your boss)
+
+> NOTE: I don't use breadcrumbs and minimap, so changes for these are minimal, if any.
+
+Naturally, most of the following is persoanl taste, but the custom VS settings I use and recommend
+for best results are:
 
 ```
 {
+  "editor.fontFamily": "Cascadia Code",
+  "editor.lineHeight": 1.5,
   "editor.cursorSmoothCaretAnimation": true,
   "editor.cursorBlinking": "phase",
   "editor.cursorStyle": "block",
+  "workbench.editor.decorations.colors": false,
 }
 ```
 
-Optional but recommended: download and install these custom fonts on your computer for the complete look.
+Known issues:
 
-* [Share Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)
-* [GlassTTY: TrueType VT220 font](https://github.com/svofski/glasstty)
+- The context menus for the `More actions` buttons on most viewlets is rendering underneath the main
+  editor panel. Workaround: move the sidebar to the right [right click on Activity Bar > Move Side
+  bar right]
+
+The workbench is set to use Segoe UI Variable (the new standard font for Windows 11). Highly
+recommended.
+
+- [Segoe UI variable](https://docs.microsoft.com/en-us/windows/apps/design/downloads/#fonts)

@@ -14,6 +14,8 @@ function activate(context) {
 
   // let disableEffects = config && config.disableEffects ? !!config.disableEffects : false;
 
+  const themeMode = vscode.window.activeColorTheme;
+
   let disposable = vscode.commands.registerCommand('fluent.enableEffects', function () {
     const isWin = /^win/.test(process.platform);
     const appDir = path.dirname(require.main.filename);
@@ -34,7 +36,24 @@ function activate(context) {
     try {
       // generate production theme JS
 
-      const chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
+      let mode = 'light';
+      switch (themeMode.kind) {
+        case 2:
+          mode = 'dark';
+          break;
+        case 3:
+          mode = 'HighContrast';
+          break;
+        case 1:
+        default:
+          break;
+      }
+
+      let chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
+
+      if (themeMode.kind === 2) {
+        chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome_dark.css', 'utf-8');
+      }
 
       const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
 
@@ -94,6 +113,11 @@ function activate(context) {
 
   let disable = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
 
+  let startup = vscode.commands.registerCommand('fluent.startup', function () {
+    console.log('VSCode start up event complete.');
+  });
+
+  context.subscriptions.push(startup);
   context.subscriptions.push(disposable);
   context.subscriptions.push(disable);
 }

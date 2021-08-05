@@ -22,11 +22,18 @@
   ],
   "activationEvents": [
     "*",
-    "onCommand:fluent.enableEffects"
+    "onCommand:fluent.enableEffects",
+    "onCommand:fluent.enableEffectsDark",
+    "onStartupFinished:fluent.startup"
   ],
   "main": "./src/extension.js",
   "contributes": {
     "themes": [
+      {
+        "label": "Fluent UI Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark.json"
+      },
       {
         "label": "Fluent UI Light",
         "uiTheme": "vs",
@@ -36,11 +43,11 @@
     "commands": [
       {
         "command": "fluent.enableEffects",
-        "title": "Fluent UI: Enable Fluent UI effects."
+        "title": "Fluent UI: Enable"
       },
       {
         "command": "fluent.disableEffects",
-        "title": "Fluent UI: Disable Fluent UI effects."
+        "title": "Fluent UI: Disable"
       }
     ]
   }
