@@ -3,7 +3,7 @@
   const bodyNode = document.querySelector('body');
 
   // Add custom styles
-  const initFluentUI = (obs) => {
+  const initFluentUI = (isDark, obs) => {
     console.log('Initializing Fluent UI');
 
     var themeStyleTag = document.querySelector('.vscode-tokens-styles');
@@ -32,6 +32,39 @@
     newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
 
     document.body.appendChild(newStyleTag);
+
+    if (isDark) {
+      console.log('Theme is dark!');
+      // Replace css root vars here
+      // document.documentElement.style.setProperty('--your-variable', '#YOURCOLOR');
+
+      document.documentElement.style.setProperty('--foreground', '#ffffff');
+
+      document.documentElement.style.setProperty('--background-color', 'rgba(0, 0, 0, 0.0578)');
+      // Card BG
+      document.documentElement.style.setProperty(
+        '--card-bg',
+        'linear-gradient(0deg, rgba(32, 32, 32, 0.65), rgba(32, 32, 32, 0.65))',
+      );
+      document.documentElement.style.setProperty(
+        '--quick-input-widget-bg',
+        'linear-gradient(0deg, rgba(32, 32, 32, 0.85), rgba(32, 32, 32, 0.85))',
+      );
+      document.documentElement.style.setProperty('--hover-bg', 'var(--card-bg)');
+      document.documentElement.style.setProperty(
+        '--context-menu-bg',
+        'linear-gradient(0deg, rgba(32, 32, 32, 0.82), rgba(32, 32, 32, 0.82))',
+      );
+      document.documentElement.style.setProperty('--editor-bg', 'transparent');
+      document.documentElement.style.setProperty('--notification-toast-bg', 'var(--card-bg)');
+      document.documentElement.style.setProperty('--card-blend-mode', 'color, luminosity');
+      document.documentElement.style.setProperty('--app-bg', '#2c2c2c');
+      document.documentElement.style.setProperty('--list-item-bg', 'rgba(255, 255, 255, 0.0605)');
+      document.documentElement.style.setProperty('--list-item-fg', '#ffffff99');
+      document.documentElement.style.setProperty('--activitybar-indicator-bg', '#60CDFF');
+      document.documentElement.style.setProperty('--accent', '#0078d4');
+      document.documentElement.style.setProperty('--active-action-item-bg', 'var(--card-bg)');
+    }
 
     console.log('Fluent UI: initialised!');
 
@@ -88,14 +121,14 @@
 
         // Everything we need is ready, so initialise
         if ((isUsingFluentUI || isUsingFluentDark) && tokensLoaded && tokenStyles) {
-          initFluentUI(observer);
+          initFluentUI([IS_DARK], observer);
         }
       }
     }
   };
 
   // try to initialise the theme
-  initFluentUI();
+  initFluentUI([IS_DARK]);
 
   // Use a mutation observer to check when we can bootstrap the theme
   const observer = new MutationObserver(watchForBootstrap);

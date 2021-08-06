@@ -21,52 +21,59 @@
   --s4: var(--base-spacing);
   --s5: calc(var(--base-spacing) * 2);
   --s6: calc(var(--base-spacing) * 4);
-  --s7: calc(var(--base-spacing) * 7); // 56px
+  --s7: calc(var(--base-spacing) * 7);
   --s8: calc(var(--base-spacing) * 8);
   --s9: calc(var(--base-spacing) * 10);
 
-  --backdrop-filter: blur(8px) saturate(0.8);
-  --background-color: rgba(255, 255, 255, 0.4);
-
-  --border-color: rgba(0, 0, 0, 0.0578);
-  --border: 1px solid var(--border-color);
-  --border-radius: 8px;
-
-  --content-height: calc(100% - var(--s2));
-
-  /* Light/Shadow/Card Rest */
-  --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-
-  --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
-
-  --flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
-  --flyout-stroke: 1px solid rgba(0, 0, 0, 0.0578);
-
-  --dialog-border: 1px solid rgba(117, 117, 117, 0.4);
-  --dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
-
+  --acccent-pressed-bg: rgba(0, 95, 184, 0.8);
+  --accent-disabled: rgba(0, 0, 0, 0.2169);
+  --accent-hover: rgba(0, 95, 184, 0.9);
+  --accent-pressed-border: 1px solid rgba(255, 255, 255, 0.08);
+  --active-action-item-bg: rgba(0, 0, 0, 0.0605);
+  --accent: #005fb8;
   --acrylic-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
   --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
-
-  --easing-timing-normal: 250ms;
-  --easing-timing-fast: 167ms;
-  --easing-timing-faster: 83ms;
-
-  --transition: var(--easing-timing-normal);
-
+  --app-bg: #f3f3f3;
+  --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+  --backdrop-filter: blur(12px) saturate(0.8);
+  --background-color: rgba(255, 255, 255, 0.4);
+  --border-color: rgba(0, 0, 0, 0.0578);
+  --border-radius: 8px;
+  --border: 1px solid var(--border-color);
+  --button-radius: var(--s3);
+  --card-bg-blend-mode: multiply;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  --content-height: calc(100% - var(--s2));
+  --context-menu-bg: var(--menu-bg);
+  --dialog-border: 1px solid rgba(117, 117, 117, 0.4);
+  --dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+  --editor-bg: var(--card-bg);
   --easing-curve-in: cubic-bezier(0, 0, 0, 1);
   --easing-curve-out: cubic-bezier(1, 0, 1, 1);
-
-  --font-display: Segoe UI Variable Display, Segoe WPC, Segoe UI, sans-serif;
+  --easing-timing-fast: 167ms;
+  --easing-timing-faster: 83ms;
+  --easing-timing-normal: 250ms;
+  --flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+  --flyout-stroke: 1px solid rgba(0, 0, 0, 0.0578);
   --font-display-semibold: Segoe UI Variable Display Semibold, Segoe WPC, Segoe UI, sans-serif;
-
+  --font-display: Segoe UI Variable Display, Segoe WPC, Segoe UI, sans-serif;
+  --foreground: #000000;
+  --hover-bg: var(--flyout-bg);
+  --list-item-bg: rgba(0, 0, 0, 0.0373);
+  --list-item-fg: #0000009b;
   --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
-
+  --notification-toast-bg: var(--flyout-bg);
+  --quick-input-widget-bg: var(--flyout-bg);
+  --quick-input-widget: var(--flyout-bg);
   --row-height: 24px;
+  --transition: var(--easing-timing-normal);
+  /* Light/Shadow/Card Rest */
 }
 
 html {
-  background: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)), #f3f3f3;
+  background: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)),
+    var(--app-bg);
   background-blend-mode: color, luminosity;
   box-shadow: var(--app-shadow);
   border: var(--acrylic-stroke);
@@ -78,8 +85,8 @@ html {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.7) !important;
-  mix-blend-mode: multiply;
+  background: var(--card-bg) !important;
+  mix-blend-mode: var(--card-bg-blend-mode);
   box-shadow: var(--card-shadow);
   /* JSON theme will add border-right and we need to override it */
   border-right: var(--border);
@@ -125,10 +132,6 @@ html {
   border-bottom: var(--border);
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
-  /* border-radius: var(--border-radius);
-  border-top: none !important;
-  border-left: var(--border);
-  border-right: var(--border); */
 }
 
 .editor-container {
@@ -150,8 +153,8 @@ html {
 /* Settings page */
 .settings-editor,
 .extension-editor {
-  background: rgba(255, 255, 255, 0.7) !important;
-  mix-blend-mode: multiply;
+  background: var(--card-bg) !important;
+  mix-blend-mode: var(--card-bg-blend-mode);
   box-shadow: var(--card-shadow);
   /* JSON theme will add border-right and we need to override it */
   border-right: var(--border);
@@ -185,6 +188,7 @@ html {
   > .title
   > .tabs-and-actions-container {
   padding-left: var(--s4);
+  border-bottom: none !important;
 }
 
 .tabs-container > .tab {
@@ -210,7 +214,7 @@ html {
   height: 100%;
   transform: translate3d(0, 100%, 0);
   opacity: 0;
-  background-color: #ffffff;
+  background: var(--card-bg);
   position: absolute;
   left: 0;
   top: 0;
@@ -224,7 +228,7 @@ html {
 .tabs-container > .tab {
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
+  border-right: 1px solid transparent !important;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
@@ -242,9 +246,7 @@ html {
 }
 
 .tabs-container > .tab.active {
-  border-top: var(--border) !important;
-  border-left: var(--border) !important;
-  border-right: var(--border) !important;
+  border: var(--border) !important;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 }
@@ -324,6 +326,7 @@ html {
   font-family: var(--font-display-semibold) !important;
   text-transform: none !important;
   font-weight: unset !important;
+  color: var(--foreground) !important;
 }
 
 .sidebar > .content {
@@ -333,6 +336,153 @@ html {
 
 .sidebar > .split-view-view {
   max-height: calc(100% - 42px) !important;
+}
+
+.monaco-icon-label > .monaco-icon-label-container > .monaco-icon-name-container > .label-name {
+  color: var(--list-item-fg) !important;
+}
+
+.monaco-list-rows .monaco-list-row {
+  transition: background var(--easing-timing-normal) var(--easing-curve-in);
+}
+
+.monaco-list-rows .monaco-list-row::before {
+  position: absolute;
+  content: '';
+  display: block;
+  border: none !important;
+  height: 12px !important;
+  width: 3px !important;
+  border-radius: var(--s3);
+  background-color: var(--accent) !important;
+  top: 50% !important;
+  transform: translateY(-6px) scaleY(0);
+  opacity: 0;
+  transform-origin: center;
+  transition: transform var(--easing-timing-faster) var(--easing-curve-in),
+    opacity var(--easing-timing-faster) var(--easing-curve-in);
+  transition-delay: 25ms;
+}
+
+.quick-input-widget .monaco-list-row.selected,
+.monaco-list-row.selected,
+.quick-input-widget .monaco-list-row.selected.focused,
+.monaco-list-row.selected.focused {
+  background: var(--list-item-bg) !important;
+  color: var(--foreground) !important;
+}
+
+.quick-input-widget .monaco-list-row.selected,
+.monaco-list-row.selected,
+.quick-input-widget .monaco-list-row.selected.focused,
+.monaco-list-row.selected.focused .monaco-highlighted-label {
+  color: var(--foreground) !important;
+}
+
+.quick-input-widget .monaco-list-row:hover,
+.quick-input-widget .monaco-list-row:hover.focused,
+.monaco-list-row:hover,
+.monaco-list-row:hover.focused {
+  background: var(--list-item-bg) !important;
+  color: var(--foreground) !important;
+}
+
+.monaco-list-row:hover > .monaco-highlighted-label {
+  color: #ffffff !important;
+}
+
+.quick-input-widget .monaco-list-row.selected::before,
+.quick-input-widget .monaco-list-row.selected.focused::before,
+.quick-input-widget .monaco-list-row:hover::before,
+.monaco-list-row.selected::before,
+.monaco-list-row.selected.focused::before {
+  transform: translateY(-6px) scaleY(1);
+  opacity: 1;
+}
+
+.settings-editor > .settings-body > .settings-tree-container .monaco-list-row::before {
+  height: 80% !important;
+  top: 0 !important;
+}
+
+.settings-editor > .settings-body > .settings-tree-container .monaco-list-row.selected::before,
+.settings-editor
+  > .settings-body
+  > .settings-tree-container
+  .monaco-list-row.selected.focused::before {
+  transform: translateY(10%) scaleY(1);
+  opacity: 1;
+}
+
+/* Modified indicator on settings page (blue bar on the left */
+.settings-editor
+  > .settings-body
+  > .settings-tree-container
+  .setting-item-contents.is-configured
+  .setting-item-modified-indicator {
+  width: 3px;
+  border: none !important;
+  border-radius: 4px;
+  background-color: var(--accent);
+}
+
+/* Cursor */
+.monaco-editor .cursors-layer .cursor {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  border-radius: var(--s3);
+}
+
+/* Form elements */
+.monaco-workbench input,
+.monaco-workbench select {
+  background: transparent !important;
+  backdrop-filter: var(--backdrop-filter);
+}
+
+.monaco-workbench .monaco-list .monaco-list-row .monaco-highlighted-label .highlight {
+  color: var(--acccent-pressed-bg) !important;
+}
+
+.monaco-workbench .monaco-list .monaco-list-row.focused .monaco-highlighted-label .highlight {
+  color: var(--accent) !important;
+}
+
+.monaco-select-box-dropdown-container
+  > .select-box-dropdown-list-container
+  .monaco-list
+  .monaco-list-row:hover {
+  background-color: var(--acccent-pressed-bg) !important;
+  color: var(--list-item-fg) !important;
+}
+
+.quick-input-list .monaco-list-row.focused .monaco-keybinding-key,
+.quick-input-list .monaco-list-row.focused .quick-input-list-entry .quick-input-list-separator {
+  color: var(--foreground) !important;
+}
+
+/* Buttons */
+.monaco-button,
+.monaco-text-button {
+  border-radius: var(--button-radius);
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  text-align: center;
+  font-feature-settings: 'rclt' off;
+  font-size: var(--f-body);
+  line-height: var(--f-body-lh);
+}
+
+.monaco-button:hover,
+.monaco-text-button:hover {
+  background: var(--accent-hover) !important;
+}
+
+.monaco-button:active,
+.monaco-text-button:active {
+  border: var(--accent-pressed-border);
+  background: var(--accent-pressed-bg);
 }
 
 /* Sidebar icons */
@@ -345,6 +495,31 @@ html {
   font-size: 20px !important;
   width: 40px !important;
   height: 40px !important;
+  color: var(--list-item-fg) !important;
+}
+
+.monaco-workbench
+  .activitybar
+  > .content
+  :not(.monaco-menu)
+  > .monaco-action-bar
+  .action-item.active
+  .action-label.codicon,
+.monaco-workbench
+  .activitybar
+  > .content
+  :not(.monaco-menu)
+  > .monaco-action-bar
+  .action-item:focus
+  .action-label.codicon,
+.monaco-workbench
+  .activitybar
+  > .content
+  :not(.monaco-menu)
+  > .monaco-action-bar
+  .action-item:hover
+  .action-label.codicon {
+  color: var(--foreground) !important;
 }
 
 .monaco-workbench
@@ -354,6 +529,17 @@ html {
   > .monaco-action-bar
   .action-label:not(.codicon) {
   -webkit-mask-size: 20px !important;
+  background-color: var(--list-item-fg) !important;
+}
+
+.monaco-workbench
+  .activitybar
+  > .content
+  :not(.monaco-menu)
+  > .monaco-action-bar
+  .badge
+  .badge-content {
+  background-color: var(--accent) !important;
 }
 
 /* Activity bar */
@@ -375,14 +561,14 @@ html {
 }
 
 .monaco-action-bar .action-item {
-  background-color: transparent;
+  background: transparent;
   border-radius: 4px;
   transition: background var(--easing-timing-faster) var(--easing-curve-in);
 }
 
 .monaco-action-bar .action-item.checked,
 .monaco-action-bar .action-item:hover {
-  background-color: #e7ebee !important;
+  background: var(--active-action-item-bg) !important;
 }
 
 .active-item-indicator {
@@ -401,7 +587,7 @@ html {
   height: 20px !important;
   width: 4px !important;
   border-radius: 2px;
-  background-color: #0078d4 !important;
+  background-color: var(--accent) !important;
   top: 50% !important;
   transform: translateY(-10px) scaleY(0);
   opacity: 0;
@@ -449,7 +635,7 @@ html {
   border: var(--border) !important;
   box-shadow: var(--flyout-shadow) !important;
   border-radius: var(--border-radius);
-  background: var(--flyout-bg) !important;
+  background: var(--notification-toast-bg) !important;
   background-blend-mode: normal, luminosity;
   backdrop-filter: var(--backdrop-filter);
 }
@@ -464,11 +650,13 @@ html {
 
 /* Widget */
 .quick-input-widget {
-  background: var(--flyout-bg) !important;
+  background: var(--quick-input-widget-bg) !important;
   background-blend-mode: normal, luminosity;
   border-radius: var(--border-radius);
   box-shadow: none !important;
   backdrop-filter: var(--backdrop-filter);
+  color: var(--foreground) !important;
+  mix-blend-mode: luminosity;
 }
 
 .quick-input-widget::before,
@@ -495,23 +683,31 @@ html {
   background: none !important;
 }
 
+.quick-input-widget .monaco-list-row.focused {
+  background: var(--list-item-bg) !important;
+}
+
 /* Editor Panel */
 .monaco-editor,
 .monaco-editor-background {
-  background: rgba(255, 255, 255, 0.7) !important;
-  mix-blend-mode: multiply;
+  background: var(--editor-bg) !important;
+  mix-blend-mode: var(--card-bg-blend-mode);
 }
 
 .monaco-hover,
 .suggest-details,
 .monaco-editor .tree,
 .monaco-editor .details {
-  color: #000000 !important;
-  background: var(--flyout-bg) !important;
+  color: var(--foreground) !important;
+  background: var(--hover-bg) !important;
   background-blend-mode: normal, luminosity;
   border-radius: var(--border-radius);
   box-shadow: var(--flyout-shadow) !important;
   backdrop-filter: var(--backdrop-filter);
+}
+
+.monaco-hover {
+  padding: var(--s4) var(--s5) !important;
 }
 
 /* .suggest-details {
@@ -538,9 +734,26 @@ html {
   box-shadow: none !important;
 }
 
+.monaco-editor .margin,
+.monaco-editor-background {
+  background: var(--card-bg) !important;
+  background-blend-mode: color, luminosity;
+}
+
+.monaco-editor .view-overlays .current-line,
+.monaco-editor .margin-view-overlays .current-line-margin {
+  background-color: var(--app-bg) !important;
+}
+
 /* Statusbar */
 .statusbar {
   box-shadow: var(--card-shadow);
+  background: var(--card-bg) !important;
+  border: var(--border);
+}
+
+.monaco-workbench .part.statusbar > .items-container > .statusbar-item {
+  color: var(--foreground) !important;
 }
 
 /* Command Panel */
@@ -551,11 +764,13 @@ html {
 
 .monaco-list-rows .monaco-list-row {
   outline: none !important;
+  border-radius: var(--s3);
 }
 
 .monaco-drag-image,
 .monaco-list:focus .monaco-list-row.selected.focused {
   color: #000000;
+  background: var(--list-item-bg) !important;
 }
 
 /* Input Box */
@@ -579,7 +794,7 @@ html {
   border: var(--border) !important;
   box-shadow: var(--flyout-shadow) !important;
   border-radius: var(--border-radius) !important;
-  background: var(--menu-bg) !important;
+  background: var(--context-menu-bg) !important;
   background-blend-mode: normal, luminosity;
   /* backdrop-filter: var(--backdrop-filter) !important; */
 }
@@ -662,6 +877,14 @@ html {
   transition: var(--transition);
 }
 
+.settings-editor
+  > .settings-body
+  > .settings-tree-container
+  .monaco-list-row.focused
+  .settings-row-inner-container {
+  background-color: var(--list-item-bg) !important;
+}
+
 /* Breadcrumbs Picker */
 .monaco-breadcrumbs-picker > div:nth-child(2) {
   backdrop-filter: var(--backdrop-filter);
@@ -712,6 +935,7 @@ html {
 
 .monaco-pane-view .pane > .pane-header {
   height: var(--row-height) !important;
+  background: transparent !important;
 }
 
 /* TODO: actions should be part of the pane, but they aren't yet */

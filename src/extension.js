@@ -36,30 +36,21 @@ function activate(context) {
     try {
       // generate production theme JS
 
-      let mode = 'light';
-      switch (themeMode.kind) {
-        case 2:
-          mode = 'dark';
-          break;
-        case 3:
-          mode = 'HighContrast';
-          break;
-        case 1:
-        default:
-          break;
-      }
+      const isDark = themeMode.kind === 2;
 
       let chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
 
-      if (themeMode.kind === 2) {
-        chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome_dark.css', 'utf-8');
-      }
+      // if (themeMode.kind === 2) {
+      //   chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome_dark.css', 'utf-8');
+      // }
 
       const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
 
       const themeWithChrome = jsTemplate.replace(/\[CHROME_STYLES\]/g, chromeStyles);
 
-      fs.writeFileSync(templateFile, themeWithChrome, 'utf-8');
+      const themeDark = themeWithChrome.replace(/\[IS_DARK\]/g, isDark);
+
+      fs.writeFileSync(templateFile, themeDark, 'utf-8');
 
       // modify workbench html
       const html = fs.readFileSync(htmlFile, 'utf-8');
