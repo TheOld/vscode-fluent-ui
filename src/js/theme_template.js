@@ -33,6 +33,7 @@
 
     document.body.appendChild(newStyleTag);
 
+    // If the theme mode is dark we'll need to override the css variables
     if (isDark) {
       console.log('Theme is dark!');
       // Replace css root vars here
@@ -68,9 +69,6 @@
 
     console.log('Fluent UI: initialised!');
 
-    // const customPostProc = new CustomPostProcessing();
-    // console.log(customPostProc);
-
     // disconnect the observer because we don't need it anymore
     if (obs) {
       obs.disconnect();
@@ -81,21 +79,6 @@
   const watchForBootstrap = function (mutationsList, observer) {
     for (let mutation of mutationsList) {
       if (mutation.type === 'attributes') {
-        // only init if we're using a Fluent UI subtheme
-        // const isUsingFluentUI = document.querySelector(
-        //   '[class*="LeandroRodrigues-fluent-ui-vscode-themes-light-json"]',
-        // );
-
-        // const isUsingFluentDark = document.querySelector(
-        //   '[class*="LeandroRodrigues-fluent-ui-vscode-themes-dark-json"]',
-        // );
-
-        // const isDarkTheme = document.querySelector('[class*="vs-dark"]');
-        // console.log(
-        //   'file: theme_template.js ~ line 57 ~ watchForBootstrap ~ isDarkTheme',
-        //   isDarkTheme,
-        // );
-
         // does the style div exist yet?
         const tokensLoaded = document.querySelector('.vscode-tokens-styles');
 
@@ -103,24 +86,18 @@
         const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
 
         // sometimes VS code takes a while to init the styles content, so stop this observer and add an observer for that
-        // if (isUsingFluentUI && tokensLoaded) {
-        //   observer.disconnect();
-        observer.observe(tokensLoaded, { childList: true });
-        // }
+        if (tokensLoaded) {
+          observer.disconnect();
+          observer.observe(tokensLoaded, { childList: true });
+        }
       }
 
       if (mutation.type === 'childList') {
-        const isUsingFluentUI = document.querySelector(
-          '[class*="LeandroRodrigues-fluent-ui-vscode-themes-light-json"]',
-        );
-        const isUsingFluentDark = document.querySelector(
-          '[class*="LeandroRodrigues-fluent-ui-vscode-themes-dark-json"]',
-        );
         const tokensLoaded = document.querySelector('.vscode-tokens-styles');
         const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
 
         // Everything we need is ready, so initialise
-        if ((isUsingFluentUI || isUsingFluentDark) && tokensLoaded && tokenStyles) {
+        if (tokensLoaded && tokenStyles) {
           initFluentUI([IS_DARK], observer);
         }
       }

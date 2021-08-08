@@ -1,16 +1,16 @@
 {
   "name": "fluent-ui-vscode",
   "displayName": "Fluent UI for VSCode",
-  "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad. This was made entirely with CSS.",
+  "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
   "version": "0.0.1",
   "author": "Leandro Rodrigues",
-  "publisher": "LeandroRodrigues",
+  "publisher": "leandro-rodrigues",
   "repository": {
     "type": "git",
     "url": "https://github.com/TheOld/vscode-fluent-ui"
   },
   "engines": {
-    "vscode": "^1.33.0"
+    "vscode": "^1.59.0"
   },
   "keywords": [
     "fluent",
@@ -22,9 +22,7 @@
   ],
   "activationEvents": [
     "*",
-    "onCommand:fluent.enableEffects",
-    "onCommand:fluent.enableEffectsDark",
-    "onStartupFinished:fluent.startup"
+    "onCommand:fluent.enableEffects"
   ],
   "main": "./src/extension.js",
   "contributes": {

@@ -8,7 +8,7 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  this.extensionName = 'LeandroRodrigues.fluent-ui-vscode';
+  this.extensionName = 'leandro-rodrigues.fluent-ui-vscode';
 
   const config = vscode.workspace.getConfiguration('fluent');
 
@@ -34,15 +34,9 @@ function activate(context) {
         : '/electron-browser/workbench/fluent.js');
 
     try {
-      // generate production theme JS
-
       const isDark = themeMode.kind === 2;
 
       let chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
-
-      // if (themeMode.kind === 2) {
-      //   chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome_dark.css', 'utf-8');
-      // }
 
       const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
 
@@ -104,11 +98,6 @@ function activate(context) {
 
   let disable = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
 
-  let startup = vscode.commands.registerCommand('fluent.startup', function () {
-    console.log('VSCode start up event complete.');
-  });
-
-  context.subscriptions.push(startup);
   context.subscriptions.push(disposable);
   context.subscriptions.push(disable);
 }
@@ -137,7 +126,7 @@ function uninstall() {
   const isEnabled = html.includes('fluent.js');
 
   if (isEnabled) {
-    // delete synthwave script tag if there
+    // delete fluent script tag
     let output = html.replace(
       /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
       '',

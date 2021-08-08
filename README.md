@@ -3,13 +3,12 @@
 Inspired by and based on the awesome concept designs by
 [u/zeealeidahmad](https://www.reddit.com/r/Windows11/comments/orbgzl/visual_studio_vs_code_and_github_desktop_with/);
 
-The syntax themes are modifications of the awesome
-[Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity) by
-[Michael Andreuzza](https://marketplace.visualstudio.com/publishers/wicked-labs).
+The syntax themes VSCode's default Dark and Light. I haven't tested this extensively with other
+syntax themes, but most should work fine with a few issues here and there.
 
 To use it
 
-1. Choose your theme, Fluent UI Light or Fluent UI Dark
+1. Choose your syntax theme, Fluent UI Light or Fluent UI Dark
 2. Run `> Fluent UI: Enable`
 3. ...
 4. Profit! (for your boss)

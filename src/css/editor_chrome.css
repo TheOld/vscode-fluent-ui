@@ -103,11 +103,9 @@ html {
   backdrop-filter: blur(60px);
 }
 
-/* .chromium:after can be used to add noise texture, maybe */
-
 /* Welcome page */
 .monaco-workbench .part.editor > .content .gettingStartedContainer h1 {
-  font-size: clamp(2rem, 10vw, 4.25rem);
+  font-size: clamp(1.5rem, 8vw - 2rem, 3rem) !important;
 }
 
 .monaco-workbench .part.titlebar {
