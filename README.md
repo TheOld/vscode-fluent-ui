@@ -15,23 +15,23 @@ possible at the momend due to the current Electron version that VSCode is using.
 
 ### Sidebar
 
-- ![Sidebar preview](./images/sidebar.png 'Sidebar')
+![Sidebar preview](./images/sidebar.png 'Sidebar')
 
 ### Activity bar
 
-- ![Activity bar preview](./images/activitybar.png 'Activity bar')
+![Activity bar preview](./images/activitybar.png 'Activity bar')
 
 ### Tabs
 
-- ![Tabs preview](./images/tab-list.png 'Tabs')
+![Tabs preview](./images/tab-list.png 'Tabs')
 
 ### Search widget
 
-- ![Search widget preview](./images/search-widget.png 'Search widget')
+![Search widget preview](./images/search-widget.png 'Search widget')
 
 ### Command palette
 
-- ![Command palette preview](./images/command-palette-light.png 'Command palette')
+![Command palette preview](./images/command-palette-light.png 'Command palette')
 
 ## Known bugs
 
