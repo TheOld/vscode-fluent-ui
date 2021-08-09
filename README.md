@@ -53,6 +53,8 @@ is valid for light themes.
 
 > Note: I don't use breadcrumbs and minimap, so changes for these are minimal, if any.
 
+> Note again: This was only tested on Windows 10 (so far)
+
 > Also note: I haven't tested this extensively with that many syntax themes but most should work
 > fine with just a few issues here and there.
 
