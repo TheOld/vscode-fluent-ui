@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "author": "Leandro Rodrigues",
   "publisher": "leandro-rodrigues",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/TheOld/vscode-fluent-ui"
