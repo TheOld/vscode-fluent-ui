@@ -59,17 +59,17 @@ is valid for light themes.
 Some of the great themes that go along with this UI (in no particular order):
 
 - [Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity)
-  - ![Serendipity Light theme preview](./images/Serendipity%20Light.png 'Serendipity Light')
-  - - ![Serendipity Dark theme preview](./images/Serendipity%20Dark.png 'Serendipity Dard')
+  ![Serendipity Light theme preview](./images/Serendipity%20Light.png 'Serendipity Light')
+  ![Serendipity Dark theme preview](./images/Serendipity%20Dark.png 'Serendipity Dard')
 - [Copilot](https://marketplace.visualstudio.com/items?itemName=BenjaminBenais.copilot-theme)
-  - ![Copilot theme preview](./images/Copilot.png 'Copilot')
+  ![Copilot theme preview](./images/Copilot.png 'Copilot')
 - [Mariana Pro](https://marketplace.visualstudio.com/items?itemName=rickynormandeau.mariana-pro)
-  - ![Mariana Prot theme preview](./images/Mariana%20Pro.png 'Mariana Pro')
+  ![Mariana Prot theme preview](./images/Mariana%20Pro.png 'Mariana Pro')
 - [Night Owl](https://marketplace.visualstudio.com/items?itemName=sdras.night-owl)
-  - ![Night Owl Light theme preview](./images/Night-owl-light.png 'Night Owl Light')
-  - ![Night Owl Dark theme preview](./images/Night-owl-dark.png 'Night Owl Dark')
+  ![Night Owl Light theme preview](./images/Night-owl-light.png 'Night Owl Light')
+  ![Night Owl Dark theme preview](./images/Night-owl-dark.png 'Night Owl Dark')
 - [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)
-  - ![One Dark Pro theme preview](./images/one-dark-pro.png 'One Dark Pro ')
+  ![One Dark Pro theme preview](./images/one-dark-pro.png 'One Dark Pro ')
 
 ## Recommended settings and extensions
 
