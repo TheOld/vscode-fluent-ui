@@ -5,9 +5,39 @@ Inspired by and based on the awesome concept designs by
 Using CSS3 I tried as much as possible to replicate his designs. Some transparency effects are not
 possible at the momend due to the current Electron version that VSCode is using.
 
-1. Run `> Fluent UI: Enable`
-2. ...
-3. Profit! (for your boss)
+## Install
+
+1. Install extension from
+   [Marketplace](https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs)
+2. Run `> Fluent UI: Enable`
+3. ...
+4. Profit! (for your boss)
+
+### Sidebar
+
+- ![Sidebar preview](./images/sidebar.png 'Sidebar')
+
+### Activity bar
+
+- ![Activity bar preview](./images/activitybar.png 'Activity bar')
+
+### Tabs
+
+- ![Tabs preview](./images/tab-list.png 'Tabs')
+
+### Search widget
+
+- ![Search widget preview](./images/search-widget.png 'Search widget')
+
+### Command palette
+
+- ![Command palette preview](./images/command-palette-light.png 'Command palette')
+
+## Known bugs
+
+1. You may have to run `> Fluent UI: Enable` twice for it to work.
+2. Sometimes when changing from one project to another, the workbench will disable the theme/reset
+   the UI to the original state. Closing VSCode then opening and re-applying seems to fix it.
 
 Now, to toggle between light and dark modes, you first need to choose a theme and then run the
 `> Fluent UI: Enable` command again. The correct mode will be applied based on the main syntax theme
@@ -29,11 +59,17 @@ is valid for light themes.
 Some of the great themes that go along with this UI (in no particular order):
 
 - [Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity)
+  - ![Serendipity Light theme preview](./images/Serendipity%20Light.png 'Serendipity Light')
+  - - ![Serendipity Dark theme preview](./images/Serendipity%20Dark.png 'Serendipity Dard')
 - [Copilot](https://marketplace.visualstudio.com/items?itemName=BenjaminBenais.copilot-theme)
+  - ![Copilot theme preview](./images/Copilot.png 'Copilot')
 - [Mariana Pro](https://marketplace.visualstudio.com/items?itemName=rickynormandeau.mariana-pro)
+  - ![Mariana Prot theme preview](./images/Mariana%20Pro.png 'Mariana Pro')
 - [Night Owl](https://marketplace.visualstudio.com/items?itemName=sdras.night-owl)
+  - ![Night Owl Light theme preview](./images/Night-owl-light.png 'Night Owl Light')
+  - ![Night Owl Dark theme preview](./images/Night-owl-dark.png 'Night Owl Dark')
 - [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)
-- [Dracula](https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula)
+  - ![One Dark Pro theme preview](./images/one-dark-pro.png 'One Dark Pro ')
 
 ## Recommended settings and extensions
 

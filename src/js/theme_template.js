@@ -29,36 +29,6 @@
 
     document.body.appendChild(newStyleTag);
 
-    // If the theme mode is dark we'll need to override the css variables
-    // if (isDark) {
-    //   document.documentElement.style.setProperty('--foreground', '#ffffff');
-    //   document.documentElement.style.setProperty('--background-color', 'rgba(0, 0, 0, 0.0578)');
-    //   // Card BG
-    //   document.documentElement.style.setProperty(
-    //     '--card-bg',
-    //     'linear-gradient(0deg, rgba(32, 32, 32, 0.65), rgba(32, 32, 32, 0.65))',
-    //   );
-    //   document.documentElement.style.setProperty(
-    //     '--quick-input-widget-bg',
-    //     'linear-gradient(0deg, rgba(32, 32, 32, 0.85), rgba(32, 32, 32, 0.85))',
-    //   );
-    //   document.documentElement.style.setProperty('--hover-bg', 'var(--card-bg)');
-    //   document.documentElement.style.setProperty(
-    //     '--context-menu-bg',
-    //     'linear-gradient(0deg, rgba(32, 32, 32, 0.82), rgba(32, 32, 32, 0.82))',
-    //   );
-    //   document.documentElement.style.setProperty('--editor-bg', 'transparent');
-    //   document.documentElement.style.setProperty('--editor-widget-bg', 'var(--card-bg)');
-    //   document.documentElement.style.setProperty('--notification-toast-bg', 'var(--card-bg)');
-    //   document.documentElement.style.setProperty('--card-blend-mode', 'color, luminosity');
-    //   document.documentElement.style.setProperty('--app-bg', '#2c2c2c');
-    //   document.documentElement.style.setProperty('--list-item-bg', 'rgba(255, 255, 255, 0.0605)');
-    //   document.documentElement.style.setProperty('--list-item-fg', '#ffffff99');
-    //   document.documentElement.style.setProperty('--activitybar-indicator-bg', '#60CDFF');
-    //   document.documentElement.style.setProperty('--accent', '#0078d4');
-    //   document.documentElement.style.setProperty('--active-action-item-bg', 'var(--card-bg)');
-    // }
-
     console.log('Fluent UI: initialised!');
 
     // disconnect the observer because we don't need it anymore
