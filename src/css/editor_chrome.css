@@ -49,6 +49,7 @@
   --dialog-border: 1px solid rgba(117, 117, 117, 0.4);
   --dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
   --editor-bg: var(--card-bg);
+  --editor-widget-bg: var(--flyout-bg);
   --easing-curve-in: cubic-bezier(0, 0, 0, 1);
   --easing-curve-out: cubic-bezier(1, 0, 1, 1);
   --easing-timing-fast: 167ms;
@@ -86,21 +87,12 @@ html {
 
 .card {
   background: var(--card-bg) !important;
-  mix-blend-mode: var(--card-bg-blend-mode);
+  /* mix-blend-mode: var(--card-bg-blend-mode); */
   box-shadow: var(--card-shadow);
   /* JSON theme will add border-right and we need to override it */
   border-right: var(--border);
   border: var(--border) !important;
   border-radius: var(--border-radius);
-}
-
-.acrylic {
-  background: url(data:image/png;base64,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),
-    rgba(211, 211, 211, 0.44);
-  background-blend-mode: normal, luminosity;
-  box-shadow: var(--acrylic-shadow) !important;
-  border: var(--acrylic-stroke) !important;
-  backdrop-filter: blur(60px);
 }
 
 /* Welcome page */
@@ -117,12 +109,6 @@ html {
   background-color: transparent !important;
 }
 
-.monaco-scrollable-element > .split-view-container > div {
-  will-change: width;
-  transition: width var(--easing-timing-faster) var(--easing-curve-in) !important;
-  transform-origin: center !important;
-}
-
 .monaco-workbench .part.editor {
   height: var(--content-height);
   margin-right: var(--s4);
@@ -134,6 +120,7 @@ html {
 
 .editor-container {
   background: none !important;
+  border-top-color: transparent !important;
   border-top: none !important;
   border-left: var(--border) !important;
   border-right: var(--border) !important;
@@ -160,14 +147,8 @@ html {
   border-radius: var(--border-radius);
 }
 
-/* Hidding window title, 'cause I don't like it */
 .window-appicon {
   padding-left: var(--s5);
-}
-
-.window-title {
-  left: var(--s7) !important;
-  transform: none !important;
 }
 
 .monaco-workbench {
@@ -194,7 +175,7 @@ html {
   background-color: transparent !important;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-top: transparent;
+  border-top: transparent !important;
   border-right: transparent;
   overflow: hidden;
   transition: borderRadius var(--easing-timing-fast) var(--easing-curve-in),
@@ -224,9 +205,7 @@ html {
 }
 
 .tabs-container > .tab {
-  border-top: 1px solid transparent;
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent !important;
+  border: 1px solid transparent !important;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
@@ -243,7 +222,19 @@ html {
   opacity: 1;
 }
 
+.monaco-workbench
+  .part.editor
+  > .content
+  .editor-group-container
+  > .title
+  .tabs-container
+  > .tab.active.tab-border-top
+  > .tab-border-top-container {
+  background-color: transparent !important;
+}
+
 .tabs-container > .tab.active {
+  border-color: var(--border-color) !important;
   border: var(--border) !important;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
@@ -535,6 +526,30 @@ html {
   > .content
   :not(.monaco-menu)
   > .monaco-action-bar
+  .action-item.active
+  .action-label:not(.codicon),
+.monaco-workbench
+  .activitybar
+  > .content
+  :not(.monaco-menu)
+  > .monaco-action-bar
+  .action-item:focus
+  .action-label:not(.codicon),
+.monaco-workbench
+  .activitybar
+  > .content
+  :not(.monaco-menu)
+  > .monaco-action-bar
+  .action-item:hover
+  .action-label:not(.codicon) {
+  background-color: #000000 !important;
+}
+
+.monaco-workbench
+  .activitybar
+  > .content
+  :not(.monaco-menu)
+  > .monaco-action-bar
   .badge
   .badge-content {
   background-color: var(--accent) !important;
@@ -561,7 +576,8 @@ html {
 .monaco-action-bar .action-item {
   background: transparent;
   border-radius: 4px;
-  transition: background var(--easing-timing-faster) var(--easing-curve-in);
+  transition: background var(--easing-timing-faster) var(--easing-curve-in),
+    color var(--easing-timing-faster) var(--easing-curve-in);
 }
 
 .monaco-action-bar .action-item.checked,
@@ -642,10 +658,6 @@ html {
   padding: var(--s4) var(--s3) !important;
 }
 
-.context-view.monaco-menu-container {
-  animation: fadeIn var(--easing-timing-fast) var(--easing-curve-in) !important;
-}
-
 /* Widget */
 .quick-input-widget {
   background: var(--quick-input-widget-bg) !important;
@@ -705,23 +717,8 @@ html {
 }
 
 .monaco-hover {
-  padding: var(--s4) var(--s5) !important;
+  padding: var(--s4) !important;
 }
-
-/* .suggest-details {
-  backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important;
-}
-
-.monaco-editor .tree {
-  backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important;
-}
-
-.monaco-editor .details {
-  backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important;
-} */
 
 .editor-widget.suggest-widget {
   backdrop-filter: none;
@@ -786,16 +783,33 @@ html {
 
 /* Menu */
 .monaco-workbench .monaco-menu .monaco-action-bar.vertical,
+.context-view.monaco-menu-container,
 .context-view.monaco-menu-container {
-  /* backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important; */
   border: var(--border) !important;
   box-shadow: var(--flyout-shadow) !important;
   border-radius: var(--border-radius) !important;
   background: var(--context-menu-bg) !important;
   background-blend-mode: normal, luminosity;
-  /* backdrop-filter: var(--backdrop-filter) !important; */
 }
+
+.context-view.monaco-menu-container {
+  animation: fadeIn var(--easing-timing-fast) var(--easing-curve-in) !important;
+}
+
+.monaco-menu-container .monaco-scrollable-element,
+.monaco-menu-container .monaco-scrollable-element .monaco-menu {
+  box-shadow: none !important;
+  overflow: inherit !important;
+}
+
+/* .monaco-menu-container .monaco-menu,
+.monaco-menu .monaco-action-bar {
+  border: var(--border) !important;
+  box-shadow: var(--flyout-shadow) !important;
+  border-radius: var(--border-radius) !important;
+  background: var(--context-menu-bg) !important;
+  background-blend-mode: normal, luminosity;
+} */
 
 .separator {
   border-bottom-color: rgba(255, 255, 255, 0.4) !important;
@@ -821,7 +835,7 @@ html {
 }
 
 .editor-widget {
-  background: var(--flyout-bg) !important;
+  background: var(--editor-widget-bg) !important;
   background-blend-mode: normal, luminosity;
   border-radius: var(--border-radius);
   backdrop-filter: var(--backdrop-filter);

@@ -1,3 +1,6 @@
 {
-  "px-to-rem.px-per-rem": 16
+  "px-to-rem.px-per-rem": 16,
+  "[markdown]": {
+    "editor.cursorSurroundingLines": 2
+  }
 }

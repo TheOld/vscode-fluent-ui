@@ -26,18 +26,6 @@
   ],
   "main": "./src/extension.js",
   "contributes": {
-    "themes": [
-      {
-        "label": "Fluent UI Dark",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dark.json"
-      },
-      {
-        "label": "Fluent UI Light",
-        "uiTheme": "vs",
-        "path": "./themes/light.json"
-      }
-    ],
     "commands": [
       {
         "command": "fluent.enableEffects",

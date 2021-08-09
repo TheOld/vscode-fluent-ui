@@ -2,8 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const vscode = require('vscode');
 
-// const diff = require('semver/functions/diff');
-
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -12,9 +10,8 @@ function activate(context) {
 
   const config = vscode.workspace.getConfiguration('fluent');
 
-  // let disableEffects = config && config.disableEffects ? !!config.disableEffects : false;
-
   const themeMode = vscode.window.activeColorTheme;
+  const isDark = themeMode.kind === 2;
 
   let disposable = vscode.commands.registerCommand('fluent.enableEffects', function () {
     const isWin = /^win/.test(process.platform);
@@ -34,17 +31,21 @@ function activate(context) {
         : '/electron-browser/workbench/fluent.js');
 
     try {
-      const isDark = themeMode.kind === 2;
+      let cssVars = fs.readFileSync(__dirname + '/css/light_vars.css', 'utf-8');
+
+      if (isDark) {
+        cssVars = fs.readFileSync(__dirname + '/css/dark_vars.css', 'utf-8');
+      }
 
       let chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
-
       const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
 
       const themeWithChrome = jsTemplate.replace(/\[CHROME_STYLES\]/g, chromeStyles);
+      const themeWithVars = themeWithChrome.replace(/\[VARS\]/g, cssVars);
 
-      const themeDark = themeWithChrome.replace(/\[IS_DARK\]/g, isDark);
+      // const themeDark = themeWithChrome.replace(/\[IS_DARK\]/g, isDark);
 
-      fs.writeFileSync(templateFile, themeDark, 'utf-8');
+      fs.writeFileSync(templateFile, themeWithVars, 'utf-8');
 
       // modify workbench html
       const html = fs.readFileSync(htmlFile, 'utf-8');
@@ -104,12 +105,7 @@ function activate(context) {
 
 exports.activate = activate;
 
-// this method is called when your extension is deactivated
-function deactivate() {
-  // ...
-}
-
-function uninstall() {
+function removeScript() {
   var isWin = /^win/.test(process.platform);
   var appDir = path.dirname(require.main.filename);
   var base = appDir + (isWin ? '\\vs\\code' : '/vs/code');
@@ -144,6 +140,15 @@ function uninstall() {
   } else {
     vscode.window.showInformationMessage("Fluent UI isn't running.");
   }
+}
+
+// this method is called when your extension is deactivated
+function deactivate() {
+  removeScript();
+}
+
+function uninstall() {
+  removeScript();
 }
 
 module.exports = {
