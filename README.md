@@ -15,23 +15,23 @@ possible at the momend due to the current Electron version that VSCode is using.
 
 ### Sidebar
 
-![Sidebar preview](sidebar.png 'Sidebar')
+![Sidebar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/sidebar.png 'Sidebar')
 
 ### Activity bar
 
-![Activity bar preview](activitybar.png 'Activity bar')
+![Activity bar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/activitybar.png 'Activity bar')
 
 ### Tabs
 
-![Tabs preview](tab-list.png 'Tabs')
+![Tabs preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/tab-list.png 'Tabs')
 
 ### Search widget
 
-![Search widget preview](search-widget.png 'Search widget')
+![Search widget preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/search-widget.png 'Search widget')
 
 ### Command palette
 
-![Command palette preview](command-palette-light.png 'Command palette')
+![Command palette preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/command-palette-light.png 'Command palette')
 
 ## Known bugs
 
@@ -62,29 +62,29 @@ Some of the great themes that go along with this UI (in no particular order):
 
 ## [Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity)
 
-![Serendipity Light theme preview](serendipity-light.png 'Serendipity Light')
-![Serendipity Dark theme preview](serendipity-dark.png 'Serendipity Dard')
+![Serendipity Light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/serendipity-light.png 'Serendipity Light')
+![Serendipity Dark theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/serendipity-dark.png 'Serendipity Dard')
 
 ## [Copilot](https://marketplace.visualstudio.com/items?itemName=BenjaminBenais.copilot-theme)
 
-![Copilot theme preview](copilot.png 'Copilot')
+![Copilot theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/copilot.png 'Copilot')
 
 ## [Mariana Pro](https://marketplace.visualstudio.com/items?itemName=rickynormandeau.mariana-pro)
 
-![Mariana Prot theme preview](mariana-pro.png 'Mariana Pro')
+![Mariana Prot theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/mariana-pro.png 'Mariana Pro')
 
 ## [Night Owl](https://marketplace.visualstudio.com/items?itemName=sdras.night-owl)
 
-![Night Owl Light theme preview](night-owl-light.png 'Night Owl Light')
-![Night Owl Dark theme preview](night-owl-dark.png 'Night Owl Dark')
+![Night Owl Light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/night-owl-light.png 'Night Owl Light')
+![Night Owl Dark theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/night-owl-dark.png 'Night Owl Dark')
 
 ## [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)
 
-![One Dark Pro theme preview](one-dark-pro.png 'One Dark Pro ')
+![One Dark Pro theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/one-dark-pro.png 'One Dark Pro ')
 
 ## VSCode default white
 
-![VSCode light theme preview](vscode-default-light.png 'VSCode light')
+![VSCode light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-default-light.png 'VSCode light')
 
 ---
 
