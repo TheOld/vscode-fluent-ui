@@ -8,7 +8,7 @@ possible at the momend due to the current Electron version that VSCode is using.
 ## Install
 
 1. Install extension from
-   [Marketplace](https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Installs)
+   [Marketplace](https://marketplace.visualstudio.com/items?itemName=leandro-rodrigues.fluent-ui-vscode)
 2. Run `> Fluent UI: Enable`
 3. ...
 4. Profit! (for your boss)
