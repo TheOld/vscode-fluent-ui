@@ -15,23 +15,23 @@ possible at the momend due to the current Electron version that VSCode is using.
 
 ### Sidebar
 
-![Sidebar preview](./images/sidebar.png 'Sidebar')
+![Sidebar preview](sidebar.png 'Sidebar')
 
 ### Activity bar
 
-![Activity bar preview](./images/activitybar.png 'Activity bar')
+![Activity bar preview](activitybar.png 'Activity bar')
 
 ### Tabs
 
-![Tabs preview](./images/tab-list.png 'Tabs')
+![Tabs preview](tab-list.png 'Tabs')
 
 ### Search widget
 
-![Search widget preview](./images/search-widget.png 'Search widget')
+![Search widget preview](search-widget.png 'Search widget')
 
 ### Command palette
 
-![Command palette preview](./images/command-palette-light.png 'Command palette')
+![Command palette preview](command-palette-light.png 'Command palette')
 
 ## Known bugs
 
@@ -62,25 +62,29 @@ Some of the great themes that go along with this UI (in no particular order):
 
 ## [Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity)
 
-![Serendipity Light theme preview](./images/Serendipity%20Light.png 'Serendipity Light')
-![Serendipity Dark theme preview](./images/Serendipity%20Dark.png 'Serendipity Dard')
+![Serendipity Light theme preview](serendipity-light.png 'Serendipity Light')
+![Serendipity Dark theme preview](serendipity-dark.png 'Serendipity Dard')
 
 ## [Copilot](https://marketplace.visualstudio.com/items?itemName=BenjaminBenais.copilot-theme)
 
-![Copilot theme preview](./images/Copilot.png 'Copilot')
+![Copilot theme preview](copilot.png 'Copilot')
 
 ## [Mariana Pro](https://marketplace.visualstudio.com/items?itemName=rickynormandeau.mariana-pro)
 
-![Mariana Prot theme preview](./images/Mariana%20Pro.png 'Mariana Pro')
+![Mariana Prot theme preview](mariana-pro.png 'Mariana Pro')
 
 ## [Night Owl](https://marketplace.visualstudio.com/items?itemName=sdras.night-owl)
 
-![Night Owl Light theme preview](./images/Night-owl-light.png 'Night Owl Light')
-![Night Owl Dark theme preview](./images/Night-owl-dark.png 'Night Owl Dark')
+![Night Owl Light theme preview](night-owl-light.png 'Night Owl Light')
+![Night Owl Dark theme preview](night-owl-dark.png 'Night Owl Dark')
 
 ## [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)
 
-![One Dark Pro theme preview](./images/one-dark-pro.png 'One Dark Pro ')
+![One Dark Pro theme preview](one-dark-pro.png 'One Dark Pro ')
+
+## VSCode default white
+
+![VSCode light theme preview](vscode-default-light.png 'VSCode light')
 
 ---
 
