@@ -15,23 +15,23 @@ possible at the momend due to the current Electron version that VSCode is using.
 
 ### Sidebar
 
-![Sidebar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/sidebar.png 'Sidebar')
+![Sidebar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/sidebar.png?raw=true 'Sidebar')
 
 ### Activity bar
 
-![Activity bar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/activitybar.png 'Activity bar')
+![Activity bar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/activitybar.png?raw=true 'Activity bar')
 
 ### Tabs
 
-![Tabs preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/tab-list.png 'Tabs')
+![Tabs preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/tab-list.png?raw=true 'Tabs')
 
 ### Search widget
 
-![Search widget preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/search-widget.png 'Search widget')
+![Search widget preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/search-widget.png?raw=true 'Search widget')
 
 ### Command palette
 
-![Command palette preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/command-palette-light.png 'Command palette')
+![Command palette preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/command-palette-light.png?raw=true 'Command palette')
 
 ## Known bugs
 
@@ -62,29 +62,29 @@ Some of the great themes that go along with this UI (in no particular order):
 
 ## [Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity)
 
-![Serendipity Light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/serendipity-light.png 'Serendipity Light')
-![Serendipity Dark theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/serendipity-dark.png 'Serendipity Dard')
+![Serendipity Light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/serendipity-light.png?raw=true 'Serendipity Light')
+![Serendipity Dark theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/serendipity-dark.png?raw=true 'Serendipity Dard')
 
 ## [Copilot](https://marketplace.visualstudio.com/items?itemName=BenjaminBenais.copilot-theme)
 
-![Copilot theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/copilot.png 'Copilot')
+![Copilot theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/copilot.png?raw=true 'Copilot')
 
 ## [Mariana Pro](https://marketplace.visualstudio.com/items?itemName=rickynormandeau.mariana-pro)
 
-![Mariana Prot theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/mariana-pro.png 'Mariana Pro')
+![Mariana Prot theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/mariana-pro.png?raw=true 'Mariana Pro')
 
 ## [Night Owl](https://marketplace.visualstudio.com/items?itemName=sdras.night-owl)
 
-![Night Owl Light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/night-owl-light.png 'Night Owl Light')
-![Night Owl Dark theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/night-owl-dark.png 'Night Owl Dark')
+![Night Owl Light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/night-owl-light.png?raw=true 'Night Owl Light')
+![Night Owl Dark theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/night-owl-dark.png?raw=true 'Night Owl Dark')
 
 ## [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme)
 
-![One Dark Pro theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/one-dark-pro.png 'One Dark Pro ')
+![One Dark Pro theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/one-dark-pro.png?raw=true 'One Dark Pro ')
 
 ## VSCode default white
 
-![VSCode light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-default-light.png 'VSCode light')
+![VSCode light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-default-light.png?raw=true 'VSCode light')
 
 ---
 

@@ -2,7 +2,7 @@
   "name": "fluent-ui-vscode",
   "displayName": "Fluent UI for VSCode",
   "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Leandro Rodrigues",
   "publisher": "leandro-rodrigues",
   "icon": "icon.png",
