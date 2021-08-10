@@ -35,7 +35,7 @@ possible at the momend due to the current Electron version that VSCode is using.
 
 ## Known bugs
 
-1. You may have to run `> Fluent UI: Enable` twice for it to work.
+1. Sometimes you may have to run `> Fluent UI: Enable` twice for it to work.
 2. Sometimes when changing from one project to another, the workbench will disable the theme/reset
    the UI to the original state. Closing VSCode then opening and re-applying seems to fix it.
 
@@ -88,23 +88,7 @@ Some of the great themes that go along with this UI (in no particular order):
 
 ---
 
-# Recommended settings and extensions
-
-Naturally, most of the following is persoanl taste, but the custom VS settings I use and recommend
-for best results:
-
-```
-{
-  "editor.fontFamily": "Cascadia Code",
-  "editor.lineHeight": 1.5,
-  "editor.cursorSmoothCaretAnimation": true,
-  "editor.cursorBlinking": "phase",
-  "editor.cursorStyle": "block",
-  "workbench.editor.decorations.colors": false,
-}
-```
-
-### To complete the look
+# To complete the look and slay!
 
 Product icon themes:
 
@@ -113,6 +97,6 @@ Product icon themes:
 - [Carbon](https://marketplace.visualstudio.com/items?itemName=antfu.icons-carbon)
 
 The workbench is set to use Segoe UI Variable (the new standard font for Windows 11). I highly
-recommend downloading and installing it.
+recommend downloading and installing it. If you don't, the theme will fallback to the default font.
 
 - [Segoe UI variable](https://docs.microsoft.com/en-us/windows/apps/design/downloads/#fonts)
