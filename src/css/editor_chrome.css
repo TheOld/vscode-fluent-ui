@@ -36,6 +36,7 @@
   --app-bg: #f3f3f3;
   --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
   --backdrop-filter: blur(12px) saturate(0.8);
+  /* --backdrop-filter: none; */
   --background-color: rgba(255, 255, 255, 0.4);
   --border-color: rgba(0, 0, 0, 0.0578);
   --border-radius: 8px;
@@ -119,7 +120,7 @@ html {
 }
 
 .editor-container {
-  background: none !important;
+  background: var(--editor-bg) !important;
   border-top-color: transparent !important;
   border-top: none !important;
   border-left: var(--border) !important;
@@ -701,7 +702,7 @@ html {
 .monaco-editor,
 .monaco-editor-background {
   background: var(--editor-bg) !important;
-  mix-blend-mode: var(--card-bg-blend-mode);
+  /* mix-blend-mode: var(--card-bg-blend-mode); */
 }
 
 .monaco-hover,

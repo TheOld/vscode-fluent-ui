@@ -43,8 +43,6 @@ function activate(context) {
       const themeWithChrome = jsTemplate.replace(/\[CHROME_STYLES\]/g, chromeStyles);
       const themeWithVars = themeWithChrome.replace(/\[VARS\]/g, cssVars);
 
-      // const themeDark = themeWithChrome.replace(/\[IS_DARK\]/g, isDark);
-
       fs.writeFileSync(templateFile, themeWithVars, 'utf-8');
 
       // modify workbench html
@@ -69,7 +67,7 @@ function activate(context) {
 
         vscode.window
           .showInformationMessage(
-            "Fluent UI is enabled. VS code must reload for this change to take effect. Code may display a warning that it is corrupted, this is normal. You can dismiss this message by choosing 'Don't show this again' on the notification.",
+            'Fluent UI is enabled. VS code must reload for this change to take effect.',
             { title: 'Restart editor to complete' },
           )
           .then(function (msg) {
@@ -144,7 +142,7 @@ function removeScript() {
 
 // this method is called when your extension is deactivated
 function deactivate() {
-  removeScript();
+  // removeScript();
 }
 
 function uninstall() {
