@@ -188,6 +188,23 @@ html {
   will-change: borderRadius;
 }
 
+.monaco-workbench
+  .part.editor
+  > .content
+  .editor-group-container
+  > .title
+  > .tabs-and-actions-container.tabs-border-bottom:after,
+.monaco-workbench
+  .part.editor
+  > .content
+  .editor-group-container
+  > .title
+  .tabs-container
+  > .tab.active.tab-border-bottom
+  > .tab-border-bottom-container {
+  display: none !important;
+}
+
 .tabs-container > .tab:after {
   content: '';
   width: 100%;
@@ -261,8 +278,38 @@ html {
   font-family: var(--font-display-semibold);
 }
 
+.monaco-workbench .part.panel {
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--card-bg) !important;
+  border: var(--border) !important;
+  border-radius: var(--border-radius);
+  margin: 0 8px;
+}
+
+.monaco-workbench .part.panel .composite.title {
+  border-top: none !important;
+  background: var(--card-bg) !important;
+  border: var(--border) !important;
+  border-top-right-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+}
+
+/* .monaco-workbench .part.panel .pane-body.integrated-terminal .terminal-outer-container,
+  .xterm-viewport,
+  .xterm-link-layer,
+  .monaco-workbench .editor-instance .xterm-viewport,
+  .monaco-workbench .pane-body.integrated-terminal .xterm-viewport,  */
+.terminal {
+  background: var(--card-bg) !important;
+}
+
 /* Breadcrumbs */
-.monaco-workbench
+.tabs-breadcrumbs {
+  background: var(--card-bg) !important;
+}
+
+/* .monaco-workbench
   .part.editor
   > .content
   .editor-group-container
@@ -270,10 +317,10 @@ html {
   .tabs-breadcrumbs
   .breadcrumbs-control {
   height: 32px !important;
-}
+} */
 
 .monaco-breadcrumbs {
-  height: 32px !important;
+  background: var(--card-bg) !important;
   width: 100% !important;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
@@ -712,6 +759,7 @@ html {
   color: var(--foreground) !important;
   background: var(--hover-bg) !important;
   background-blend-mode: normal, luminosity;
+  border: var(--border) !important;
   border-radius: var(--border-radius);
   box-shadow: var(--flyout-shadow) !important;
   backdrop-filter: var(--backdrop-filter);
@@ -871,6 +919,10 @@ html {
 }
 
 .minimap canvas {
+  background: transparent !important;
+}
+
+/* .minimap canvas {
   opacity: 0.4;
   transition: var(--transition);
 }
@@ -878,7 +930,7 @@ html {
 .minimap:hover canvas {
   opacity: 1;
   transition: var(--transition);
-}
+} */
 
 /* Vertical Scroll Bar */
 .scrollbar.horizontal {
