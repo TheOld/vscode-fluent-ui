@@ -9,6 +9,7 @@ function activate(context) {
   this.extensionName = 'leandro-rodrigues.fluent-ui-vscode';
 
   const config = vscode.workspace.getConfiguration('fluent');
+  let disableFilters = config && config.disableFilters ? !!config.disableFilters : false;
 
   const themeMode = vscode.window.activeColorTheme;
   const isDark = themeMode.kind === 2;
@@ -40,7 +41,8 @@ function activate(context) {
       let chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
       const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
 
-      const themeWithChrome = jsTemplate.replace(/\[CHROME_STYLES\]/g, chromeStyles);
+      const themeWithFilter = jsTemplate.replace(/\[DISABLE_FILTERS\]/g, disableFilters);
+      const themeWithChrome = themeWithFilter.replace(/\[CHROME_STYLES\]/g, chromeStyles);
       const themeWithVars = themeWithChrome.replace(/\[VARS\]/g, cssVars);
 
       fs.writeFileSync(templateFile, themeWithVars, 'utf-8');

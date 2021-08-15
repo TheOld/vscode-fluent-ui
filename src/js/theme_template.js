@@ -3,7 +3,7 @@
   const bodyNode = document.querySelector('body');
 
   // Add custom styles
-  const initFluentUI = (isDark, obs) => {
+  const initFluentUI = (disableFilters, obs) => {
     console.log('Initializing Fluent UI');
 
     var themeStyleTag = document.querySelector('.vscode-tokens-styles');
@@ -22,6 +22,11 @@
 
     /* append the remaining styles */
     updatedThemeStyles = `[CHROME_STYLES][VARS]`;
+
+    if (disableFilters) {
+      console.log('Disabling filters');
+      document.documentElement.style.setProperty('--backdrop-filter', 'none');
+    }
 
     const newStyleTag = document.createElement('style');
     newStyleTag.setAttribute('id', 'fluent-theme-styles');
@@ -60,14 +65,14 @@
 
         // Everything we need is ready, so initialise
         if (tokensLoaded && tokenStyles) {
-          initFluentUI(false, observer);
+          initFluentUI([DISABLE_FILTERS], observer);
         }
       }
     }
   };
 
   // try to initialise the theme
-  initFluentUI(false);
+  initFluentUI([DISABLE_FILTERS]);
 
   // Use a mutation observer to check when we can bootstrap the theme
   const observer = new MutationObserver(watchForBootstrap);

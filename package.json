@@ -2,7 +2,7 @@
   "name": "fluent-ui-vscode",
   "displayName": "Fluent UI for VSCode",
   "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "author": "Leandro Rodrigues",
   "publisher": "leandro-rodrigues",
   "icon": "icon.png",
@@ -40,6 +40,16 @@
         "command": "fluent.disableEffects",
         "title": "Fluent UI: Disable"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Fluent UI",
+      "properties": {
+        "fluent.disableFilters": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable the filter effects on the UI. Sublte, but can impact performance on some machines."
+        }
+      }
+    }
   }
 }
