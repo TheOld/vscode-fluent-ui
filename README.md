@@ -13,23 +13,50 @@ possible at the momend due to the current Electron version that VSCode is using.
 3. ...
 4. Profit! (for your boss)
 
-### Sidebar
+## Settings
+
+The UI theme uses some expensive filters that can cause performance issues on some machines. If
+notice VS Code is slower after enabling the theme you can turn this option off. Just go to
+Settings > Fluent UI > Disable filters.
+
+You'll need to run `Fluent UI: Enable` again as the effects are compiled with the remaining styles.
+
+### Integrated terminal and minimap background colors
+
+Due to limitations on overriding some colours and depending on the syntax theme you choose, the
+Terminal and Minimap's background colors might be off. You can set the colors for these panels
+manually via settings, like so:
+
+```
+"workbench.colorCustomizations": {
+  "terminal.background": "#ffffff",
+  "minimap.background": "#ffffff"
+}
+```
+
+# Screenshots
+
+#### Sidebar
 
 ![Sidebar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/sidebar.png?raw=true 'Sidebar')
 
-### Activity bar
+#### Activity bar
 
 ![Activity bar preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/activitybar.png?raw=true 'Activity bar')
 
-### Tabs
+#### Tabs
 
 ![Tabs preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/tab-list.png?raw=true 'Tabs')
 
-### Search widget
+#### Terminal
+
+![Terminal preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/terminal.png?raw=true 'Terminal')
+
+#### Search widget
 
 ![Search widget preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/search-widget.png?raw=true 'Search widget')
 
-### Command palette
+#### Command palette
 
 ![Command palette preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/command-palette-light.png?raw=true 'Command palette')
 
