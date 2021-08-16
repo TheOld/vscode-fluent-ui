@@ -106,39 +106,43 @@ function activate(context) {
 exports.activate = activate;
 
 function removeScript() {
-  var isWin = /^win/.test(process.platform);
-  var appDir = path.dirname(require.main.filename);
-  var base = appDir + (isWin ? '\\vs\\code' : '/vs/code');
-  var htmlFile =
-    base +
-    (isWin
-      ? '\\electron-browser\\workbench\\workbench.html'
-      : '/electron-browser/workbench/workbench.html');
+  try {
+    var isWin = /^win/.test(process.platform);
+    var appDir = path.dirname(require.main.filename);
+    var base = appDir + (isWin ? '\\vs\\code' : '/vs/code');
+    var htmlFile =
+      base +
+      (isWin
+        ? '\\electron-browser\\workbench\\workbench.html'
+        : '/electron-browser/workbench/workbench.html');
 
-  // modify workbench html
-  const html = fs.readFileSync(htmlFile, 'utf-8');
+    // modify workbench html
+    const html = fs.readFileSync(htmlFile, 'utf-8');
 
-  // check if the tag is already there
-  const isEnabled = html.includes('fluent.js');
+    // check if the tag is already there
+    const isEnabled = html.includes('fluent.js');
 
-  if (isEnabled) {
-    // delete fluent script tag
-    let output = html.replace(
-      /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
-      '',
-    );
-    fs.writeFileSync(htmlFile, output, 'utf-8');
+    if (isEnabled) {
+      // delete fluent script tag
+      let output = html.replace(
+        /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
+        '',
+      );
+      fs.writeFileSync(htmlFile, output, 'utf-8');
 
-    vscode.window
-      .showInformationMessage(
-        'Fluent UI is disabled. VS code must reload for this change to take effect',
-        { title: 'Restart editor to complete' },
-      )
-      .then(function (msg) {
-        vscode.commands.executeCommand('workbench.action.reloadWindow');
-      });
-  } else {
-    vscode.window.showInformationMessage("Fluent UI isn't running.");
+      vscode.window
+        .showInformationMessage(
+          'Fluent UI is disabled. VS code must reload for this change to take effect',
+          { title: 'Restart editor to complete' },
+        )
+        .then(function (msg) {
+          vscode.commands.executeCommand('workbench.action.reloadWindow');
+        });
+    } else {
+      vscode.window.showInformationMessage("Fluent UI isn't running.");
+    }
+  } catch (error) {
+    vscode.window.showErrorMessage(error);
   }
 }
 
