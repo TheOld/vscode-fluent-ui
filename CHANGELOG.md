@@ -1,6 +1,11 @@
 # ChangeLog
 
-### 0.3.4 (2021-08-16)
+### 0.3.6 (2021-08-16)
+
+- Dark mode fixes for integrated terminal
+- Decreased transparency on Dark mode
+
+### 0.3.5 (2021-08-16)
 
 - Fixed item spacing on sidebar
 - Added option to toggle filter effects on and off.

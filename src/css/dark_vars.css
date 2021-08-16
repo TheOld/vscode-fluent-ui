@@ -4,7 +4,7 @@
   --activitybar-indicator-bg: #60cdff;
   --app-bg: #2c2c2c;
   --background-color: rgba(0, 0, 0, 0.0578);
-  --card-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.65), rgba(32, 32, 32, 0.65));
+  --card-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.95), rgba(32, 32, 32, 0.95));
   --card-blend-mode: color, luminosity;
   --context-menu-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.82), rgba(32, 32, 32, 0.82));
   --editor-bg: transparent;
@@ -14,5 +14,5 @@
   --list-item-bg: rgba(255, 255, 255, 0.0605);
   --list-item-fg: #ffffff99;
   --notification-toast-bg: var(--card-bg);
-  --quick-input-widget-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.85), rgba(32, 32, 32, 0.85));
+  --quick-input-widget-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.96), rgba(32, 32, 32, 0.96));
 }

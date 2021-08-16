@@ -1,5 +1,7 @@
 # Fluent UI theme for VS Code
 
+## ATTENTION: Run `> Fluent UI: Enable` after each update.
+
 Inspired by and based on the awesome concept designs by
 [u/zeealeidahmad](https://www.reddit.com/r/Windows11/comments/orbgzl/visual_studio_vs_code_and_github_desktop_with/).
 Using CSS3 I tried as much as possible to replicate his designs. Some transparency effects are not
