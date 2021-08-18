@@ -1,5 +1,11 @@
 # ChangeLog
 
+### 0.3.7 (2021-08-18)
+
+- New compact mode! You can toggle between regular and compact modes in settings.
+- Removed some unecessary overrides that were conflicting with decorations
+- Whats new page
+
 ### 0.3.6 (2021-08-16)
 
 - Dark mode fixes for integrated terminal

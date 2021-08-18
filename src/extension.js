@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const vscode = require('vscode');
+const diff = require('semver/functions/diff');
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -8,8 +9,32 @@ const vscode = require('vscode');
 function activate(context) {
   this.extensionName = 'leandro-rodrigues.fluent-ui-vscode';
 
+  this.cntx = context;
+  this.extension = vscode.extensions.getExtension(this.extensionName);
+  if (this.extension) {
+    // grab current version
+    this.version = this.extension.packageJSON.version;
+
+    // grab last recorded version
+    const prevVersion = context.globalState.get(`${this.extensionName}.version`);
+
+    if (prevVersion) {
+      // check it has changed.
+      const d = diff(this.version, prevVersion);
+      // show again on major or minor updates
+      if (d == 'major' || d == 'minor') {
+        showWhatsNewPage(this.version);
+        context.globalState.update(`${this.extensionName}.version`, this.version);
+      }
+    } else {
+      showWhatsNewPage(this.version);
+      context.globalState.update(`${this.extensionName}.version`, this.version);
+    }
+  }
+
   const config = vscode.workspace.getConfiguration('fluent');
   let disableFilters = config && config.disableFilters ? !!config.disableFilters : false;
+  let isCompact = config && config.compact ? !!config.compact : false;
 
   const themeMode = vscode.window.activeColorTheme;
   const isDark = themeMode.kind === 2;
@@ -42,7 +67,8 @@ function activate(context) {
       const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
 
       const themeWithFilter = jsTemplate.replace(/\[DISABLE_FILTERS\]/g, disableFilters);
-      const themeWithChrome = themeWithFilter.replace(/\[CHROME_STYLES\]/g, chromeStyles);
+      const themeIsCompact = themeWithFilter.replace(/\[IS_COMPACT\]/g, isCompact);
+      const themeWithChrome = themeIsCompact.replace(/\[CHROME_STYLES\]/g, chromeStyles);
       const themeWithVars = themeWithChrome.replace(/\[VARS\]/g, cssVars);
 
       fs.writeFileSync(templateFile, themeWithVars, 'utf-8');
@@ -85,6 +111,7 @@ function activate(context) {
           });
       }
     } catch (e) {
+      console.error(e);
       if (/ENOENT|EACCES|EPERM/.test(e.code)) {
         vscode.window.showInformationMessage(
           'You must run VS code with admin priviliges in order to enable Fluent UI.',
@@ -104,6 +131,23 @@ function activate(context) {
 }
 
 exports.activate = activate;
+
+function showWhatsNewPage(version) {
+  const panel = vscode.window.createWebviewPanel(
+    `fluent.whatsNew`,
+    "What's new for Fluent UI",
+    vscode.ViewColumn.One,
+    { enableScripts: !0 },
+  );
+
+  const viewPath = path.join(this.cntx.extensionPath, 'whats-new', 'index.html');
+  const viewResourcePath = panel.webview.asWebviewUri(viewPath);
+  const htmlContent = fs.readFileSync(viewPath, 'utf-8');
+
+  const output = htmlContent.replace(/\<\/version\>/g, `	<span>${version}</span>\n`);
+
+  panel.webview.html = output;
+}
 
 function removeScript() {
   try {

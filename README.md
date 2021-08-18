@@ -64,7 +64,8 @@ manually via settings, like so:
 
 ## Known bugs
 
-1. Sometimes you may have to run `> Fluent UI: Enable` twice for it to work.
+1. Sometimes when changing a setting (eg.: enabling compact mode) you may have to run
+   `> Fluent UI: Enable` twice for it to work.
 2. Sometimes when changing from one project to another, the workbench will disable the theme/reset
    the UI to the original state. Closing VSCode then opening and re-applying seems to fix it.
 
