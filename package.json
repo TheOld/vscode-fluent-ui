@@ -1,63 +1,64 @@
 {
-  "name": "fluent-ui-vscode",
-  "displayName": "Fluent UI for VSCode",
-  "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
-  "version": "0.3.7",
-  "author": "Leandro Rodrigues",
-  "publisher": "leandro-rodrigues",
-  "icon": "icon.png",
-  "galleryBanner": {
-    "color": "#ffffff",
-    "theme": "light"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TheOld/vscode-fluent-ui"
-  },
-  "engines": {
-    "vscode": "^1.59.0"
-  },
-  "keywords": [
-    "fluent",
-    "windows 11",
-    "w11"
-  ],
-  "categories": [
-    "Themes"
-  ],
-  "activationEvents": [
-    "*",
-    "onCommand:fluent.enableEffects"
-  ],
-  "dependencies": {
-    "semver": "^7.1.1"
-  },
-  "main": "./src/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "fluent.enableEffects",
-        "title": "Fluent UI: Enable"
-      },
-      {
-        "command": "fluent.disableEffects",
-        "title": "Fluent UI: Disable"
-      }
+    "name": "fluent-ui-vscode",
+    "displayName": "Fluent UI for VSCode",
+    "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
+    "version": "0.3.7",
+    "author": "Leandro Rodrigues",
+    "publisher": "leandro-rodrigues",
+    "icon": "icon.png",
+    "galleryBanner": {
+        "color": "#ffffff",
+        "theme": "light"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TheOld/vscode-fluent-ui"
+    },
+    "engines": {
+        "vscode": "^1.59.0"
+    },
+    "keywords": [
+        "fluent",
+        "windows 11",
+        "w11"
     ],
-    "configuration": {
-      "title": "Fluent UI",
-      "properties": {
-        "fluent.disableFilters": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Disable the filter effects on the UI. Subtle, but can impact performance on some machines. Run `>Fluent UI: Enable` after changing this setting."
-        },
-        "fluent.compact": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Slightly less padding around container elements. Run `>Fluent UI: Enable` after changing this setting."
+    "categories": [
+        "Themes"
+    ],
+    "activationEvents": [
+        "*",
+        "onCommand:fluent.enableEffects"
+    ],
+    "dependencies": {
+        "semver": "^7.1.1"
+    },
+    "main": "./src/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "fluent.enableEffects",
+                "title": "Fluent UI: Enable"
+            },
+            {
+                "command": "fluent.disableEffects",
+                "title": "Fluent UI: Disable"
+            }
+        ],
+        "configuration": {
+            "title": "Fluent UI",
+            "properties": {
+                "fluent.disableFilters": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Disable the filter effects on the UI. Subtle, but can impact performance on some machines. Run `>Fluent UI: Enable` after changing this setting."
+                },
+                "fluent.compact": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "Slightly less padding around container elements. Run `>Fluent UI: Enable` after changing this setting."
+                }
+            }
         }
-      }
-    }
-  }
+    },
+    "license": "MIT"
 }
