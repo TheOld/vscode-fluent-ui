@@ -80,6 +80,79 @@
     }
   };
 
+  const overrideDocumentStyle = ({ property, value }) => {
+    document.documentElement.style.setProperty(property, value);
+  };
+
+  const applyDarkStyles = () => {
+    try {
+      // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
+      overrideDocumentStyle({ property: '--accent', value: '#0078d4' });
+      overrideDocumentStyle({ property: '--active-action-item-bg', value: 'var(--card-bg)' });
+      // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
+      overrideDocumentStyle({ property: '--app-bg', value: '#2c2c2c' });
+      overrideDocumentStyle({ property: '--background-color', value: 'rgba(0, 0, 0, 0.0578)' });
+      overrideDocumentStyle({
+        property: '--card-bg',
+        value: 'linear-gradient(0deg, rgba(32, 32, 32, 0.95), rgba(32, 32, 32, 0.95))',
+      });
+      overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'color, luminosity' });
+      overrideDocumentStyle({
+        property: '--context-menu-bg',
+        value: 'linear-gradient(0deg, rgba(32, 32, 32, 0.82), rgba(32, 32, 32, 0.82))',
+      });
+      overrideDocumentStyle({ property: '--editor-bg', value: 'transparent' });
+      overrideDocumentStyle({ property: '--editor-widget-bg', value: 'var(--card-bg)' });
+      overrideDocumentStyle({ property: '--foreground', value: '#ffffff' });
+      overrideDocumentStyle({ property: '--hover-bg', value: 'var(--card-bg)' });
+      overrideDocumentStyle({ property: '--list-item-bg', value: 'rgba(255, 255, 255, 0.0605)' });
+      overrideDocumentStyle({ property: '--list-item-fg', value: '#ffffff99' });
+      overrideDocumentStyle({ property: '--notification-toast-bg', value: 'var(--card-bg)' });
+      overrideDocumentStyle({
+        property: '--quick-input-widget-bg',
+        value: 'linear-gradient(0deg, rgba(32, 32, 32, 0.96), rgba(32, 32, 32, 0.96))',
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const applyLightStyles = () => {
+    try {
+      // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
+      overrideDocumentStyle({ property: '--accent', value: '#005fb8' });
+      overrideDocumentStyle({
+        property: '--active-action-item-bg',
+        value: 'rgba(0, 0, 0, 0.0605)',
+      });
+      // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
+      overrideDocumentStyle({ property: '--app-bg', value: '#f3f3f3' });
+      overrideDocumentStyle({ property: '--background-color', value: 'rgba(255, 255, 255, 0.4)' });
+      overrideDocumentStyle({
+        property: '--card-bg',
+        value: 'rgba(255, 255, 255, 0.7)',
+      });
+      overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'multiply' });
+      overrideDocumentStyle({
+        property: '--context-menu-bg',
+        value: 'var(--menu-bg)',
+      });
+      overrideDocumentStyle({ property: '--editor-bg', value: 'var(--card-bg)' });
+      overrideDocumentStyle({ property: '--editor-widget-bg', value: 'var(--flyout-bg)' });
+      overrideDocumentStyle({ property: '--foreground', value: '#000000' });
+      overrideDocumentStyle({ property: '--hover-bg', value: ' var(--flyout-bg)' });
+      overrideDocumentStyle({ property: '--list-item-bg', value: 'rgba(0, 0, 0, 0.0373)' });
+      overrideDocumentStyle({ property: '--list-item-fg', value: '#0000009b' });
+      overrideDocumentStyle({ property: '--notification-toast-bg', value: 'var(--flyout-bg)' });
+      overrideDocumentStyle({
+        property: '--quick-input-widget-bg',
+        value: 'var(--flyout-bg)',
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const applyCompactStyles = () => {
     if (isLayoutCompact) {
       const sidebar = document.querySelector('.sidebar');
@@ -138,11 +211,11 @@
 
         const { classList } = chromium;
         if (classList.contains('vs')) {
-          console.log('Theme is light');
+          applyLightStyles();
         }
 
         if (classList.contains('vs-dark')) {
-          console.log('Theme is dark');
+          applyDarkStyles();
         }
       }
     }

@@ -35,19 +35,26 @@
         align-items: center;
       }
 
+      h1, h2, h3 {
+        font-family: var(--font-display);
+
+      }
+
       h1 {
         margin-top: 0;
-        font-family: var(--font-display);
         font-weight: 300;
         font-size: var(--f-display);
         line-height: var(--f-display-lh);
       }
 
       h2 {
-        font-family: var(--font-display);
-        font-weight: 300;
+
         font-size: var(--f-title);
         line-height: var(--f-title-lh);
+      }
+
+      h3 {
+        font-weight: 300;
       }
 
       .main {
@@ -61,8 +68,18 @@
 
       img {
         width: 100%;
+        margin: 32px 0 0 0;
 
+      }
 
+      code {
+        background-color: #f3f3f3;
+        border-radius: 2px;
+        padding: 4px 8px;
+        font-size: var(--f-body-large);
+        line-height: var(--f-body-large-lh);
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 400;
       }
 
       p {
@@ -76,17 +93,24 @@
   <body>
     <div class="main">
       <h1>Fluent UI</h1>
-
+      <p><b>Version </version></b></p>
+      <small>If you're updating, remember to run <code> > Fluent UI: Enable</code> again!</small>
       <img
         src="https://github.com/TheOld/vscode-fluent-ui/blob/main/fluent-ui.png?raw=true"
         alt="Fluent UI VSCode theme preview"
-
       />
-      <h2>You are running the latest version </version></h2>
-      <p>All you have to do now is run <code>>Fluent UI: Enable</code></p>
+      <h2>Welcome and thanks for using Fluent UI</h2>
 
+      <p>This is a workbench theme. That means that VS Code's UI is being heavily modified for aestethic purposes only. There's no intention to enhance or compete with the original look. Is merely an alternative.</p>
+      <p>Also, please bear in mind that this theme is considered an experiment, and therefore beta software, since there's no official support for this type of modification.</p>
 
-      <p>Thank you all</p>
+      <h3>Features</h3>
+      <ul style="list-style:lower-greek ">
+        <li><b>Dynamic light/dark theme</b> - Based on the syntax, the workbench will update the styles to match on the fly!</li>
+        <li><b>Compact mode</b> - The new layout uses more white space (padding) than the vanilla, if real state is an issue, you can toggle between regular and compact modes via settings</li>
+      </ul>
+
+      <p>Thank you.</p>
     </div>
   </body>
 </html>
