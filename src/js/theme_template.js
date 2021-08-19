@@ -51,6 +51,10 @@
       applyCompactStyles();
     }
 
+    const chromium = document.querySelector('div.chromium');
+    const chromeThemeObserver = new MutationObserver(watchAttributes);
+    chromeThemeObserver.observe(chromium, { attributes: true });
+
     /* append the remaining styles */
     updatedThemeStyles = `[CHROME_STYLES][VARS]`;
 
@@ -122,6 +126,24 @@
     for (const mutation of mutationsList) {
       if (mutation.type === 'childList') {
         applyCompactStyles();
+      }
+    }
+  };
+
+  const watchAttributes = (mutationsList, observer) => {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'attributes') {
+        console.log('Attribute changed on chromium');
+        const chromium = document.querySelector('div.chromium');
+
+        const { classList } = chromium;
+        if (classList.contains('vs')) {
+          console.log('Theme is light');
+        }
+
+        if (classList.contains('vs-dark')) {
+          console.log('Theme is dark');
+        }
       }
     }
   };
