@@ -15,6 +15,14 @@ possible at the momend due to the current Electron version that VSCode is using.
 3. ...
 4. Profit! (for your boss)
 
+## Dynamic light/dark theme
+
+The UI is dynamic and will apply the light and dark themes based on the current syntax theme type.
+For example, if you're using One Dark Pro, when you run `> Fluent UI: Enable`, the extension will
+identify One Dark Pro as a `dark` syntax theme and apply the correct UI mode. Same for light themes.
+The extension will also do the same on the fly as you preview your syntax theme using
+`Ctrl/Cmd + k Ctrl/Cmd + t`.
+
 ## Settings
 
 The UI theme uses some expensive filters that can cause performance issues on some machines. If
@@ -26,7 +34,7 @@ You'll need to run `Fluent UI: Enable` again as the effects are compiled with th
 ### Integrated terminal and minimap background colors
 
 Due to limitations on overriding some colours and depending on the syntax theme you choose, the
-Terminal and Minimap's background colors might be off. You can set the colors for these panels
+Terminal and Minimap's background colors will be off. You can set the colors for these panels
 manually via settings, like so:
 
 ```
@@ -69,21 +77,11 @@ manually via settings, like so:
 2. Sometimes when changing from one project to another, the workbench will disable the theme/reset
    the UI to the original state. Closing VSCode then opening and re-applying seems to fix it.
 
-Now, to toggle between light and dark modes, you first need to choose a theme and then run the
-`> Fluent UI: Enable` command again. The correct mode will be applied based on the main syntax theme
-type.
-
-So for example, if you set the syntax theme to `Night Owl` and then run `> Fluent UI: Enable`, the
-extension will detect that `Night Owl` is a dark theme and set the workbench theme to dark. The same
-is valid for light themes.
-
-> Warning! Most, if not all colours that are not syntax related will be overriden by the UI theme,
-> so not every single syntax theme out there will be compatible and will not have proper
+> Warning! Most, if not all colors that are not syntax related will be overriden by the UI theme, so
+> not every single syntax theme out there will be compatible and will not have proper
 > contrast/readability.
 
-> Note: I don't use breadcrumbs and minimap, so changes for these are minimal, if any.
-
-> Note again: This was only tested on Windows 10 (so far)
+> Note: This was only tested on VS Code 1.58 on Windows 10 and Windows 11 21H2.
 
 > Also note: I haven't tested this extensively with that many syntax themes but most should work
 > fine with just a few issues here and there.
