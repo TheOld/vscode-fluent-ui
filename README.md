@@ -7,6 +7,13 @@ Inspired by and based on the awesome concept designs by
 Using CSS3 I tried as much as possible to replicate his designs. Some transparency effects are not
 possible at the momend due to the current Electron version that VSCode is using.
 
+### Disclaimer
+
+This is a workbench theme. That means that VS Code's UI is being heavily modified for aestethic
+purposes only. There's no intention to enhance or compete with the original look. Is merely an
+alternative. Also, please bear in mind that this theme is considered an experiment, and therefore
+beta software, since there's no official support for this type of modification.
+
 ## Install
 
 1. Install extension from

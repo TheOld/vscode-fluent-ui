@@ -1,5 +1,9 @@
 # ChangeLog
 
+### 0.3.9 (2021-08-23)
+
+- Decreased transparency of menus on dark mode
+
 ### 0.3.8 (2021-08-19)
 
 - New dynamic mode. Changing from a light based syntax to a dark based one (and vice-versa) will

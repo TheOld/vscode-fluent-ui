@@ -1102,16 +1102,16 @@ html {
 /* Notification Panel */
 .notifications-center-header {
   backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important;
+  background: var(--background-color) !important;
 }
 
 .notifications-list-container {
   backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important;
+  background: var(--background-color) !important;
 }
 
 .notification-toast {
-  background-color: transparent !important;
+  background: transparent !important;
   transition: var(--transition);
 }
 
