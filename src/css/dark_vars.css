@@ -6,7 +6,7 @@
   --background-color: rgba(0, 0, 0, 0.0578);
   --card-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.95), rgba(32, 32, 32, 0.95));
   --card-blend-mode: color, luminosity;
-  --context-menu-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.82), rgba(32, 32, 32, 0.82));
+  --context-menu-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.95), rgba(32, 32, 32, 0.95));
   --editor-bg: transparent;
   --editor-widget-bg: var(--card-bg);
   --foreground: #ffffff;
