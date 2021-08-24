@@ -1,5 +1,9 @@
 # ChangeLog
 
+### 0.3.10 (2021-08-25)
+
+- Changed file path resolution for What's New page
+
 ### 0.3.9 (2021-08-23)
 
 - Decreased transparency of menus on dark mode

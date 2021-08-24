@@ -142,9 +142,12 @@ function showWhatsNewPage(version) {
   );
 
   // const viewPath = path.join(this.cntx.extensionPath, 'whats-new', 'index.html');
+  const isWin = /^win/.test(process.platform);
+  const filePath = isWin ? '\\whats-new\\index.html' : '/whats-new/index.html';
 
+  const viewPath = `${__dirname}${filePath}`;
   const viewResourcePath = panel.webview.asWebviewUri(viewPath);
-  const htmlContent = fs.readFileSync(`${__dirname}/whats-new/index.html`, 'utf-8');
+  const htmlContent = fs.readFileSync(viewPath, 'utf-8');
 
   const output = htmlContent.replace(/\<\/version\>/g, `	<span>${version}</span>\n`);
 
