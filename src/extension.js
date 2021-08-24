@@ -22,8 +22,8 @@ function activate(context) {
       // check it has changed.
       const d = diff(this.version, prevVersion);
       // show again on major or minor updates
-      // if (d == 'major' || d == 'minor') {
-      if (true) {
+      if (d == 'major' || d == 'minor') {
+
         showWhatsNewPage(this.version);
         context.globalState.update(`${this.extensionName}.version`, this.version);
       }
