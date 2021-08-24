@@ -22,7 +22,8 @@ function activate(context) {
       // check it has changed.
       const d = diff(this.version, prevVersion);
       // show again on major or minor updates
-      if (d == 'major' || d == 'minor') {
+      // if (d == 'major' || d == 'minor') {
+      if (true) {
         showWhatsNewPage(this.version);
         context.globalState.update(`${this.extensionName}.version`, this.version);
       }
@@ -140,9 +141,10 @@ function showWhatsNewPage(version) {
     { enableScripts: !0 },
   );
 
-  const viewPath = path.join(this.cntx.extensionPath, 'whats-new', 'index.html');
+  // const viewPath = path.join(this.cntx.extensionPath, 'whats-new', 'index.html');
+
   const viewResourcePath = panel.webview.asWebviewUri(viewPath);
-  const htmlContent = fs.readFileSync(viewPath, 'utf-8');
+  const htmlContent = fs.readFileSync(`${__dirname}/whats-new/index.html`, 'utf-8');
 
   const output = htmlContent.replace(/\<\/version\>/g, `	<span>${version}</span>\n`);
 
