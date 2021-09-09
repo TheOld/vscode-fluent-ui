@@ -9,30 +9,6 @@ const diff = require('semver/functions/diff');
 function activate(context) {
   this.extensionName = 'leandro-rodrigues.fluent-ui-vscode';
 
-  this.cntx = context;
-  this.extension = vscode.extensions.getExtension(this.extensionName);
-  if (this.extension) {
-    // grab current version
-    this.version = this.extension.packageJSON.version;
-
-    // grab last recorded version
-    const prevVersion = context.globalState.get(`${this.extensionName}.version`);
-
-    if (prevVersion) {
-      // check it has changed.
-      const d = diff(this.version, prevVersion);
-      // show again on major or minor updates
-      if (d == 'major' || d == 'minor') {
-
-        showWhatsNewPage(this.version);
-        context.globalState.update(`${this.extensionName}.version`, this.version);
-      }
-    } else {
-      showWhatsNewPage(this.version);
-      context.globalState.update(`${this.extensionName}.version`, this.version);
-    }
-  }
-
   const config = vscode.workspace.getConfiguration('fluent');
   let disableFilters = config && config.disableFilters ? !!config.disableFilters : false;
   let isCompact = config && config.compact ? !!config.compact : false;
@@ -132,27 +108,6 @@ function activate(context) {
 }
 
 exports.activate = activate;
-
-function showWhatsNewPage(version) {
-  const panel = vscode.window.createWebviewPanel(
-    `fluent.whatsNew`,
-    "What's new for Fluent UI",
-    vscode.ViewColumn.One,
-    { enableScripts: !0 },
-  );
-
-  // const viewPath = path.join(this.cntx.extensionPath, 'whats-new', 'index.html');
-  const isWin = /^win/.test(process.platform);
-  const filePath = isWin ? '\\whats-new\\index.html' : '/whats-new/index.html';
-
-  const viewPath = `${__dirname}${filePath}`;
-  const viewResourcePath = panel.webview.asWebviewUri(viewPath);
-  const htmlContent = fs.readFileSync(viewPath, 'utf-8');
-
-  const output = htmlContent.replace(/\<\/version\>/g, `	<span>${version}</span>\n`);
-
-  panel.webview.html = output;
-}
 
 function removeScript() {
   try {

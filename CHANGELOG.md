@@ -1,5 +1,9 @@
 # ChangeLog
 
+### 0.3.12 (2021-09-10)
+
+- Removed What's New page
+
 ### 0.3.10 (2021-08-25)
 
 - Changed file path resolution for What's New page
