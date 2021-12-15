@@ -12,20 +12,36 @@ purposes only. There's no intention to enhance or compete with the original look
 alternative. Also, please bear in mind that this theme is considered an experiment, and therefore
 beta software, since there's no official support for this type of modification,  **so used it at your own risk**.
 
->
 # New major version is now live!
 I have completely reworked the main code to be more reliable, faster and simple. Now instead of spitting out a file and then loading that file into VSCode's HTML, the necessary bits are extracted from the source files and injected into the HTML as minified and uglyfied `<style>` and `<script>` tags.
 This makes the whole process more generic and OS/architecture independent, so it **should** work on other OSs other than Windows, not tested though.
 
 ### Notable fixes
 1. Scrollbars are now displayed correctly
-2.
+2. Active tab item on the bottom panel (Terminal/Debug Console/Output) now have correct color.
+3. Minor cosmetic adjustments
+
+## Upgrading from a previous version
+1. Run VSCode as admin. This is important
+2. Run `> Fluent: Disable` and reload
+
+If the above doesn't work you can manually edit the HTML file modified by the extension:
+1. On Windows, go to `C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-browser\workbench`.
+2. If it still exists, delete the file `fluent.js` from that folder.
+3. Open the file `workbench.html` as admin
+4. Remove the line `<!-- Fluent UI --><script src="fluent.js"></script><!-- Fluent UI -->`. This should be penultimate line on that file
+5. Save and reload VSCode
 
 ## Install
 
-1. Install extension from
+1. Run VSCode as admin. This is important, the extension won't work otherwise
+2. Install extension from
    [Marketplace](https://marketplace.visualstudio.com/items?itemName=leandro-rodrigues.fluent-ui-vscode)
-2. Run `> Fluent UI: Enable` and reload
+3. Run `> Fluent UI: Enable` and reload
+
+> VSCode will display a notification saying that the installtion is corrupt. That's normal, VSCode sees the installation as corrupt because the HTML (workbench.html) file is now changed.
+>
+> Just click the lil' cog on the message and select `Don't show again` and you should be good to go.
 
 ## Uninstall
 1. Run `> Fluent: Disable` and reload when prompted
@@ -36,7 +52,7 @@ When the search widget is visible with the `Replace` option toggled and new vert
 
 ![Search widget](https://github.com/TheOld/vscode-fluent-ui/blob/main/search-widget-issue.png?raw=true 'Sidebar')
 
-To fix that, just toggle the `Replace` option off and on again.
+To fix that, just toggle the `Replace` option off and on again by clicking the chevron icon.
 # Features
 
 ## Dynamic light/dark theme

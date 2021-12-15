@@ -6,6 +6,13 @@
   "author": "Leandro Rodrigues",
   "publisher": "leandro-rodrigues",
   "icon": "icon.png",
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.js --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./"
+  },
   "galleryBanner": {
     "color": "#ffffff",
     "theme": "light"
@@ -26,19 +33,9 @@
     "Themes"
   ],
   "activationEvents": [
-    "*",
     "onCommand:fluent.enableEffects"
   ],
-  "dependencies": {
-    "autoprefixer": "^10.4.0",
-    "cssnano": "^5.0.12",
-    "file-url": "^3.0.0",
-    "node-fetch": "^2.6.1",
-    "postcss": "^8.4.5",
-    "semver": "^7.1.1",
-    "uglify-js": "^3.14.5",
-    "uuid": "^8.3.2"
-  },
+  "dependencies": {},
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
@@ -71,5 +68,16 @@
       }
     }
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.14.5",
+    "autoprefixer": "^10.4.0",
+    "cssnano": "^5.0.12",
+    "file-url": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "postcss": "^8.4.5",
+    "semver": "^7.1.1",
+    "uglify-js": "^3.14.5",
+    "uuid": "^8.3.2"
+  }
 }
