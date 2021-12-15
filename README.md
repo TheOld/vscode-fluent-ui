@@ -1,32 +1,50 @@
 # Fluent UI theme for VS Code
 
-## ATTENTION: Run `> Fluent UI: Enable` after each update.
-
 Inspired by and based on the awesome concept designs by
 [u/zeealeidahmad](https://www.reddit.com/r/Windows11/comments/orbgzl/visual_studio_vs_code_and_github_desktop_with/).
 Using CSS3 I tried as much as possible to replicate his designs. Some transparency effects are not
 possible at the momend due to the current Electron version that VSCode is using.
 
-### Disclaimer
+# Disclaimer
 
 This is a workbench theme. That means that VS Code's UI is being heavily modified for aestethic
 purposes only. There's no intention to enhance or compete with the original look. Is merely an
 alternative. Also, please bear in mind that this theme is considered an experiment, and therefore
-beta software, since there's no official support for this type of modification.
+beta software, since there's no official support for this type of modification,  **so used it at your own risk**.
+
+>
+# New major version is now live!
+I have completely reworked the main code to be more reliable, faster and simple. Now instead of spitting out a file and then loading that file into VSCode's HTML, the necessary bits are extracted from the source files and injected into the HTML as minified and uglyfied `<style>` and `<script>` tags.
+This makes the whole process more generic and OS/architecture independent, so it **should** work on other OSs other than Windows, not tested though.
+
+### Notable fixes
+1. Scrollbars are now displayed correctly
+2.
 
 ## Install
 
 1. Install extension from
    [Marketplace](https://marketplace.visualstudio.com/items?itemName=leandro-rodrigues.fluent-ui-vscode)
-2. Run `> Fluent UI: Enable`
-3. ...
-4. Profit! (for your boss)
+2. Run `> Fluent UI: Enable` and reload
+
+## Uninstall
+1. Run `> Fluent: Disable` and reload when prompted
+2. Uninstall the extension like your normally would
+
+## Known issues
+When the search widget is visible with the `Replace` option toggled and new vertical panel is opened (split editor), the second input on the widget will not automatically resize to fit the new window, looking like this:
+
+![Search widget](https://github.com/TheOld/vscode-fluent-ui/blob/main/search-widget-issue.png?raw=true 'Sidebar')
+
+To fix that, just toggle the `Replace` option off and on again.
+# Features
 
 ## Dynamic light/dark theme
 
 The UI is dynamic and will apply the light and dark themes based on the current syntax theme type.
-For example, if you're using One Dark Pro, when you run `> Fluent UI: Enable`, the extension will
-identify One Dark Pro as a `dark` syntax theme and apply the correct UI mode. Same for light themes.
+For example, if you're using [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme), when you run `> Fluent UI: Enable`, the extension will
+identify [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) as a `dark` syntax theme and apply the correct UI mode. Same for light themes.
+
 The extension will also do the same on the fly as you preview your syntax theme using
 `Ctrl/Cmd + k Ctrl/Cmd + t`.
 
@@ -34,11 +52,10 @@ The extension will also do the same on the fly as you preview your syntax theme 
 
 The UI theme uses some expensive filters that can cause performance issues on some machines. If
 notice VS Code is slower after enabling the theme you can turn this option off. Just go to
-Settings > Fluent UI > Disable filters.
+Settings > Fluent UI > Disable filters and run `> Fluent: Reload` (that will prompt a VSCode restart) to apply the changes.
 
-You'll need to run `Fluent UI: Enable` again as the effects are compiled with the remaining styles.
 
-### Integrated terminal and minimap background colors
+## Integrated terminal and minimap background colors
 
 Due to limitations on overriding some colours and depending on the syntax theme you choose, the
 Terminal and Minimap's background colors will be off. You can set the colors for these panels
@@ -51,7 +68,7 @@ manually via settings, like so:
 }
 ```
 
-# Screenshots
+## Screenshots
 
 #### Sidebar
 
@@ -79,16 +96,11 @@ manually via settings, like so:
 
 ## Known bugs
 
-1. Sometimes when changing a setting (eg.: enabling compact mode) you may have to run
-   `> Fluent UI: Enable` twice for it to work.
-2. Sometimes when changing from one project to another, the workbench will disable the theme/reset
-   the UI to the original state. Closing VSCode then opening and re-applying seems to fix it.
+1. If the search widget is visible and the replace option toggled and a new .
 
 > Warning! Most, if not all colors that are not syntax related will be overriden by the UI theme, so
 > not every single syntax theme out there will be compatible and will not have proper
 > contrast/readability.
-
-> Note: This was only tested on VS Code 1.58 on Windows 10 and Windows 11 21H2.
 
 > Also note: I haven't tested this extensively with that many syntax themes but most should work
 > fine with just a few issues here and there.
@@ -123,7 +135,7 @@ Some of the great themes that go along with this UI (in no particular order):
 
 ---
 
-# To complete the look and slay!
+# To complete the look
 
 Product icon themes:
 

@@ -1,7 +1,15 @@
-const path = require('path');
-const fs = require('fs');
-const vscode = require('vscode');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const diff = require('semver/functions/diff');
+const fetch = require('node-fetch');
+const fs = require('fs');
+const msg = require('./messages').messages;
+const path = require('path');
+const postcss = require('postcss');
+const Url = require('url');
+const uuid = require('uuid');
+const vscode = require('vscode');
+const UglifyJS = require('uglify-js');
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -9,157 +17,335 @@ const diff = require('semver/functions/diff');
 function activate(context) {
   this.extensionName = 'leandro-rodrigues.fluent-ui-vscode';
 
-  const config = vscode.workspace.getConfiguration('fluent');
-  let disableFilters = config && config.disableFilters ? !!config.disableFilters : false;
-  let isCompact = config && config.compact ? !!config.compact : false;
+  const appDir = path.dirname(require.main.filename);
+  const base = path.join(appDir, 'vs', 'code');
+  const htmlFile = path.join(base, 'electron-browser', 'workbench', 'workbench.html');
+  const BackupFilePath = (uuid) =>
+    path.join(base, 'electron-browser', 'workbench', `workbench.${uuid}.bak-fui`);
 
   const themeMode = vscode.window.activeColorTheme;
   const isDark = themeMode.kind === 2;
 
-  let disposable = vscode.commands.registerCommand('fluent.enableEffects', function () {
-    const isWin = /^win/.test(process.platform);
-    const appDir = path.dirname(require.main.filename);
-    const base = appDir + (isWin ? '\\vs\\code' : '/vs/code');
+  async function getFileContent(url) {
+    if (/^file:/.test(url)) {
+      const fp = Url.fileURLToPath(url);
+      return await fs.promises.readFile(fp);
+    } else {
+      const response = await fetch(url);
+      return response.buffer();
+    }
+  }
 
-    const htmlFile =
-      base +
-      (isWin
-        ? '\\electron-browser\\workbench\\workbench.html'
-        : '/electron-browser/workbench/workbench.html');
+  async function install() {
+    const uuidSession = uuid.v4();
+    await createBackup(uuidSession);
+    await patch(uuidSession);
+  }
 
-    const templateFile =
-      base +
-      (isWin
-        ? '\\electron-browser\\workbench\\fluent.js'
-        : '/electron-browser/workbench/fluent.js');
+  async function reinstall() {
+    await uninstallImpl();
+    await install();
+  }
 
+  async function uninstall() {
+    await uninstallImpl();
+    restart();
+  }
+
+  async function uninstallImpl() {
+    const backupUuid = await getBackupUuid(htmlFile);
+    if (!backupUuid) return;
+
+    const backupPath = BackupFilePath(backupUuid);
+    await restoreBackup(backupPath);
+    await deleteBackupFiles();
+  }
+
+  async function getBackupUuid(htmlFilePath) {
     try {
-      let cssVars = fs.readFileSync(__dirname + '/css/light_vars.css', 'utf-8');
+      const htmlContent = await fs.promises.readFile(htmlFilePath, 'utf-8');
 
-      if (isDark) {
-        cssVars = fs.readFileSync(__dirname + '/css/dark_vars.css', 'utf-8');
-      }
+      const match = htmlContent.match(/<!-- FUI-ID ([0-9a-fA-F-]+) -->/);
 
-      let chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
-      const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
-
-      const themeWithFilter = jsTemplate.replace(/\[DISABLE_FILTERS\]/g, disableFilters);
-      const themeIsCompact = themeWithFilter.replace(/\[IS_COMPACT\]/g, isCompact);
-      const themeWithChrome = themeIsCompact.replace(/\[CHROME_STYLES\]/g, chromeStyles);
-      const themeWithVars = themeWithChrome.replace(/\[VARS\]/g, cssVars);
-
-      fs.writeFileSync(templateFile, themeWithVars, 'utf-8');
-
-      // modify workbench html
-      const html = fs.readFileSync(htmlFile, 'utf-8');
-
-      // check if the tag is already there
-      const isEnabled = html.includes('fluent.js');
-
-      if (!isEnabled) {
-        let output = html.replace(
-          /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
-          '',
-        );
-        // add script tag
-        output = html.replace(
-          /\<\/html\>/g,
-          `	<!-- Fluent UI --><script src="fluent.js"></script><!-- Fluent UI -->\n`,
-        );
-        output += '</html>';
-
-        fs.writeFileSync(htmlFile, output, 'utf-8');
-
-        vscode.window
-          .showInformationMessage(
-            'Fluent UI is enabled. VS code must reload for this change to take effect.',
-            { title: 'Restart editor to complete' },
-          )
-          .then(function (msg) {
-            vscode.commands.executeCommand('workbench.action.reloadWindow');
-          });
+      if (!match) {
+        return null;
       } else {
-        vscode.window
-          .showInformationMessage('Fluent UI is already enabled. Reload to refresh JS settings.', {
-            title: 'Restart editor to refresh settings',
-          })
-          .then(function (msg) {
-            vscode.commands.executeCommand('workbench.action.reloadWindow');
-          });
+        return match[1];
       }
     } catch (e) {
-      console.error(e);
-      if (/ENOENT|EACCES|EPERM/.test(e.code)) {
-        vscode.window.showInformationMessage(
-          'You must run VS code with admin priviliges in order to enable Fluent UI.',
-        );
-        return;
-      } else {
-        vscode.window.showErrorMessage('Something went wrong when starting Fluent UI');
-        return;
+      vscode.window.showInformationMessage(`${msg.genericError}${e}`);
+      throw e;
+    }
+  }
+
+  async function createBackup(uuidSession) {
+    try {
+      let html = await fs.promises.readFile(htmlFile, 'utf-8');
+      html = clearExistingPatches(html);
+
+      await fs.promises.writeFile(BackupFilePath(uuidSession), html, 'utf-8');
+    } catch (e) {
+      vscode.window.showInformationMessage(msg.admin);
+      throw e;
+    }
+  }
+
+  function clearExistingPatches(html) {
+    // This will delete the old fluent.js file :/
+    html = html.replace(
+      /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
+      '',
+    );
+    html = html.replace(/<!-- FUI -->[\s\S]*?<!-- FUI -->\n*/, '');
+    html = html.replace(/<!-- FUI-ID [\w-]+ -->\n*/g, '');
+
+    return html;
+  }
+
+  /**
+   * Restores the backed up workbench.html file
+   * @param  {} backupFilePath
+   */
+  async function restoreBackup(backupFilePath) {
+    try {
+      if (fs.existsSync(backupFilePath)) {
+        await fs.promises.unlink(htmlFile);
+        await fs.promises.copyFile(backupFilePath, htmlFile);
+      }
+    } catch (e) {
+      vscode.window.showInformationMessage(msg.admin);
+      throw e;
+    }
+  }
+
+  async function deleteBackupFiles() {
+    const htmlDir = path.dirname(htmlFile);
+    const htmlDirItems = await fs.promises.readdir(htmlDir);
+
+    for (const item of htmlDirItems) {
+      if (item.endsWith('.bak-fui')) {
+        await fs.promises.unlink(path.join(htmlDir, item));
       }
     }
-  });
+  }
 
-  let disable = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
+  /**
+   * Loads the CSS file's contents to be injected into the main HTML document
+   * @param  {} uuidSession
+   */
+  async function patch(uuidSession) {
+    let html = await fs.promises.readFile(htmlFile, 'utf-8');
+    html = clearHTML(html);
+    html = html.replace(/<meta.*http-equiv="Content-Security-Policy".*>/, '');
 
-  context.subscriptions.push(disposable);
-  context.subscriptions.push(disable);
+    const styleTags = await getTags('styles');
+    const jsTags = await getTags('javascript');
+
+    html = html.replace(
+      /(<\/html>)/,
+      `<!-- FUI-ID ${uuidSession} -->\n` +
+        '<!-- FUI-CSS-START -->\n' +
+        styleTags +
+        jsTags +
+        '<!-- FUI-CSS-END -->\n</html>',
+    );
+
+    try {
+      await fs.promises.writeFile(htmlFile, html, 'utf-8');
+    } catch (e) {
+      vscode.window.showInformationMessage(msg.admin);
+      disabledRestart();
+    }
+
+    enabledRestart();
+  }
+
+  async function getTags(target) {
+    const config = vscode.workspace.getConfiguration('fluent');
+
+    if (target === 'styles') {
+      let res = '';
+
+      const styles = ['/css/editor_chrome.css', isDark ? '/css/dark_vars.css' : ''];
+
+      for (const url of styles) {
+        const imp = await buildTag(url);
+
+        if (imp) {
+          res += imp;
+        }
+      }
+
+      return res;
+    }
+
+    if (target === 'javascript') {
+      let res = '';
+      const js = ['/js/theme_template.js'];
+
+      for (const url of js) {
+        const jsTemplate = await fs.promises.readFile(__dirname + url);
+
+        const buffer = jsTemplate.toString();
+        const themeWithFilter = buffer.replace(/\[DISABLE_FILTERS\]/g, config.disableFilters);
+        const themeIsCompact = themeWithFilter.replace(/\[IS_COMPACT\]/g, config.compact);
+        const uglyJS = UglifyJS.minify(themeIsCompact);
+        const tag = `<script>${uglyJS.code}</script>\n`;
+
+        if (tag) {
+          res += tag;
+        }
+      }
+
+      return res;
+    }
+  }
+
+  const minifyCss = async (css) => {
+    // We pass in an array of the plugins we want to use: `cssnano` and `autoprefixer`
+    const output = await postcss([cssnano]).process(css);
+
+    return output.css;
+  };
+
+  async function buildTag(url) {
+    try {
+      const fetched = await fs.promises.readFile(__dirname + url);
+
+      const miniCSS = await minifyCss(fetched);
+
+      return `<style>${miniCSS}</style>\n`;
+    } catch (e) {
+      console.error(e);
+      vscode.window.showWarningMessage(msg.cannotLoad + url);
+      return '';
+    }
+  }
+  /**
+   * Removes injected files from workbench.html file
+   * @param  {} html
+   */
+  function clearHTML(html) {
+    html = html.replace(/<!-- FUI-CSS-START -->[\s\S]*?<!-- FUI-CSS-END -->\n*/, '');
+    html = html.replace(/<!-- FUI-ID [\w-]+ -->\n*/g, '');
+
+    return html;
+  }
+
+  function enabledRestart() {
+    vscode.window.showInformationMessage(msg.enabled, { title: msg.restartIde }).then(reloadWindow);
+  }
+
+  function restart() {
+    vscode.window
+      .showInformationMessage(msg.disabled, { title: msg.restartIde })
+      .then(reloadWindow);
+  }
+
+  function reloadWindow() {
+    // reload vscode-window
+    vscode.commands.executeCommand('workbench.action.reloadWindow');
+  }
+
+  // let disposable = vscode.commands.registerCommand('fluent.enableEffects', function () {
+  //   const isWin = /^win/.test(process.platform);
+  //   const appDir = path.dirname(require.main.filename);
+  //   console.log(appDir);
+  //   const base = appDir + (isWin ? '\\vs\\code' : '/vs/code');
+
+  //   const htmlFile =
+  //     base +
+  //     (isWin
+  //       ? '\\electron-browser\\workbench\\workbench.html'
+  //       : '/electron-browser/workbench/workbench.html');
+
+  //   const templateFile =
+  //     base +
+  //     (isWin
+  //       ? '\\electron-browser\\workbench\\fluent.js'
+  //       : '/electron-browser/workbench/fluent.js');
+
+  //   try {
+  //     let cssVars = fs.readFileSync(__dirname + '/css/light_vars.css', 'utf-8');
+
+  //     if (isDark) {
+  //       cssVars = fs.readFileSync(__dirname + '/css/dark_vars.css', 'utf-8');
+  //     }
+
+  //     let chromeStyles = fs.readFileSync(__dirname + '/css/editor_chrome.css', 'utf-8');
+  //     const jsTemplate = fs.readFileSync(__dirname + '/js/theme_template.js', 'utf-8');
+
+  //     const themeWithFilter = jsTemplate.replace(/\[DISABLE_FILTERS\]/g, disableFilters);
+  //     const themeIsCompact = themeWithFilter.replace(/\[IS_COMPACT\]/g, isCompact);
+  //     const themeWithChrome = themeIsCompact.replace(/\[CHROME_STYLES\]/g, chromeStyles);
+  //     const themeWithVars = themeWithChrome.replace(/\[VARS\]/g, cssVars);
+
+  //     fs.writeFileSync(templateFile, themeWithVars, 'utf-8');
+
+  //     // modify workbench html
+  //     const html = fs.readFileSync(htmlFile, 'utf-8');
+
+  //     // check if the tag is already there
+  //     const isEnabled = html.includes('fluent.js');
+
+  //     if (!isEnabled) {
+  //       let output = html.replace(
+  //         /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
+  //         '',
+  //       );
+  //       // add script tag
+  //       output = html.replace(
+  //         /\<\/html\>/g,
+  //         `	<!-- Fluent UI --><script src="fluent.js"></script><!-- Fluent UI -->\n`,
+  //       );
+  //       output += '</html>';
+
+  //       // fs.writeFileSync(htmlFile, output, 'utf-8');
+
+  //       vscode.window
+  //         .showInformationMessage(
+  //           'Fluent UI is enabled. VS code must reload for this change to take effect.',
+  //           { title: 'Restart editor to complete' },
+  //         )
+  //         .then(function (msg) {
+  //           vscode.commands.executeCommand('workbench.action.reloadWindow');
+  //         });
+  //     } else {
+  //       vscode.window
+  //         .showInformationMessage('Fluent UI is already enabled. Reload to refresh JS settings.', {
+  //           title: 'Restart editor to refresh settings',
+  //         })
+  //         .then(function (msg) {
+  //           vscode.commands.executeCommand('workbench.action.reloadWindow');
+  //         });
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //     if (/ENOENT|EACCES|EPERM/.test(e.code)) {
+  //       vscode.window.showInformationMessage(
+  //         'You must run VS code with admin priviliges in order to enable Fluent UI.',
+  //       );
+  //       return;
+  //     } else {
+  //       vscode.window.showErrorMessage('Something went wrong when starting Fluent UI');
+  //       return;
+  //     }
+  //   }
+  // });
+
+  // let disable = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
+
+  const installFUI = vscode.commands.registerCommand('fluent.enableEffects', install);
+  const uninstallFUI = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
+  const updateFUI = vscode.commands.registerCommand('fluent.reload', reinstall);
+
+  context.subscriptions.push(installFUI);
+  context.subscriptions.push(uninstallFUI);
+  context.subscriptions.push(updateFUI);
 }
 
 exports.activate = activate;
 
-function removeScript() {
-  try {
-    var isWin = /^win/.test(process.platform);
-    var appDir = path.dirname(require.main.filename);
-    var base = appDir + (isWin ? '\\vs\\code' : '/vs/code');
-    var htmlFile =
-      base +
-      (isWin
-        ? '\\electron-browser\\workbench\\workbench.html'
-        : '/electron-browser/workbench/workbench.html');
-
-    // modify workbench html
-    const html = fs.readFileSync(htmlFile, 'utf-8');
-
-    // check if the tag is already there
-    const isEnabled = html.includes('fluent.js');
-
-    if (isEnabled) {
-      // delete fluent script tag
-      let output = html.replace(
-        /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
-        '',
-      );
-      fs.writeFileSync(htmlFile, output, 'utf-8');
-
-      vscode.window
-        .showInformationMessage(
-          'Fluent UI is disabled. VS code must reload for this change to take effect',
-          { title: 'Restart editor to complete' },
-        )
-        .then(function (msg) {
-          vscode.commands.executeCommand('workbench.action.reloadWindow');
-        });
-    } else {
-      vscode.window.showInformationMessage("Fluent UI isn't running.");
-    }
-  } catch (error) {
-    vscode.window.showErrorMessage(error);
-  }
-}
-
 // this method is called when your extension is deactivated
-function deactivate() {
-  // removeScript();
-}
-
-function uninstall() {
-  removeScript();
-}
-
-module.exports = {
-  activate,
-  deactivate,
-};
+function deactivate() {}
+exports.deactivate = deactivate;

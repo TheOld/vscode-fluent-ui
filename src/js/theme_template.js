@@ -16,7 +16,7 @@
   // Add custom styles
   const initFluentUI = (disableFilters, isCompact, obs) => {
     isLayoutCompact = isCompact;
-    console.log('Initializing Fluent UI');
+
 
     var themeStyleTag = document.querySelector('.vscode-tokens-styles');
 
@@ -24,18 +24,17 @@
       return;
     }
 
-    var initialThemeStyles = themeStyleTag.innerText;
-    var updatedThemeStyles = initialThemeStyles;
+    // var initialThemeStyles = themeStyleTag.innerText;
+    // var updatedThemeStyles = initialThemeStyles;
 
     // Add style classes
     const settingsEditor = document.querySelector('.settings-editor');
     const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.add('card');
 
     const splitViewContainer = sidebar.parentElement.closest('.split-view-container');
 
-    sidebar.classList.add('card');
-
-    if (isCompact) {
+    if (isLayoutCompact) {
       const sidebarContainer = sidebar.parentElement;
       const editorContainer = document.querySelector('.editor-container');
 
@@ -56,18 +55,18 @@
     chromeThemeObserver.observe(chromium, { attributes: true });
 
     /* append the remaining styles */
-    updatedThemeStyles = `[CHROME_STYLES][VARS]`;
+    // updatedThemeStyles = `[CHROME_STYLES][VARS]`;
 
     if (disableFilters) {
       console.log('Disabling filters');
       document.documentElement.style.setProperty('--backdrop-filter', 'none');
     }
 
-    const newStyleTag = document.createElement('style');
-    newStyleTag.setAttribute('id', 'fluent-theme-styles');
-    newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
+    // const newStyleTag = document.createElement('style');
+    // newStyleTag.setAttribute('id', 'fluent-theme-styles');
+    // newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
 
-    document.body.appendChild(newStyleTag);
+    // document.body.appendChild(newStyleTag);
 
     // Here we'll attach an event listener to fix the compact layout when the window resizes
     window.onresize = applyCompactStyles;
@@ -244,7 +243,7 @@
 
         // Everything we need is ready, so initialise
         if (tokensLoaded && tokenStyles) {
-          initFluentUI([DISABLE_FILTERS], [IS_COMPACT], observer);
+           initFluentUI([DISABLE_FILTERS], [IS_COMPACT], observer);
         }
       }
     }

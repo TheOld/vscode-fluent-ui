@@ -2,7 +2,7 @@
   "name": "fluent-ui-vscode",
   "displayName": "Fluent UI for VSCode",
   "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
-  "version": "0.3.12",
+  "version": "2.0.0",
   "author": "Leandro Rodrigues",
   "publisher": "leandro-rodrigues",
   "icon": "icon.png",
@@ -30,7 +30,14 @@
     "onCommand:fluent.enableEffects"
   ],
   "dependencies": {
-    "semver": "^7.1.1"
+    "autoprefixer": "^10.4.0",
+    "cssnano": "^5.0.12",
+    "file-url": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "postcss": "^8.4.5",
+    "semver": "^7.1.1",
+    "uglify-js": "^3.14.5",
+    "uuid": "^8.3.2"
   },
   "main": "./src/extension.js",
   "contributes": {
@@ -42,6 +49,10 @@
       {
         "command": "fluent.disableEffects",
         "title": "Fluent UI: Disable"
+      },
+      {
+        "command": "fluent.reload",
+        "title": "Fluent UI: Reload"
       }
     ],
     "configuration": {
@@ -50,12 +61,12 @@
         "fluent.disableFilters": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Disable the filter effects on the UI. Subtle, but can impact performance on some machines. Run `>Fluent UI: Enable` after changing this setting."
+          "markdownDescription": "Disable the filter effects on the UI. Subtle, but can impact performance on some machines. Run `> Fluent UI: Enable` after changing this setting."
         },
         "fluent.compact": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Slightly less padding around container elements. Run `>Fluent UI: Enable` after changing this setting."
+          "markdownDescription": "Slightly less padding around container elements. Run `> Fluent UI: Enable` after changing this setting."
         }
       }
     }
