@@ -110,17 +110,6 @@ manually via settings, like so:
 
 ![Command palette preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/command-palette-light.png?raw=true 'Command palette')
 
-## Known bugs
-
-1. If the search widget is visible and the replace option toggled and a new .
-
-> Warning! Most, if not all colors that are not syntax related will be overriden by the UI theme, so
-> not every single syntax theme out there will be compatible and will not have proper
-> contrast/readability.
-
-> Also note: I haven't tested this extensively with that many syntax themes but most should work
-> fine with just a few issues here and there.
-
 Some of the great themes that go along with this UI (in no particular order):
 
 ## [Serendipity](https://marketplace.visualstudio.com/items?itemName=wicked-labs.wvsc-serendipity)
