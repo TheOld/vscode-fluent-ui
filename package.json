@@ -33,7 +33,9 @@
     "Themes"
   ],
   "activationEvents": [
-    "onCommand:fluent.enableEffects"
+    "onCommand:fluent.enableEffects",
+    "onCommand:fluent.reload",
+    "onCommand:fluent.disableEffects"
   ],
   "dependencies": {},
   "main": "./src/extension.js",
