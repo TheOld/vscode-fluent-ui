@@ -19,9 +19,9 @@ function activate(context) {
 
   const appDir = path.dirname(require.main.filename);
   const base = path.join(appDir, 'vs', 'code');
-  const htmlFile = path.join(base, 'electron-browser', 'workbench', 'workbench.html');
+  const htmlFile = path.join(base, 'electron-sandbox', 'workbench', 'workbench.html');
   const BackupFilePath = (uuid) =>
-    path.join(base, 'electron-browser', 'workbench', `workbench.${uuid}.bak-fui`);
+    path.join(base, 'electron-sandbox', 'workbench', `workbench.${uuid}.bak-fui`);
 
   const themeMode = vscode.window.activeColorTheme;
   const isDark = themeMode.kind === 2;
