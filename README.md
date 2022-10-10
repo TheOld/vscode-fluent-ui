@@ -35,7 +35,7 @@ work on other OSs other than Windows, not tested though.
 If the above doesn't work you can manually edit the HTML file modified by the extension:
 
 1. On Windows, go to
-   `C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-browser\workbench`.
+   `C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench`.
 2. If it still exists, delete the file `fluent.js` from that folder.
 3. Open the file `workbench.html` as admin
 4. Remove the line `<!-- Fluent UI --><script src="fluent.js"></script><!-- Fluent UI -->`. This
