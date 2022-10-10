@@ -1,85 +1,90 @@
 {
-  "name": "fluent-ui-vscode",
-  "displayName": "Fluent UI for VSCode",
-  "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
-  "version": "2.0.0",
-  "author": "Leandro Rodrigues",
-  "publisher": "leandro-rodrigues",
-  "icon": "icon.png",
-  "scripts": {
-    "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.js --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base -- --sourcemap",
-    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-    "test-compile": "tsc -p ./"
-  },
-  "galleryBanner": {
-    "color": "#ffffff",
-    "theme": "light"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TheOld/vscode-fluent-ui"
-  },
-  "engines": {
-    "vscode": "^1.59.0"
-  },
-  "keywords": [
-    "fluent",
-    "windows 11",
-    "w11"
-  ],
-  "categories": [
-    "Themes"
-  ],
-  "activationEvents": [
-    "onCommand:fluent.enableEffects",
-    "onCommand:fluent.reload",
-    "onCommand:fluent.disableEffects"
-  ],
-  "dependencies": {},
-  "main": "./src/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "fluent.enableEffects",
-        "title": "Fluent UI: Enable"
-      },
-      {
-        "command": "fluent.disableEffects",
-        "title": "Fluent UI: Disable"
-      },
-      {
-        "command": "fluent.reload",
-        "title": "Fluent UI: Reload"
-      }
+    "author": "Leandro Rodrigues",
+    "publisher": "leandro-rodrigues",
+    "name": "fluent-ui-vscode",
+    "displayName": "Fluent UI for VSCode",
+    "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
+    "version": "3.0.0",
+    "icon": "icon.png",
+    "engines": {
+        "vscode": "^1.72.0"
+    },
+    "keywords": [
+        "fluent",
+        "windows 11",
+        "w11"
     ],
+    "categories": [
+        "Themes"
+    ],
+    "activationEvents": [
+        "onCommand:fluent.enableEffects",
+        "onCommand:fluent.disableEffects",
+        "onCommand:fluent.reload"
+    ],
+    "galleryBanner": {
+        "color": "#ffffff",
+        "theme": "light"
+    },
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "fluent.enableEffects",
+                "title": "Fluent UI: Enable"
+            },
+            {
+                "command": "fluent.disableEffects",
+                "title": "Fluent UI: Disable"
+            },
+            {
+                "command": "fluent.reload",
+                "title": "Fluent UI: Reload"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run esbuild-base -- --minify",
+        "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+        "esbuild": "npm run esbuild-base -- --sourcemap",
+        "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+        "test-compile": "tsc -p ./"
+    },
+    "devDependencies": {
+        "@types/glob": "^8.0.0",
+        "@types/mocha": "^10.0.0",
+        "@types/node": "16.x",
+        "@types/node-fetch": "^2.6.2",
+        "@types/vscode": "^1.72.0",
+        "@typescript-eslint/eslint-plugin": "^5.38.1",
+        "@typescript-eslint/parser": "^5.38.1",
+        "@vscode/test-electron": "^2.1.5",
+        "cssnano": "^5.1.13",
+        "esbuild": "^0.15.10",
+        "eslint": "^8.24.0",
+        "file-url": "^4.0.0",
+        "glob": "^8.0.3",
+        "mocha": "^10.0.0",
+        "nanoid": "^3.0.0",
+        "node-fetch": "^3.2.10",
+        "postcss": "^8.4.17",
+        "semver": "^7.3.8",
+        "typescript": "^4.8.4",
+        "uglify-js": "^3.17.3"
+    },
     "configuration": {
-      "title": "Fluent UI",
-      "properties": {
-        "fluent.disableFilters": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Disable the filter effects on the UI. Subtle, but can impact performance on some machines. Run `> Fluent UI: Enable` after changing this setting."
-        },
-        "fluent.compact": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Slightly less padding around container elements. Run `> Fluent UI: Enable` after changing this setting."
+        "title": "Fluent UI",
+        "properties": {
+            "fluent.disableFilters": {
+                "type": "boolean",
+                "default": true,
+                "markdownDescription": "Disable the filter effects on the UI. Subtle, but can impact performance on some machines. Run `> Fluent UI: Enable` after changing this setting."
+            },
+            "fluent.compact": {
+                "type": "boolean",
+                "default": false,
+                "markdownDescription": "Slightly less padding around container elements. Run `> Fluent UI: Enable` after changing this setting."
+            }
         }
-      }
     }
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "esbuild": "^0.14.5",
-    "autoprefixer": "^10.4.0",
-    "cssnano": "^5.0.12",
-    "file-url": "^3.0.0",
-    "node-fetch": "^2.6.1",
-    "postcss": "^8.4.5",
-    "semver": "^7.1.1",
-    "uglify-js": "^3.14.5",
-    "uuid": "^8.3.2"
-  }
 }

@@ -1,434 +1,434 @@
 :root {
-  --semibold: 500;
-  --f-caption: 0.75rem;
-  --f-caption-lh: 1rem;
-  --f-body: 0.875rem;
-  --f-body-lh: 1.25rem;
-  --f-body-large: 1.125rem;
-  --f-body-large-lh: 1.5rem;
-  --f-subtitle: 1.25rem;
-  --f-subtitle-lh: 1.75rem;
-  --f-title: 1.75rem;
-  --f-title-lh: 2.25rem;
-  --f-title-large: 2.5rem;
-  --f-title-large-lh: 3.25rem;
-  --f-display: 4.25rem;
-  --f-display-lh: 5.75rem;
-  --base-spacing: 0.5rem;
-  --s1: calc(var(--base-spacing) / 8);
-  --s2: calc(var(--base-spacing) / 4);
-  --s3: calc(var(--base-spacing) / 2);
-  --s4: var(--base-spacing);
-  --s5: calc(var(--base-spacing) * 2);
-  --s6: calc(var(--base-spacing) * 4);
-  --s7: calc(var(--base-spacing) * 7);
-  --s8: calc(var(--base-spacing) * 8);
-  --s9: calc(var(--base-spacing) * 10);
+    --semibold: 500;
+    --f-caption: 0.75rem;
+    --f-caption-lh: 1rem;
+    --f-body: 0.875rem;
+    --f-body-lh: 1.25rem;
+    --f-body-large: 1.125rem;
+    --f-body-large-lh: 1.5rem;
+    --f-subtitle: 1.25rem;
+    --f-subtitle-lh: 1.75rem;
+    --f-title: 1.75rem;
+    --f-title-lh: 2.25rem;
+    --f-title-large: 2.5rem;
+    --f-title-large-lh: 3.25rem;
+    --f-display: 4.25rem;
+    --f-display-lh: 5.75rem;
+    --base-spacing: 0.5rem;
+    --s1: calc(var(--base-spacing) / 8);
+    --s2: calc(var(--base-spacing) / 4);
+    --s3: calc(var(--base-spacing) / 2);
+    --s4: var(--base-spacing);
+    --s5: calc(var(--base-spacing) * 2);
+    --s6: calc(var(--base-spacing) * 4);
+    --s7: calc(var(--base-spacing) * 7);
+    --s8: calc(var(--base-spacing) * 8);
+    --s9: calc(var(--base-spacing) * 10);
 
-  --acccent-pressed-bg: rgba(0, 95, 184, 0.8);
-  --accent-disabled: rgba(0, 0, 0, 0.2169);
-  --accent-hover: rgba(0, 95, 184, 0.9);
-  --accent-pressed-border: 1px solid rgba(255, 255, 255, 0.08);
-  --active-action-item-bg: rgba(0, 0, 0, 0.0605);
-  --activity-bar-width: 100%;
+    --acccent-pressed-bg: rgba(0, 95, 184, 0.8);
+    --accent-disabled: rgba(0, 0, 0, 0.2169);
+    --accent-hover: rgba(0, 95, 184, 0.9);
+    --accent-pressed-border: 1px solid rgba(255, 255, 255, 0.08);
+    --active-action-item-bg: rgba(0, 0, 0, 0.0605);
+    --activity-bar-width: 100%;
 
-  --accent: #005fb8;
-  --acrylic-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
-  --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
-  --app-bg: #f3f3f3;
-  --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
-  --backdrop-filter: blur(12px) saturate(0.8);
-  --background-color: rgba(255, 255, 255, 0.4);
-  --border-color: rgba(0, 0, 0, 0.0578);
-  --border-radius: 8px;
-  --input-border-radius: 4px;
-  --border: 1px solid var(--border-color);
-  --button-radius: var(--s3);
-  --card-bg-blend-mode: multiply;
-  --card-bg: rgba(255, 255, 255, 0.7);
-  --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-  --content-height: calc(100% - var(--s2));
-  --context-menu-bg: var(--menu-bg);
-  --dialog-border: 1px solid rgba(117, 117, 117, 0.4);
-  --dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
-  --editor-bg: var(--card-bg);
-  --editor-widget-bg: var(--flyout-bg);
-  --easing-curve-in: cubic-bezier(0, 0, 0, 1);
-  --easing-curve-out: cubic-bezier(1, 0, 1, 1);
-  --easing-timing-fast: 167ms;
-  --easing-timing-faster: 83ms;
-  --easing-timing-normal: 250ms;
-  --flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
-  --flyout-stroke: 1px solid rgba(0, 0, 0, 0.0578);
-  --font-display-semibold: Segoe UI Variable Display Semibold, Segoe WPC, Segoe UI, sans-serif;
-  --font-display: Segoe UI Variable Display, Segoe WPC, Segoe UI, sans-serif;
-  --foreground: #000000;
-  --hover-bg: var(--flyout-bg);
-  --list-item-bg: rgba(0, 0, 0, 0.0373);
-  --list-item-fg: #0000009b;
-  --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
-  --notification-toast-bg: var(--flyout-bg);
-  --quick-input-widget-bg: var(--flyout-bg);
-  --quick-input-widget: var(--flyout-bg);
-  --row-height: 24px;
-  --transition: var(--easing-timing-normal);
-  /* Light/Shadow/Card Rest */
+    --accent: #005fb8;
+    --acrylic-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+    --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
+    --app-bg: #f3f3f3;
+    --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+    --backdrop-filter: blur(12px) saturate(0.8);
+    --background-color: rgba(255, 255, 255, 0.4);
+    --border-color: rgba(0, 0, 0, 0.0578);
+    --border-radius: 8px;
+    --input-border-radius: 4px;
+    --border: 1px solid var(--border-color);
+    --button-radius: var(--s3);
+    --card-bg-blend-mode: multiply;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+    --content-height: calc(100% - var(--s2));
+    --context-menu-bg: var(--menu-bg);
+    --dialog-border: 1px solid rgba(117, 117, 117, 0.4);
+    --dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+    --editor-bg: var(--card-bg);
+    --editor-widget-bg: var(--flyout-bg);
+    --easing-curve-in: cubic-bezier(0, 0, 0, 1);
+    --easing-curve-out: cubic-bezier(1, 0, 1, 1);
+    --easing-timing-fast: 167ms;
+    --easing-timing-faster: 83ms;
+    --easing-timing-normal: 250ms;
+    --flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+    --flyout-stroke: 1px solid rgba(0, 0, 0, 0.0578);
+    --font-display-semibold: Segoe UI Variable Display Semibold, Segoe WPC, Segoe UI, sans-serif;
+    --font-display: Segoe UI Variable Display, Segoe WPC, Segoe UI, sans-serif;
+    --foreground: #000000;
+    --hover-bg: var(--flyout-bg);
+    --list-item-bg: rgba(0, 0, 0, 0.0373);
+    --list-item-fg: #0000009b;
+    --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
+    --notification-toast-bg: var(--flyout-bg);
+    --quick-input-widget-bg: var(--flyout-bg);
+    --quick-input-widget: var(--flyout-bg);
+    --row-height: 24px;
+    --transition: var(--easing-timing-normal);
+    /* Light/Shadow/Card Rest */
 }
 
 html {
-  background: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)),
-    var(--app-bg);
-  background-blend-mode: color, luminosity;
-  box-shadow: var(--app-shadow);
-  border: var(--acrylic-stroke);
+    background: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)),
+        var(--app-bg);
+    background-blend-mode: color, luminosity;
+    box-shadow: var(--app-shadow);
+    border: var(--acrylic-stroke);
 }
 
 :host-context(.windows),
 .windows {
-  font-family: var(--font-display) !important;
+    font-family: var(--font-display) !important;
 }
 
 .card {
-  background: var(--card-bg) !important;
-  /* mix-blend-mode: var(--card-bg-blend-mode); */
-  box-shadow: var(--card-shadow);
-  /* JSON theme will add border-right and we need to override it */
-  border-right: var(--border);
-  border: var(--border) !important;
-  border-radius: var(--border-radius);
+    background: var(--card-bg) !important;
+    /* mix-blend-mode: var(--card-bg-blend-mode); */
+    box-shadow: var(--card-shadow);
+    /* JSON theme will add border-right and we need to override it */
+    border-right: var(--border);
+    border: var(--border) !important;
+    border-radius: var(--border-radius);
 }
 
 /* Welcome page */
 .monaco-workbench .part.editor > .content .gettingStartedContainer h1 {
-  font-size: clamp(1.5rem, 8vw - 2rem, 3rem) !important;
+    font-size: clamp(1.5rem, 8vw - 2rem, 3rem) !important;
 }
 
 .monaco-workbench .part.titlebar {
-  background: #ffffff00 !important;
-  border: none !important;
+    background: #ffffff00 !important;
+    border: none !important;
 }
 
 .monaco-workbench .part > .content {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 .monaco-workbench .part.editor {
-  height: var(--content-height);
-  margin-right: var(--s4);
-  margin-left: var(--s4);
-  border-bottom: var(--border);
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
+    height: var(--content-height);
+    margin-right: var(--s4);
+    margin-left: var(--s4);
+    border-bottom: var(--border);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
 }
 
 .monaco-editor .vertical,
 canvas.decorationsOverviewRuler {
-  right: var(--s4);
+    right: var(--s4);
 }
 
 .monaco-workbench .editor.compact {
-  margin-right: var(--s3) !important;
-  margin-left: var(--s3) !important;
+    margin-right: var(--s3) !important;
+    margin-left: var(--s3) !important;
 }
 
 .editor-container {
-  background: var(--editor-bg) !important;
-  border-top-color: transparent !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-bottom: var(--border) !important;
-  /* overflow: hidden; */
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-  /* border-radius: var(--border-radius) !important; */
-  margin-right: var(--s5);
+    background: var(--editor-bg) !important;
+    border-top-color: transparent !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: var(--border) !important;
+    /* overflow: hidden; */
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    /* border-radius: var(--border-radius) !important; */
+    margin-right: var(--s5);
 }
 
 .editor-container.compact {
-  margin-right: var(--s3) !important;
+    margin-right: var(--s3) !important;
 }
 
 .monaco-workbench .part.editor > .content .editor-group-container > .title .editor-actions {
-  margin-right: var(--s4);
+    margin-right: var(--s4);
 }
 
 /* Settings page */
 .settings-editor,
 .extension-editor {
-  background: var(--card-bg) !important;
-  mix-blend-mode: var(--card-bg-blend-mode);
-  box-shadow: var(--card-shadow);
-  /* JSON theme will add border-right and we need to override it */
-  border-right: var(--border);
-  border: var(--border) !important;
-  border-radius: var(--border-radius);
+    background: var(--card-bg) !important;
+    mix-blend-mode: var(--card-bg-blend-mode);
+    box-shadow: var(--card-shadow);
+    /* JSON theme will add border-right and we need to override it */
+    border-right: var(--border);
+    border: var(--border) !important;
+    border-radius: var(--border-radius);
 }
 
 .window-appicon {
-  padding-left: var(--s5);
+    padding-left: var(--s5);
 }
 
 .monaco-workbench {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 /* TABS */
 .tabs {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 .monaco-workbench
-  .part.editor
-  > .content
-  .editor-group-container
-  > .title
-  > .tabs-and-actions-container {
-  padding-left: var(--s4);
-  border-bottom: none !important;
+    .part.editor
+    > .content
+    .editor-group-container
+    > .title
+    > .tabs-and-actions-container {
+    padding-left: var(--s4);
+    border-bottom: none !important;
 }
 
 .tabs-container > .tab {
-  position: relative;
-  background-color: transparent !important;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: transparent !important;
-  border-right: transparent;
-  overflow: hidden;
-  transition: borderRadius var(--easing-timing-fast) var(--easing-curve-in),
-    transform var(--easing-timing-fast) var(--easing-curve-in);
-  z-index: 1;
+    position: relative;
+    background-color: transparent !important;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: transparent !important;
+    border-right: transparent;
+    overflow: hidden;
+    transition: borderRadius var(--easing-timing-fast) var(--easing-curve-in),
+        transform var(--easing-timing-fast) var(--easing-curve-in);
+    z-index: 1;
 
-  padding-left: var(--s5) !important;
-  padding-right: var(--s3) !important;
-  will-change: borderRadius;
+    padding-left: var(--s5) !important;
+    padding-right: var(--s3) !important;
+    will-change: borderRadius;
 }
 
 .monaco-workbench
-  .part.editor
-  > .content
-  .editor-group-container
-  > .title
-  > .tabs-and-actions-container.tabs-border-bottom:after,
+    .part.editor
+    > .content
+    .editor-group-container
+    > .title
+    > .tabs-and-actions-container.tabs-border-bottom:after,
 .monaco-workbench
-  .part.editor
-  > .content
-  .editor-group-container
-  > .title
-  .tabs-container
-  > .tab.active.tab-border-bottom
-  > .tab-border-bottom-container {
-  display: none !important;
+    .part.editor
+    > .content
+    .editor-group-container
+    > .title
+    .tabs-container
+    > .tab.active.tab-border-bottom
+    > .tab-border-bottom-container {
+    display: none !important;
 }
 
 .tabs-container > .tab:after {
-  content: '';
-  width: 100%;
-  height: 100%;
-  transform: translate3d(0, 100%, 0);
-  opacity: 0;
-  background: var(--card-bg);
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  transition: transform var(--easing-timing-fast) var(--easing-curve-in),
-    opacity var(--easing-timing-fast) var(--easing-curve-in);
+    content: '';
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+    background: var(--card-bg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    transition: transform var(--easing-timing-fast) var(--easing-curve-in),
+        opacity var(--easing-timing-fast) var(--easing-curve-in);
 }
 
 .tabs-container > .tab {
-  border: 1px solid transparent !important;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
+    border: 1px solid transparent !important;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
 }
 
 .monaco-workbench
-  .part.editor
-  > .content
-  .editor-group-container.active
-  > .title
-  .tabs-container
-  > .tab:hover {
-  background-color: transparent !important;
+    .part.editor
+    > .content
+    .editor-group-container.active
+    > .title
+    .tabs-container
+    > .tab:hover {
+    background-color: transparent !important;
 }
 
 .tabs-container > .tab:hover {
-  border-top: var(--border) !important;
-  border-left: var(--border) !important;
-  border-right: var(--border) !important;
-  background-color: transparent !important;
+    border-top: var(--border) !important;
+    border-left: var(--border) !important;
+    border-right: var(--border) !important;
+    background-color: transparent !important;
 }
 
 .tabs-container > .tab:hover::after {
-  transform: translate3d(0, 0, 0);
-  opacity: 1;
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
 }
 
 .monaco-workbench
-  .part.editor
-  > .content
-  .editor-group-container
-  > .title
-  .tabs-container
-  > .tab.active.tab-border-top
-  > .tab-border-top-container {
-  background-color: transparent !important;
+    .part.editor
+    > .content
+    .editor-group-container
+    > .title
+    .tabs-container
+    > .tab.active.tab-border-top
+    > .tab-border-top-container {
+    background-color: transparent !important;
 }
 
 .tabs-container > .tab.active {
-  border-color: var(--border-color) !important;
-  border: var(--border) !important;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
+    border-color: var(--border-color) !important;
+    border: var(--border) !important;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
 
 .tabs-container > .tab.active::after {
-  transform: translate3d(0, 0, 0);
-  opacity: 1;
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
 }
 
 .monaco-workbench
-  .part.editor
-  > .content
-  .editor-group-container
-  > .title
-  .tabs-container
-  > .tab
-  .tab-label
-  a,
+    .part.editor
+    > .content
+    .editor-group-container
+    > .title
+    .tabs-container
+    > .tab
+    .tab-label
+    a,
 .monaco-workbench .part.editor > .content .editor-group-container > .title .title-label a {
-  font-size: var(--f-body);
-  line-height: var(--f-body-lh);
-  font-family: var(--font-display-semibold);
+    font-size: var(--f-body);
+    line-height: var(--f-body-lh);
+    font-family: var(--font-display-semibold);
 }
 
 .monaco-workbench .part.panel .composite.title {
-  height: 32px !important;
+    height: 32px !important;
 }
 
 .monaco-workbench .part.panel.bottom {
-  box-sizing: border-box;
-  overflow: hidden;
-  background: transparent !important;
-  border: none !important;
-  margin: 0 8px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: transparent !important;
+    border: none !important;
+    margin: 0 8px;
 }
 
 .monaco-workbench .part.panel.bottom.compact {
-  margin: 0 4px !important;
+    margin: 0 4px !important;
 }
 
 .monaco-workbench .part.panel .composite.title {
-  border-top: none !important;
-  background: transparent !important;
-  border: none !important;
-  border-top-right-radius: var(--border-radius);
-  border-top-left-radius: var(--border-radius);
+    border-top: none !important;
+    background: transparent !important;
+    border: none !important;
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
 }
 
 .monaco-workbench .part.panel.bottom > .content {
-  width: calc(100% - 1px) !important;
-  background: var(--card-bg) !important;
-  border-right: var(--border) !important;
-  border-left: var(--border) !important;
-  border-bottom: var(--border) !important;
-  border-radius: var(--border-radius);
-  box-shadow: var(--card-shadow) !important;
+    width: calc(100% - 1px) !important;
+    background: var(--card-bg) !important;
+    border-right: var(--border) !important;
+    border-left: var(--border) !important;
+    border-bottom: var(--border) !important;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow) !important;
 }
 
 .monaco-workbench .part.panel .pane-body.integrated-terminal .terminal-outer-container {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 /* Bottom panel tabs */
 .monaco-workbench
-  .part.panel
-  > .composite.title
-  > .panel-switcher-container
-  > .monaco-action-bar
-  .action-item
-  > .action-label {
-  font-size: var(--f-body);
-  line-height: var(--f-body-lh);
-  font-family: var(--font-display-semibold);
-  text-transform: none;
-  border: none !important;
+    .part.panel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item
+    > .action-label {
+    font-size: var(--f-body);
+    line-height: var(--f-body-lh);
+    font-family: var(--font-display-semibold);
+    text-transform: none;
+    border: none !important;
 }
 
 .monaco-workbench
-  .part.panel
-  > .composite.title
-  > .panel-switcher-container
-  > .monaco-action-bar
-  .action-item {
-  position: relative;
-  background-color: transparent !important;
-  border-top: 1px solid transparent !important;
-  border-left: 1px solid transparent !important;
-  border-right: 1px solid transparent !important;
-  transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
-  border-radius: 4px !important;
+    .part.panel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item {
+    position: relative;
+    background-color: transparent !important;
+    border-top: 1px solid transparent !important;
+    border-left: 1px solid transparent !important;
+    border-right: 1px solid transparent !important;
+    transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
+    border-radius: 4px !important;
 }
 
 .monaco-workbench
-  .part.panel
-  > .composite.title
-  > .panel-switcher-container
-  > .monaco-action-bar
-  .action-item::after {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  background-color: var(--card-bg);
-  width: 100%;
-  height: 100%;
-  transform: translateY(100%);
-  opacity: 0;
-  z-index: -1;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  transition: transform var(--easing-timing-fast) var(--easing-curve-in),
-    opacity var(--easing-timing-fast) var(--easing-curve-in);
-  margin: 0 !important;
+    .part.panel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background-color: var(--card-bg);
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+    opacity: 0;
+    z-index: -1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    transition: transform var(--easing-timing-fast) var(--easing-curve-in),
+        opacity var(--easing-timing-fast) var(--easing-curve-in);
+    margin: 0 !important;
 }
 
 .monaco-workbench
-  .part.panel
-  > .composite.title
-  > .panel-switcher-container
-  > .monaco-action-bar
-  .action-item:hover,
+    .part.panel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item:hover,
 .monaco-workbench
-  .part.panel
-  > .composite.title
-  > .panel-switcher-container
-  > .monaco-action-bar
-  .action-item.checked {
-  border-top: 1px solid var(--border-color) !important;
-  border-left: 1px solid var(--border-color) !important;
-  border-right: 1px solid var(--border-color) !important;
-  background: var(--background-color) !important;
+    .part.panel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item.checked {
+    border-top: 1px solid var(--border-color) !important;
+    border-left: 1px solid var(--border-color) !important;
+    border-right: 1px solid var(--border-color) !important;
+    background: var(--background-color) !important;
 }
 
 .monaco-workbench
-  .part.panel
-  > .composite.title
-  > .panel-switcher-container
-  > .monaco-action-bar
-  .action-item.checked::after,
+    .part.panel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item.checked::after,
 .monaco-workbench
-  .part.panel
-  > .composite.title
-  > .panel-switcher-container
-  > .monaco-action-bar
-  .action-item:hover::after {
-  transform: translateY(0);
-  opacity: 1;
+    .part.panel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item:hover::after {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /* .monaco-workbench .part.panel .pane-body.integrated-terminal .terminal-outer-container,
@@ -437,7 +437,7 @@ canvas.decorationsOverviewRuler {
   .monaco-workbench .editor-instance .xterm-viewport,
   .monaco-workbench .pane-body.integrated-terminal .xterm-viewport,  */
 .terminal {
-  background: var(--card-bg) !important;
+    background: var(--card-bg) !important;
 }
 
 /* Breadcrumbs */
@@ -445,127 +445,127 @@ canvas.decorationsOverviewRuler {
 }
 
 .monaco-breadcrumbs {
-  background: var(--card-bg) !important;
-  width: calc(100% - 16px) !important;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
+    background: var(--card-bg) !important;
+    width: calc(100% - 16px) !important;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
 
 .monaco-breadcrumbs.compact {
-  width: calc(100% - 8px) !important;
+    width: calc(100% - 8px) !important;
 }
 
 /* Sidebar */
 .sidebar {
-  padding: var(--base-spacing) var(--s5);
-  height: var(--content-height);
+    padding: var(--base-spacing) var(--s5);
+    height: var(--content-height);
 }
 
 .sidebar.left {
-  margin-left: var(--s4);
+    margin-left: var(--s4);
 }
 
 .sidebar.right {
-  margin-right: var(--s4);
+    margin-right: var(--s4);
 }
 
 .sidebar.compact {
-  padding: var(--s3) var(--s4) !important;
+    padding: var(--s3) var(--s4) !important;
 }
 
 .sidebar.compact.left {
-  margin-left: 0 !important;
+    margin-left: 0 !important;
 }
 
 .sidebar.compact.right {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 .sidebar > .title {
-  padding: 0 !important;
-  height: auto !important;
-  margin-bottom: var(--s4);
-  border-bottom: var(--border);
+    padding: 0 !important;
+    height: auto !important;
+    margin-bottom: var(--s4);
+    border-bottom: var(--border);
 }
 
 .sidebar > .title > .title-label {
-  line-height: var(--f-subtitle-lh) !important;
-  padding-left: 0 !important;
+    line-height: var(--f-subtitle-lh) !important;
+    padding-left: 0 !important;
 }
 
 .sidebar > .title > .title-label h2 {
-  font-size: var(--f-subtitle) !important;
-  line-height: var(--f-subtitle-lh) !important;
-  font-family: var(--font-display-semibold) !important;
-  text-transform: none !important;
-  font-weight: unset !important;
-  color: var(--foreground) !important;
+    font-size: var(--f-subtitle) !important;
+    line-height: var(--f-subtitle-lh) !important;
+    font-family: var(--font-display-semibold) !important;
+    text-transform: none !important;
+    font-weight: unset !important;
+    color: var(--foreground) !important;
 }
 
 .sidebar > .content {
-  max-width: 100% !important;
-  max-height: 96% !important;
+    max-width: 100% !important;
+    max-height: 96% !important;
 }
 
 .sidebar > .split-view-view {
-  max-height: calc(100% - 42px) !important;
+    max-height: calc(100% - 42px) !important;
 }
 
 .monaco-split-view2.separator-border
-  > .monaco-scrollable-element
-  > .split-view-container
-  > .split-view-view:not(:first-child):before {
-  display: none !important;
+    > .monaco-scrollable-element
+    > .split-view-container
+    > .split-view-view:not(:first-child):before {
+    display: none !important;
 }
 
 .monaco-icon-label > .monaco-icon-label-container > .monaco-icon-name-container > .label-name {
-  /* color: var(--list-item-fg) !important; */
+    /* color: var(--list-item-fg) !important; */
 }
 
 .monaco-list-rows .monaco-list-row {
-  transition: background var(--easing-timing-normal) var(--easing-curve-in);
+    transition: background var(--easing-timing-normal) var(--easing-curve-in);
 }
 
 .monaco-list-rows .monaco-list-row::before {
-  position: absolute;
-  content: '';
-  display: block;
-  border: none !important;
-  height: 12px !important;
-  width: 3px !important;
-  border-radius: var(--s3) !important;
-  background-color: var(--accent) !important;
-  top: 50% !important;
-  transform: translateY(-6px) scaleY(0);
-  opacity: 0;
-  transform-origin: center;
-  transition: transform var(--easing-timing-faster) var(--easing-curve-in),
-    opacity var(--easing-timing-faster) var(--easing-curve-in);
-  transition-delay: 25ms;
+    position: absolute;
+    content: '';
+    display: block;
+    border: none !important;
+    height: 12px !important;
+    width: 3px !important;
+    border-radius: var(--s3) !important;
+    background-color: var(--accent) !important;
+    top: 50% !important;
+    transform: translateY(-6px) scaleY(0);
+    opacity: 0;
+    transform-origin: center;
+    transition: transform var(--easing-timing-faster) var(--easing-curve-in),
+        opacity var(--easing-timing-faster) var(--easing-curve-in);
+    transition-delay: 25ms;
 }
 
 .quick-input-widget .monaco-list-row.selected,
 .monaco-list-row.selected,
 .quick-input-widget .monaco-list-row.selected.focused,
 .monaco-list-row.selected.focused {
-  background: var(--list-item-bg) !important;
-  color: var(--foreground) !important;
+    background: var(--list-item-bg) !important;
+    color: var(--foreground) !important;
 }
 
 .quick-input-list .monaco-highlighted-label {
-  color: var(--foreground) !important;
+    color: var(--foreground) !important;
 }
 
 .quick-input-widget .monaco-list-row:hover,
 .quick-input-widget .monaco-list-row:hover.focused,
 .monaco-list-row:hover,
 .monaco-list-row:hover.focused {
-  background: var(--list-item-bg) !important;
-  color: var(--foreground) !important;
+    background: var(--list-item-bg) !important;
+    color: var(--foreground) !important;
 }
 
 .monaco-list-row:hover > .monaco-highlighted-label {
-  color: #ffffff !important;
+    color: #ffffff !important;
 }
 
 .quick-input-widget .monaco-list-row.selected::before,
@@ -573,478 +573,478 @@ canvas.decorationsOverviewRuler {
 .quick-input-widget .monaco-list-row:hover::before,
 .monaco-list-row.selected::before,
 .monaco-list-row.selected.focused::before {
-  transform: translateY(-6px) scaleY(1);
-  opacity: 1;
+    transform: translateY(-6px) scaleY(1);
+    opacity: 1;
 }
 
 .settings-editor > .settings-body > .settings-tree-container .monaco-list-row::before {
-  height: 80% !important;
-  top: 0 !important;
+    height: 80% !important;
+    top: 0 !important;
 }
 
 .settings-editor > .settings-body > .settings-tree-container .monaco-list-row.selected::before,
 .settings-editor
-  > .settings-body
-  > .settings-tree-container
-  .monaco-list-row.selected.focused::before {
-  transform: translateY(10%) scaleY(1);
-  opacity: 1;
+    > .settings-body
+    > .settings-tree-container
+    .monaco-list-row.selected.focused::before {
+    transform: translateY(10%) scaleY(1);
+    opacity: 1;
 }
 
 /* Modified indicator on settings page (blue bar on the left */
 .settings-editor
-  > .settings-body
-  > .settings-tree-container
-  .setting-item-contents.is-configured
-  .setting-item-modified-indicator {
-  width: 3px;
-  border: none !important;
-  border-radius: 4px;
-  background-color: var(--accent);
+    > .settings-body
+    > .settings-tree-container
+    .setting-item-contents.is-configured
+    .setting-item-modified-indicator {
+    width: 3px;
+    border: none !important;
+    border-radius: 4px;
+    background-color: var(--accent);
 }
 
 /* Cursor */
 .monaco-editor .cursors-layer .cursor {
-  background-color: var(--accent) !important;
-  border-color: var(--accent) !important;
-  color: var(--accent) !important;
-  border-radius: var(--s3);
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    border-radius: var(--s3);
 }
 
 /* Form elements */
 .monaco-workbench input,
 .monaco-workbench select {
-  background: transparent !important;
-  backdrop-filter: var(--backdrop-filter);
+    background: transparent !important;
+    backdrop-filter: var(--backdrop-filter);
 }
 
 .monaco-workbench .monaco-list .monaco-list-row .monaco-highlighted-label .highlight {
-  color: var(--acccent-pressed-bg) !important;
+    color: var(--acccent-pressed-bg) !important;
 }
 
 .monaco-workbench .monaco-list .monaco-list-row.focused .monaco-highlighted-label .highlight {
-  color: var(--accent) !important;
+    color: var(--accent) !important;
 }
 
 .monaco-select-box-dropdown-container
-  > .select-box-dropdown-list-container
-  .monaco-list
-  .monaco-list-row:hover {
-  background-color: var(--acccent-pressed-bg) !important;
-  color: var(--list-item-fg) !important;
+    > .select-box-dropdown-list-container
+    .monaco-list
+    .monaco-list-row:hover {
+    background-color: var(--acccent-pressed-bg) !important;
+    color: var(--list-item-fg) !important;
 }
 
 .quick-input-list .monaco-list-row.focused .monaco-keybinding-key,
 .quick-input-list .monaco-list-row.focused .quick-input-list-entry .quick-input-list-separator {
-  color: var(--foreground) !important;
+    color: var(--foreground) !important;
 }
 
 /* Buttons */
 .monaco-button,
 .monaco-text-button {
-  border-radius: var(--button-radius);
-  background: var(--accent) !important;
-  color: #ffffff !important;
-  text-align: center;
-  font-feature-settings: 'rclt' off;
-  font-size: var(--f-body);
-  line-height: var(--f-body-lh);
+    border-radius: var(--button-radius);
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    text-align: center;
+    font-feature-settings: 'rclt' off;
+    font-size: var(--f-body);
+    line-height: var(--f-body-lh);
 }
 
 .monaco-button:hover,
 .monaco-text-button:hover {
-  background: var(--accent-hover) !important;
+    background: var(--accent-hover) !important;
 }
 
 .monaco-button:active,
 .monaco-text-button:active {
-  border: var(--accent-pressed-border);
-  background: var(--accent-pressed-bg);
+    border: var(--accent-pressed-border);
+    background: var(--accent-pressed-bg);
 }
 
 /* Sidebar icons */
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-label.codicon {
-  font-size: 20px !important;
-  width: 40px !important;
-  height: 40px !important;
-  color: var(--list-item-fg) !important;
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-label.codicon {
+    font-size: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
+    color: var(--list-item-fg) !important;
 }
 
 .monaco-workbench
-  .activitybar.compact
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-label.codicon {
-  font-size: 20px !important;
-  width: 32px !important;
-  height: 32px !important;
-  color: var(--list-item-fg) !important;
+    .activitybar.compact
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-label.codicon {
+    font-size: 20px !important;
+    width: 32px !important;
+    height: 32px !important;
+    color: var(--list-item-fg) !important;
 }
 
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item.active
-  .action-label.codicon,
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item.active
+    .action-label.codicon,
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item:focus
-  .action-label.codicon,
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:focus
+    .action-label.codicon,
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item:hover
-  .action-label.codicon {
-  color: var(--foreground) !important;
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:hover
+    .action-label.codicon {
+    color: var(--foreground) !important;
 }
 
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-label:not(.codicon) {
-  -webkit-mask-size: 20px !important;
-  background-color: var(--list-item-fg) !important;
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-label:not(.codicon) {
+    -webkit-mask-size: 20px !important;
+    background-color: var(--list-item-fg) !important;
 }
 
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item.active
-  .action-label:not(.codicon),
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item.active
+    .action-label:not(.codicon),
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item:focus
-  .action-label:not(.codicon),
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:focus
+    .action-label:not(.codicon),
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item:hover
-  .action-label:not(.codicon) {
-  background-color: var(--list-item-fg) !important;
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:hover
+    .action-label:not(.codicon) {
+    background-color: var(--list-item-fg) !important;
 }
 
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .badge
-  .badge-content {
-  background-color: var(--accent) !important;
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .badge
+    .badge-content {
+    background-color: var(--accent) !important;
 }
 
 /* Activity bar */
 .activitybar {
-  background-color: transparent !important;
-  border: none !important;
+    background-color: transparent !important;
+    border: none !important;
 }
 
 .activitybar.compact {
-  width: 100% !important;
+    width: 100% !important;
 }
 
 .monaco-workbench .activitybar.bordered:before {
-  display: none !important;
+    display: none !important;
 }
 
 .activitybar.left {
-  margin-left: var(--s3) !important;
+    margin-left: var(--s3) !important;
 }
 
 .activitybar.right {
-  margin-left: -4px;
+    margin-left: -4px;
 }
 
 .activitybar.compact.right {
-  margin-left: -4px !important;
+    margin-left: -4px !important;
 }
 
 .activitybar.compact .content {
-  width: 100% !important;
+    width: 100% !important;
 }
 
 .monaco-action-bar .action-item {
-  background: transparent;
-  border-radius: 4px;
-  transition: background var(--easing-timing-faster) var(--easing-curve-in),
-    color var(--easing-timing-faster) var(--easing-curve-in);
+    background: transparent;
+    border-radius: 4px;
+    transition: background var(--easing-timing-faster) var(--easing-curve-in),
+        color var(--easing-timing-faster) var(--easing-curve-in);
 }
 
 .monaco-action-bar .action-item.checked,
 .monaco-action-bar .action-item:hover {
-  background: var(--active-action-item-bg) !important;
+    background: var(--active-action-item-bg) !important;
 }
 
 .active-item-indicator {
-  position: relative;
+    position: relative;
 }
 
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .active-item-indicator::before {
-  content: '';
-  display: block;
-  border: none !important;
-  height: 20px !important;
-  width: 4px !important;
-  border-radius: 2px;
-  background-color: var(--accent) !important;
-  top: 50% !important;
-  transform: translateY(-10px) scaleY(0);
-  opacity: 0;
-  transform-origin: center;
-  transition: transform var(--easing-timing-faster) var(--easing-curve-in),
-    opacity var(--easing-timing-faster) var(--easing-curve-in);
-  transition-delay: 25ms;
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .active-item-indicator::before {
+    content: '';
+    display: block;
+    border: none !important;
+    height: 20px !important;
+    width: 4px !important;
+    border-radius: 2px;
+    background-color: var(--accent) !important;
+    top: 50% !important;
+    transform: translateY(-10px) scaleY(0);
+    opacity: 0;
+    transform-origin: center;
+    transition: transform var(--easing-timing-faster) var(--easing-curve-in),
+        opacity var(--easing-timing-faster) var(--easing-curve-in);
+    transition-delay: 25ms;
 }
 
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item.checked
-  .active-item-indicator:before,
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item.checked
+    .active-item-indicator:before,
 .monaco-workbench
-  .activitybar
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item:hover::before {
-  transform: translateY(-11px) scaleY(1);
-  opacity: 1;
+    .activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:hover::before {
+    transform: translateY(-11px) scaleY(1);
+    opacity: 1;
 }
 
 .monaco-workbench .activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-item {
-  display: flex !important;
+    display: flex !important;
 }
 
 .monaco-workbench
-  .activitybar.compact
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .action-item {
-  margin-bottom: 2px;
+    .activitybar.compact
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item {
+    margin-bottom: 2px;
 }
 
 .monaco-workbench
-  .activitybar.compact
-  > .content
-  :not(.monaco-menu)
-  > .monaco-action-bar
-  .badge
-  .badge-content {
-  top: 16px !important;
-  right: 2px !important;
-  font-size: 8px !important;
-  min-width: 8px !important;
-  height: 12px !important;
-  line-height: 12px !important;
-  padding: 0 2px !important;
-  border-radius: 16px !important;
+    .activitybar.compact
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .badge
+    .badge-content {
+    top: 16px !important;
+    right: 2px !important;
+    font-size: 8px !important;
+    min-width: 8px !important;
+    height: 12px !important;
+    line-height: 12px !important;
+    padding: 0 2px !important;
+    border-radius: 16px !important;
 }
 
 /* Notifications */
 
 .notifications-toasts,
 .notifications-toasts .notification-toast-container {
-  overflow: unset !important;
+    overflow: unset !important;
 }
 
 .notifications-toasts .notification-toast-container > .notification-toast,
 .monaco-workbench .notifications-list-container .notification-list-item {
-  border: var(--border) !important;
-  box-shadow: var(--flyout-shadow) !important;
-  border-radius: var(--border-radius);
-  background: var(--notification-toast-bg) !important;
-  background-blend-mode: normal, luminosity;
-  backdrop-filter: var(--backdrop-filter);
+    border: var(--border) !important;
+    box-shadow: var(--flyout-shadow) !important;
+    border-radius: var(--border-radius);
+    background: var(--notification-toast-bg) !important;
+    background-blend-mode: normal, luminosity;
+    backdrop-filter: var(--backdrop-filter);
 }
 
 .monaco-workbench .notifications-list-container .notification-list-item {
-  padding: var(--s4) var(--s3) !important;
+    padding: var(--s4) var(--s3) !important;
 }
 
 /* Widget */
 .quick-input-widget {
-  background: var(--quick-input-widget-bg) !important;
-  background-blend-mode: normal, luminosity;
-  border-radius: var(--border-radius);
-  box-shadow: none !important;
-  backdrop-filter: var(--backdrop-filter);
-  color: var(--foreground) !important;
-  /* mix-blend-mode: luminosity; */
+    background: var(--quick-input-widget-bg) !important;
+    background-blend-mode: normal, luminosity;
+    border-radius: var(--border-radius);
+    box-shadow: none !important;
+    backdrop-filter: var(--backdrop-filter);
+    color: var(--foreground) !important;
+    /* mix-blend-mode: luminosity; */
 }
 
 .quick-input-widget::before,
 .quick-input-widget::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: var(--border-radius);
-  z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--border-radius);
+    z-index: -1;
 }
 
 .quick-input-widget::before {
-  box-shadow: var(--flyout-shadow);
+    box-shadow: var(--flyout-shadow);
 }
 
 .quick-input-widget::after {
-  border: var(--border);
+    border: var(--border);
 }
 
 .quick-input-widget .monaco-list-rows {
-  background: none !important;
+    background: none !important;
 }
 
 .quick-input-widget .monaco-list-row.focused {
-  background: var(--list-item-bg) !important;
+    background: var(--list-item-bg) !important;
 }
 
 /* Editor Panel */
 .monaco-editor,
 .monaco-editor-background {
-  background: var(--editor-bg) !important;
+    background: var(--editor-bg) !important;
 }
 
 .monaco-hover,
 .suggest-details,
 .monaco-editor .tree,
 .monaco-editor .details {
-  color: var(--foreground) !important;
-  background: var(--hover-bg) !important;
-  background-blend-mode: normal, luminosity;
-  border: var(--border) !important;
-  border-radius: var(--border-radius);
-  box-shadow: var(--flyout-shadow) !important;
-  backdrop-filter: var(--backdrop-filter);
+    color: var(--foreground) !important;
+    background: var(--hover-bg) !important;
+    background-blend-mode: normal, luminosity;
+    border: var(--border) !important;
+    border-radius: var(--border-radius);
+    box-shadow: var(--flyout-shadow) !important;
+    backdrop-filter: var(--backdrop-filter);
 }
 
 .monaco-hover {
-  padding: var(--s4) !important;
+    padding: var(--s4) !important;
 }
 
 .editor-widget.suggest-widget {
-  backdrop-filter: none;
-  background-color: transparent !important;
+    backdrop-filter: none;
+    background-color: transparent !important;
 }
 
 .monaco-editor .scroll-decoration {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .monaco-editor .margin,
 .monaco-editor-background {
-  background: var(--card-bg) !important;
-  background-blend-mode: color, luminosity;
+    background: var(--card-bg) !important;
+    background-blend-mode: color, luminosity;
 }
 
 .monaco-editor .margin {
-  border-left: var(--border);
+    border-left: var(--border);
 }
 
 .monaco-editor .view-overlays .current-line,
 .monaco-editor .margin-view-overlays .current-line-margin {
-  background-color: var(--app-bg) !important;
+    background-color: var(--app-bg) !important;
 }
 
 /* Statusbar */
 .statusbar {
-  box-shadow: var(--card-shadow);
-  background: var(--card-bg) !important;
-  border: var(--border);
+    box-shadow: var(--card-shadow);
+    background: var(--card-bg) !important;
+    border: var(--border);
 }
 
 .monaco-workbench .part.statusbar > .items-container > .statusbar-item {
-  color: var(--foreground) !important;
+    color: var(--foreground) !important;
 }
 
 /* Command Panel */
 
 .monaco-list-rows {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 .monaco-list-rows .monaco-list-row {
-  outline: none !important;
-  border-radius: var(--s3);
+    outline: none !important;
+    border-radius: var(--s3);
 }
 
 .monaco-drag-image,
 .monaco-list:focus .monaco-list-row.selected.focused {
-  color: #000000;
-  background: var(--list-item-bg) !important;
+    color: #000000;
+    background: var(--list-item-bg) !important;
 }
 
 /* Input Box */
 .monaco-inputbox,
 .monaco-selectbox,
 .settings-editor
-  > .settings-body
-  > .settings-tree-container
-  .setting-item-contents
-  .monaco-select-box,
+    > .settings-body
+    > .settings-tree-container
+    .setting-item-contents
+    .monaco-select-box,
 .monaco-inputbox.idle {
-  border-radius: 4px !important;
-  background: rgba(255, 255, 255, 0.0605) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.045) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.045) !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.045) !important;
-  border-bottom: 1px solid var(--border-color) !important;
-  padding: 4px 8px !important;
-  transition: border var(--easing-timing-fast) var(--easing-curve-in);
+    border-radius: 4px !important;
+    background: rgba(255, 255, 255, 0.0605) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.045) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.045) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.045) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 4px 8px !important;
+    transition: border var(--easing-timing-fast) var(--easing-curve-in);
 }
 
 /* Dropdown container */
 .monaco-select-box-dropdown-container > .select-box-dropdown-list-container {
-  color: var(--foreground) !important;
-  background: var(--hover-bg) !important;
-  background-blend-mode: normal, luminosity;
-  border: var(--border) !important;
-  border-radius: var(--border-radius);
-  box-shadow: var(--flyout-shadow) !important;
-  backdrop-filter: var(--backdrop-filter);
+    color: var(--foreground) !important;
+    background: var(--hover-bg) !important;
+    background-blend-mode: normal, luminosity;
+    border: var(--border) !important;
+    border-radius: var(--border-radius);
+    box-shadow: var(--flyout-shadow) !important;
+    backdrop-filter: var(--backdrop-filter);
 }
 
 .monaco-inputbox.synthetic-focus {
-  border-bottom: 2px solid var(--accent-hover) !important;
+    border-bottom: 2px solid var(--accent-hover) !important;
 }
 
 .monaco-inputbox.idle .wrapper {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .monaco-inputbox.idle .mirror {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .monaco-workbench .synthetic-focus,
@@ -1055,149 +1055,147 @@ canvas.decorationsOverviewRuler {
 .monaco-workbench input[type='text']:focus,
 .monaco-workbench select:focus,
 .monaco-workbench textarea:focus {
-  /* outline-offset: 2px !important; */
+    /* outline-offset: 2px !important; */
 }
 
 /* Menu */
 .monaco-workbench .monaco-menu .monaco-action-bar.vertical,
 .context-view.monaco-menu-container,
 .context-view.monaco-menu-container {
-  border: var(--border) !important;
-  box-shadow: var(--flyout-shadow) !important;
-  border-radius: var(--border-radius) !important;
-  background: var(--context-menu-bg) !important;
-  background-blend-mode: normal, luminosity;
+    border: var(--border) !important;
+    box-shadow: var(--flyout-shadow) !important;
+    border-radius: var(--border-radius) !important;
+    background: var(--context-menu-bg) !important;
+    background-blend-mode: normal, luminosity;
 }
 
 .context-view.monaco-menu-container {
-  animation: fadeIn var(--easing-timing-fast) var(--easing-curve-in) !important;
+    animation: fadeIn var(--easing-timing-fast) var(--easing-curve-in) !important;
 }
 
 .monaco-menu-container .monaco-scrollable-element,
 .monaco-menu-container .monaco-scrollable-element .monaco-menu {
-  box-shadow: none !important;
-  overflow: inherit !important;
+    box-shadow: none !important;
+    overflow: inherit !important;
 }
 
 .separator {
-  border-bottom-color: rgba(255, 255, 255, 0.4) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .context-view .monaco-scrollable-element,
 .context-view .monaco-menu {
-  overflow: unset !important;
+    overflow: unset !important;
 }
 
 /* Search & Replace */
 .find-widget {
-  width: calc(100% - 32px) !important;
-  height: 42px !important;
-  max-width: unset !important;
-  background: transparent !important;
-  box-shadow: var(--flyout-shadow) !important;
-  transition: transform var(--easing-timing-fast) var(--easing-curve-in) !important;
+    width: calc(100% - 32px) !important;
+    height: 42px !important;
+    max-width: unset !important;
+    background: transparent !important;
+    box-shadow: var(--flyout-shadow) !important;
+    transition: transform var(--easing-timing-fast) var(--easing-curve-in) !important;
 }
 
 .find-widget .monaco-findInput {
-  border: 1px solid var(--border-color);
-  border-radius: var(--input-border-radius);
-
+    border: 1px solid var(--border-color);
+    border-radius: var(--input-border-radius);
 }
 
 .find-widget.replaceToggled {
-  height: 86px !important;
+    height: 86px !important;
 }
 
 .monaco-editor .find-widget.visible {
-  left: var(--s4);
-  transform: translateY(var(--s4)) !important;
+    left: var(--s4);
+    transform: translateY(var(--s4)) !important;
 }
 
 .editor-widget {
-  background: var(--editor-widget-bg) !important;
-  background-blend-mode: normal, luminosity;
-  border-radius: var(--border-radius);
-  backdrop-filter: var(--backdrop-filter);
-  border: var(--border);
+    background: var(--editor-widget-bg) !important;
+    background-blend-mode: normal, luminosity;
+    border-radius: var(--border-radius);
+    backdrop-filter: var(--backdrop-filter);
+    border: var(--border);
 }
 
 /* Notification Panel */
 .notifications-center-header {
-  backdrop-filter: var(--backdrop-filter);
-  background: var(--background-color) !important;
+    backdrop-filter: var(--backdrop-filter);
+    background: var(--background-color) !important;
 }
 
 .notifications-list-container {
-  backdrop-filter: var(--backdrop-filter);
-  background: var(--background-color) !important;
+    backdrop-filter: var(--backdrop-filter);
+    background: var(--background-color) !important;
 }
 
 .notification-toast {
-  background: transparent !important;
-  transition: var(--transition);
+    background: transparent !important;
+    transition: var(--transition);
 }
 
 /* Feedback Form */
 .feedback-form {
-  backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important;
+    backdrop-filter: var(--backdrop-filter);
+    background-color: var(--background-color) !important;
 }
 
 /* Minimap */
 .minimap {
-  backdrop-filter: var(--backdrop-filter);
-  border-bottom-right-radius: var(--border-radius);
+    backdrop-filter: var(--backdrop-filter);
+    border-bottom-right-radius: var(--border-radius);
 }
 
 .minimap canvas {
-  background: transparent !important;
-  border-bottom-right-radius: var(--border-radius);
+    background: transparent !important;
+    border-bottom-right-radius: var(--border-radius);
 }
 
 /* Vertical Scroll Bar */
 .scrollbar.horizontal {
-  backdrop-filter: var(--backdrop-filter);
+    backdrop-filter: var(--backdrop-filter);
 }
 
 /* Setting Page */
 .setting-item-contents.settings-row-inner-container {
-  transition: var(--transition);
+    transition: var(--transition);
 }
 
 .settings-editor
-  > .settings-body
-  > .settings-tree-container
-  .monaco-list-row.focused
-  .settings-row-inner-container {
-  background-color: var(--list-item-bg) !important;
+    > .settings-body
+    > .settings-tree-container
+    .monaco-list-row.focused
+    .settings-row-inner-container {
+    background-color: var(--list-item-bg) !important;
 }
 
 .settings-editor > .settings-body > .settings-tree-container .monaco-list-row.selected,
 .settings-editor > .settings-body > .settings-tree-container .monaco-list-row:hover {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 .suggest-input-container {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 /* Breadcrumbs Picker */
 .monaco-breadcrumbs-picker > div:nth-child(2) {
-  backdrop-filter: var(--backdrop-filter);
-  background-color: var(--background-color) !important;
+    backdrop-filter: var(--backdrop-filter);
+    background-color: var(--background-color) !important;
 }
 
 .scm-view .monaco-list-row .scm-input {
-  line-height: 22px !important;
+    line-height: 22px !important;
 }
 
 .monaco-pane-view .pane > .pane-header {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 :root {
-  --flyout-bg: rgba(252, 252, 252, 0.95);
+    --flyout-bg: rgba(252, 252, 252, 0.95);
 
-  --menu-bg:
-    rgba(252, 252, 252, 0.95);
+    --menu-bg: rgba(252, 252, 252, 0.95);
 }

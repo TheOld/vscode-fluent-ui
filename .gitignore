@@ -1,1 +1,5 @@
-/node_modules
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
