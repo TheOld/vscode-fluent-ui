@@ -2,16 +2,88 @@
     // Grab body node
     const bodyNode = document.querySelector('body');
     let isLayoutCompact = false;
+    let isUILite = false;
     let withResizeListener = false;
+
+    let debounceTimer;
+    const debounce = (callback, time) => {
+        window.clearTimeout(debounceTimer);
+        debounceTimer = window.setTimeout(callback, time);
+    };
 
     const resizeObserver = new ResizeObserver((entries) => {
         for (let entry of entries) {
             if (entry.contentBoxSize) {
-                // debounce(() => applyCompactStyles());
-                applyCompactStyles();
+                // applyCompactStyles();
+                debounce(applyCompactStyles, 300);
             }
         }
     });
+
+    const watchLayout = (mutationsList, observer) => {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                // applyCompactStyles();
+                debounce(applyCompactStyles, 300);
+            }
+        }
+    };
+
+    const watchAttributes = (mutationsList, observer) => {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'attributes') {
+                console.log('Attribute changed on chromium');
+                const chromium = document.querySelector('div.chromium');
+
+                const { classList } = chromium;
+                if (classList.contains('vs')) {
+                    if (isUILite) {
+                        applyLightStyles(1);
+                    } else {
+                        applyLightStyles();
+                    }
+                }
+
+                if (classList.contains('vs-dark')) {
+                    if (isUILite) {
+                        applyDarkStyles(1);
+                    } else {
+                        applyDarkStyles();
+                    }
+                }
+            }
+        }
+    };
+
+    // Callback function to execute when mutations are observed
+    const watchForBootstrap = function (mutationsList, observer) {
+        for (let mutation of mutationsList) {
+            if (mutation.type === 'attributes') {
+                debugger;
+                // does the style div exist yet?
+                const tokensLoaded = document.querySelector('.vscode-tokens-styles');
+
+                // does it have content ?
+                const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
+
+                // sometimes VS code takes a while to init the styles content, so stop this observer and add an observer for that
+                if (tokensLoaded) {
+                    observer.disconnect();
+                    observer.observe(tokensLoaded, { childList: true });
+                }
+            }
+
+            if (mutation.type === 'childList') {
+                const tokensLoaded = document.querySelector('.vscode-tokens-styles');
+                const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
+
+                // Everything we need is ready, so initialise
+                if (tokensLoaded && tokenStyles) {
+                    initFluentUI([DISABLE_FILTERS], [IS_COMPACT], observer);
+                }
+            }
+        }
+    };
 
     // Add custom styles
     const initFluentUI = (disableFilters, isCompact, obs) => {
@@ -53,22 +125,14 @@
         const chromeThemeObserver = new MutationObserver(watchAttributes);
         chromeThemeObserver.observe(chromium, { attributes: true });
 
-        /* append the remaining styles */
-        // updatedThemeStyles = `[CHROME_STYLES][VARS]`;
-
         if (disableFilters) {
             console.log('Disabling filters');
+            isUILite = true;
             document.documentElement.style.setProperty('--backdrop-filter', 'none');
         }
 
-        // const newStyleTag = document.createElement('style');
-        // newStyleTag.setAttribute('id', 'fluent-theme-styles');
-        // newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
-
-        // document.body.appendChild(newStyleTag);
-
         // Here we'll attach an event listener to fix the compact layout when the window resizes
-        window.onresize = applyCompactStyles;
+        // window.onresize = applyCompactStyles;
 
         console.log('Fluent UI: initialised!');
 
@@ -82,7 +146,7 @@
         document.documentElement.style.setProperty(property, value);
     };
 
-    const applyDarkStyles = () => {
+    const applyDarkStyles = (opacity = 0.75) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#0078d4' });
@@ -95,14 +159,17 @@
             });
             overrideDocumentStyle({
                 property: '--card-bg',
-                value: 'linear-gradient(0deg, rgba(32, 32, 32, 0.95), rgba(32, 32, 32, 0.95))',
+                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
             });
             overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'color, luminosity' });
             overrideDocumentStyle({
                 property: '--context-menu-bg',
-                value: 'linear-gradient(0deg, rgba(32, 32, 32, 0.82), rgba(32, 32, 32, 0.82))',
+                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
             });
-            overrideDocumentStyle({ property: '--editor-bg', value: 'transparent' });
+            overrideDocumentStyle({
+                property: '--editor-bg',
+                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
+            });
             overrideDocumentStyle({ property: '--editor-widget-bg', value: 'var(--card-bg)' });
             overrideDocumentStyle({ property: '--foreground', value: '#ffffff' });
             overrideDocumentStyle({ property: '--hover-bg', value: 'var(--card-bg)' });
@@ -114,14 +181,14 @@
             overrideDocumentStyle({ property: '--notification-toast-bg', value: 'var(--card-bg)' });
             overrideDocumentStyle({
                 property: '--quick-input-widget-bg',
-                value: 'linear-gradient(0deg, rgba(32, 32, 32, 0.96), rgba(32, 32, 32, 0.96))',
+                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
             });
         } catch (error) {
             console.error(error);
         }
     };
 
-    const applyLightStyles = () => {
+    const applyLightStyles = (opacity = 0.75) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#005fb8' });
@@ -132,12 +199,16 @@
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
             overrideDocumentStyle({ property: '--app-bg', value: '#f3f3f3' });
             overrideDocumentStyle({
+                property: '--flyout-bg',
+                value: `rgba(252, 252, 252, ${opacity})`,
+            });
+            overrideDocumentStyle({
                 property: '--background-color',
-                value: 'rgba(255, 255, 255, 0.4)',
+                value: `rgba(255, 255, 255, ${opacity})`,
             });
             overrideDocumentStyle({
                 property: '--card-bg',
-                value: 'rgba(255, 255, 255, 0.7)',
+                value: `rgba(255, 255, 255, ${opacity})`,
             });
             overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'multiply' });
             overrideDocumentStyle({
@@ -205,75 +276,10 @@
         }
     };
 
-    const watchLayout = (mutationsList, observer) => {
-        for (const mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                applyCompactStyles();
-            }
-        }
-    };
-
-    const watchAttributes = (mutationsList, observer) => {
-        for (const mutation of mutationsList) {
-            if (mutation.type === 'attributes') {
-                console.log('Attribute changed on chromium');
-                const chromium = document.querySelector('div.chromium');
-
-                const { classList } = chromium;
-                if (classList.contains('vs')) {
-                    applyLightStyles();
-                }
-
-                if (classList.contains('vs-dark')) {
-                    applyDarkStyles();
-                }
-            }
-        }
-    };
-
-    // Callback function to execute when mutations are observed
-    const watchForBootstrap = function (mutationsList, observer) {
-        for (let mutation of mutationsList) {
-            if (mutation.type === 'attributes') {
-                // does the style div exist yet?
-                const tokensLoaded = document.querySelector('.vscode-tokens-styles');
-
-                // does it have content ?
-                const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
-
-                // sometimes VS code takes a while to init the styles content, so stop this observer and add an observer for that
-                if (tokensLoaded) {
-                    observer.disconnect();
-                    observer.observe(tokensLoaded, { childList: true });
-                }
-            }
-
-            if (mutation.type === 'childList') {
-                const tokensLoaded = document.querySelector('.vscode-tokens-styles');
-                const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
-
-                // Everything we need is ready, so initialise
-                if (tokensLoaded && tokenStyles) {
-                    initFluentUI([DISABLE_FILTERS], [IS_COMPACT], observer);
-                }
-            }
-        }
-    };
-
-    function debounce(func, timeout = 120) {
-        let timer;
-        return (...args) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                func.apply(this, args);
-            }, timeout);
-        };
-    }
-
     // try to initialise the theme
     initFluentUI([DISABLE_FILTERS], [IS_COMPACT]);
 
     // Use a mutation observer to check when we can bootstrap the theme
     const observer = new MutationObserver(watchForBootstrap);
-    observer.observe(bodyNode, { attributes: true });
+    observer.observe(bodyNode, { attributes: true, childList: true });
 })();

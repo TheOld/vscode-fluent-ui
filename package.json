@@ -23,6 +23,9 @@
     ],
     "activationEvents": [
         "onCommand:fluent.enableEffects",
+        "onCommand:fluent.enableCompact",
+        "onCommand:fluent.enableLite",
+        "onCommand:fluent.enableCompactLite",
         "onCommand:fluent.disableEffects",
         "onCommand:fluent.reload"
     ],
@@ -32,25 +35,22 @@
     },
     "main": "./out/extension.js",
     "contributes": {
-        "configuration": {
-            "title": "Fluent UI",
-            "properties": {
-                "fluent.disableFilters": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "Disable the filter effects on the UI. Subtle, but can impact performance on some machines. Run `> Fluent UI: Enable` after changing this setting."
-                },
-                "fluent.compact": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "Slightly less padding around container elements. Run `> Fluent UI: Enable` after changing this setting."
-                }
-            }
-        },
         "commands": [
             {
                 "command": "fluent.enableEffects",
                 "title": "Fluent UI: Enable"
+            },
+            {
+                "command": "fluent.enableCompact",
+                "title": "Fluent UI: Compact"
+            },
+            {
+                "command": "fluent.enableLite",
+                "title": "Fluent UI: Lite (no effects)"
+            },
+            {
+                "command": "fluent.enableCompactLite",
+                "title": "Fluent UI: Compact + Lite"
             },
             {
                 "command": "fluent.disableEffects",
@@ -67,12 +67,14 @@
         "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
         "esbuild": "npm run esbuild-base -- --sourcemap",
         "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+        "compile": "tsc -p ./",
+        "lint": "eslint src --ext ts",
+        "watch": "tsc -watch -p ./",
         "test-compile": "tsc -p ./"
     },
     "dependencies": {
         "uglify-js": "^3.17.3",
         "postcss": "^8.4.17",
-        "nanoid": "^3.0.0",
         "node-fetch": "^3.2.10",
         "file-url": "^4.0.0",
         "cssnano": "^5.1.13"

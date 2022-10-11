@@ -527,7 +527,6 @@ canvas.decorationsOverviewRuler {
 }
 
 .sidebar > .title {
-    padding: 0 !important;
     height: auto !important;
     margin-top: var(--s4);
     margin-bottom: var(--s2);
@@ -1004,8 +1003,8 @@ canvas.decorationsOverviewRuler {
 /* Editor Panel */
 .monaco-editor,
 .monaco-editor-background {
-    /* background: var(--editor-bg) !important; */
-    background: transparent !important;
+    background: var(--editor-bg) !important;
+    /* background: transparent !important; */
 }
 
 .monaco-hover,

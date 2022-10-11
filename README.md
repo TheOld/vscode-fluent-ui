@@ -49,6 +49,11 @@ own risk**.
 
 ## Features
 
+### Compact mode
+
+Running `> Fluent UI: Compact` will apply the theme using slight less padding around some of the
+elements. Difference is subtle but can help those with limited space.
+
 ### Dynamic light/dark theme
 
 The UI is dynamic and will apply the light and dark themes based on the current syntax theme type.

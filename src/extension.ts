@@ -9,7 +9,7 @@ import postcss from 'postcss';
 import * as Url from 'url';
 import * as vscode from 'vscode';
 import {
-    backupFilePath,
+    buildBackupFilePath,
     createBackup,
     deleteBackupFiles,
     getBackupUuid,
@@ -56,7 +56,7 @@ const minifyCss = async (css: Buffer) => {
  */
 function clearHTML(html: string) {
     html = html.replace(/<!-- FUI-CSS-START -->[\s\S]*?<!-- FUI-CSS-END -->\n*/, '');
-    html = html.replace(/<!-- FUI-ID [\w-]+ -->\n*/g, '');
+    html = html.replace(/<!-- FUI-ID -->\n*/g, '');
 
     return html;
 }
@@ -76,7 +76,7 @@ async function buildCSSTag(url: string) {
     }
 }
 
-async function getTags(target: string) {
+async function getTags(target: string, compact?: boolean, lite?: boolean) {
     const config = vscode.workspace.getConfiguration('fluent');
     const themeMode = vscode.window.activeColorTheme;
     const isDark = themeMode.kind === 2;
@@ -99,20 +99,18 @@ async function getTags(target: string) {
 
     if (target === 'javascript') {
         let res = '';
-        const js = ['/js/theme_template.js'];
+        const url = '/js/theme_template.js';
 
-        for (const url of js) {
-            const jsTemplate = await fs.readFile(__dirname + url);
+        const jsTemplate = await fs.readFile(__dirname + url);
 
-            const buffer = jsTemplate.toString();
-            const themeWithFilter = buffer.replace(/\[DISABLE_FILTERS\]/g, config.disableFilters);
-            const themeIsCompact = themeWithFilter.replace(/\[IS_COMPACT\]/g, config.compact);
-            const uglyJS = UglifyJS.minify(themeIsCompact);
-            const tag = `<script>${uglyJS.code}</script>\n`;
+        const buffer = jsTemplate.toString();
+        const themeWithFilter = buffer.replace(/\[DISABLE_FILTERS\]/g, String(lite));
+        const themeIsCompact = themeWithFilter.replace(/\[IS_COMPACT\]/g, String(compact));
+        const uglyJS = UglifyJS.minify(themeIsCompact);
+        const tag = `<script type="application/javascript">${uglyJS.code}</script>\n`;
 
-            if (tag) {
-                res += tag;
-            }
+        if (tag) {
+            res += tag;
         }
 
         return res;
@@ -122,17 +120,22 @@ async function getTags(target: string) {
 /**
  * Loads the CSS and JS file's contents to be injected into the main HTML document
  */
-async function patch(uuidSession: string, htmlFile: string) {
+interface PatchArgs {
+    htmlFile: string;
+    compact?: boolean;
+    lite?: boolean;
+}
+async function patch({ htmlFile, compact = false, lite = false }: PatchArgs) {
     let html = await fs.readFile(htmlFile, 'utf-8');
     html = clearHTML(html);
     html = html.replace(/<meta.*http-equiv="Content-Security-Policy".*>/, '');
 
     const styleTags = await getTags('styles');
-    const jsTags = await getTags('javascript');
+    const jsTags = await getTags('javascript', compact, lite);
 
     html = html.replace(
         /(<\/html>)/,
-        `<!-- FUI-ID ${uuidSession} -->\n` +
+        `<!-- FUI-ID -->\n` +
             '<!-- FUI-CSS-START -->\n' +
             styleTags +
             jsTags +
@@ -154,10 +157,30 @@ export function activate(context: vscode.ExtensionContext) {
     const base = path.join(appDir, 'vs', 'code');
     const htmlFile = path.join(base, CONTAINER, 'workbench', 'workbench.html');
 
+    /**
+     * Installs full version
+     */
     async function install() {
-        const uuidSession = nanoid();
-        await createBackup(base, uuidSession, htmlFile);
-        await patch(uuidSession, htmlFile);
+        await createBackup(base, htmlFile);
+        await patch({ htmlFile });
+    }
+
+    async function installCompact() {
+        await clearPatch();
+        await createBackup(base, htmlFile);
+        await patch({ htmlFile, compact: true });
+    }
+
+    async function installLite() {
+        await clearPatch();
+        await createBackup(base, htmlFile);
+        await patch({ htmlFile, lite: true });
+    }
+
+    async function installCompactLite() {
+        await clearPatch();
+        await createBackup(base, htmlFile);
+        await patch({ htmlFile, compact: true, lite: true });
     }
 
     async function reinstall() {
@@ -176,16 +199,28 @@ export function activate(context: vscode.ExtensionContext) {
             return;
         }
 
-        const backupPath = backupFilePath(base, backupUuid);
+        const backupPath = buildBackupFilePath(base);
         await restoreBackup(backupPath, htmlFile);
         await deleteBackupFiles(htmlFile);
     }
 
     const installFUI = vscode.commands.registerCommand('fluent.enableEffects', install);
+    const installFUICompact = vscode.commands.registerCommand(
+        'fluent.enableCompact',
+        installCompact,
+    );
+    const installFUILite = vscode.commands.registerCommand('fluent.enableLite', installLite);
+    const installFUICompactLite = vscode.commands.registerCommand(
+        'fluent.enableCompactLite',
+        installCompactLite,
+    );
     const uninstallFUI = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
     const updateFUI = vscode.commands.registerCommand('fluent.reload', reinstall);
 
     context.subscriptions.push(installFUI);
+    context.subscriptions.push(installFUICompact);
+    context.subscriptions.push(installFUILite);
+    context.subscriptions.push(installFUICompactLite);
     context.subscriptions.push(uninstallFUI);
     context.subscriptions.push(updateFUI);
 }

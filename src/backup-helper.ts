@@ -21,7 +21,6 @@ export async function deleteBackupFiles(htmlFile: string) {
 }
 
 function clearExistingPatches(html: string) {
-    // This will delete the old fluent.js file :/
     html = html.replace(
         /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
         '',
@@ -34,15 +33,12 @@ function clearExistingPatches(html: string) {
 
 /**
  * Creates a backup file from the current workspace.html
- *
- * @param {*} uuidSession
  */
-export async function createBackup(base: string, uuidSession: string, htmlFile: string) {
+export async function createBackup(base: string, htmlFile: string) {
     try {
         let html = await fs.readFile(htmlFile, 'utf-8');
-        html = clearExistingPatches(html);
 
-        await fs.writeFile(backupFilePath(base, uuidSession), html, 'utf-8');
+        await fs.writeFile(buildBackupFilePath(base), html, 'utf-8');
     } catch (e) {
         vscode.window.showInformationMessage(messages.admin);
         throw e;
@@ -53,13 +49,12 @@ export async function getBackupUuid(htmlFilePath: string) {
     try {
         const htmlContent = await fs.readFile(htmlFilePath, 'utf-8');
 
-        const match = htmlContent.match(/<!-- FUI-ID ([0-9a-zA-Z-]+) -->/);
+        const match = htmlContent.match(/<!-- FUI-ID -->/);
 
         if (!match) {
-            vscode.window.showInformationMessage('Cant find matching UUID');
             return null;
         } else {
-            return match[1];
+            return match[0];
         }
     } catch (e) {
         vscode.window.showInformationMessage(`${messages.genericError}${e}`);
@@ -86,5 +81,5 @@ export async function restoreBackup(backupFilePath: string, htmlFile: string) {
 /**
  * Generates the path for the backup file we're creating
  */
-export const backupFilePath = (base: string, uuid: string) =>
-    path.join(base, CONTAINER, 'workbench', `workbench.${uuid}.bak-fui`);
+export const buildBackupFilePath = (base: string) =>
+    path.join(base, CONTAINER, 'workbench', `workbench.bak-fui`);
