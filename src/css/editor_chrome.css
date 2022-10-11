@@ -91,8 +91,7 @@ html {
 }
 
 .card {
-    background: #f7f7f7cc;
-    background-color: var(--card-bg) !important;
+    background: var(--card-bg) !important;
     backdrop-filter: var(--backdrop-filter);
     background-image: var(--noise-bg);
     background-repeat: repeat;
@@ -183,8 +182,11 @@ canvas.decorationsOverviewRuler {
 .settings-editor,
 .extension-editor {
     background: var(--card-bg) !important;
-    mix-blend-mode: var(--card-bg-blend-mode);
-    box-shadow: var(--card-shadow);
+    backdrop-filter: var(--backdrop-filter);
+    background-image: var(--noise-bg);
+    background-repeat: repeat;
+
+    box-shadow: var(--acrylic-shadow-alt);
     /* JSON theme will add border-right and we need to override it */
     border-right: var(--border);
     border: var(--border) !important;
@@ -492,8 +494,16 @@ canvas.decorationsOverviewRuler {
 .sidebar {
     padding: 0 var(--s5);
     height: var(--content-height);
+    background: var(--card-bg) !important;
+    backdrop-filter: var(--backdrop-filter);
+    background-image: var(--noise-bg);
+    background-repeat: repeat;
+    box-shadow: var(--acrylic-shadow-alt);
+    overflow-y: auto;
+    /* JSON theme will add border-right and we need to override it */
+    border-right: var(--border);
+    border: var(--border) !important;
     border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
 }
 
 .sidebar.left {
@@ -580,7 +590,8 @@ canvas.decorationsOverviewRuler {
     transition-delay: 25ms;
 }
 
-.settings-editor-tree .monaco-list-row::before {
+.settings-editor-tree .monaco-list-row::before,
+.notifications-toasts .monaco-list-row::before {
     height: 100% !important;
     top: 0 !important;
 }
@@ -619,7 +630,8 @@ canvas.decorationsOverviewRuler {
     opacity: 1;
 }
 
-.settings-editor-tree .monaco-list-row:hover::before {
+.settings-editor-tree .monaco-list-row:hover::before,
+.notifications-toasts .monaco-list-row:hover::before {
     transform: translateY(0px) scaleY(1) !important;
 }
 
@@ -920,11 +932,12 @@ canvas.decorationsOverviewRuler {
     overflow: unset !important;
 }
 
-.monaco-workbench .notifications-list-container .notification-list-item {
+.monaco-workbench .notifications-list-container .notification-list-item,
+.notification-toast {
     border: var(--border) !important;
     box-shadow: var(--flyout-shadow) !important;
     border-radius: var(--border-radius);
-    background-color: var(--notification-toast-bg) !important;
+    background: var(--notification-toast-bg) !important;
     backdrop-filter: var(--backdrop-filter);
     background-image: var(--noise-bg);
     background-repeat: repeat;
@@ -937,7 +950,7 @@ canvas.decorationsOverviewRuler {
 /* Widget */
 .quick-input-widget,
 .editor-widget {
-    background-color: var(--quick-input-widget-bg) !important;
+    background: var(--quick-input-widget-bg) !important;
     background-image: var(--noise-bg);
     background-repeat: repeat;
     background-blend-mode: normal, luminosity;
@@ -947,8 +960,16 @@ canvas.decorationsOverviewRuler {
     color: var(--foreground) !important;
 }
 
+.sticky-widget {
+    background: var(--card-bg) !important;
+}
+
+.sticky-line-root {
+    background: inherit !important;
+}
+
 .editor-widget {
-    background-color: var(--editor-widget-bg) !important;
+    background: var(--editor-widget-bg) !important;
     border: var(--border);
 }
 
@@ -992,7 +1013,7 @@ canvas.decorationsOverviewRuler {
 .monaco-editor .tree,
 .monaco-editor .details {
     color: var(--foreground) !important;
-    background-color: var(--hover-bg) !important;
+    background: var(--hover-bg) !important;
     backdrop-filter: var(--backdrop-filter);
     background-image: var(--noise-bg);
     background-repeat: repeat;
@@ -1132,7 +1153,7 @@ canvas.decorationsOverviewRuler {
     border: var(--border) !important;
     box-shadow: var(--flyout-shadow) !important;
     border-radius: var(--border-radius) !important;
-    background-color: var(--context-menu-bg) !important;
+    background: var(--context-menu-bg) !important;
     background-blend-mode: normal, luminosity;
     backdrop-filter: var(--backdrop-filter);
     background-image: var(--noise-bg);
