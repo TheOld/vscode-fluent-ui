@@ -4,7 +4,7 @@
     "name": "fluent-ui-vscode",
     "displayName": "Fluent UI for VSCode",
     "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "icon": "icon.png",
     "repository": {
         "type": "git",
