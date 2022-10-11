@@ -62,11 +62,15 @@ own risk**.
 Running `> Fluent UI: Compact` will apply the theme using slight less padding around some of the
 elements. Difference is subtle but can help those with limited space.
 
+#### Normal mode
+
 ![Normal
 mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/normal-mode.png?raw=true 'Normal mode')
 
+#### Compact mode
+
 ![Compact
-mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/normal-mode.png?raw=true 'Normal mode')
+mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/compact-mode.png?raw=true 'Normal mode')
 
 ### Lite mode
 
