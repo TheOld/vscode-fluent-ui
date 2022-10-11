@@ -44,8 +44,16 @@ own risk**.
 
 ## Known issues
 
--   Changing between compact and regular (via settings) may require more than one restart (closing
-    and opening VSCode again)
+-   I'm unable to override the minimap and in some cases, the scrollbar background. So depending on
+    the syntax theme you choose, the Terminal and Minimap's background colors will be off. You can
+    set the colors for these panels (and others) manually via settings, like so:
+
+```json
+"workbench.colorCustomizations": {
+  "terminal.background": "#ffffff",
+  "minimap.background": "#ffffff"
+}
+```
 
 ## Features
 
@@ -53,6 +61,18 @@ own risk**.
 
 Running `> Fluent UI: Compact` will apply the theme using slight less padding around some of the
 elements. Difference is subtle but can help those with limited space.
+
+![Normal
+mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/normal-mode.png?raw=true 'Normal mode')
+
+![Compact
+mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/normal-mode.png?raw=true 'Normal mode')
+
+### Lite mode
+
+The UI theme uses some filters that can cause performance issues on some machines. If notice VS Code
+is slower after enabling the theme you can apply a version withoud the filters. Just run
+`> Fluent: Lite (no effects)` (that will prompt a VSCode restart) to apply the changes.
 
 ### Dynamic light/dark theme
 
@@ -64,27 +84,7 @@ when you run `> Fluent UI: Enable`, the extension will identify
 `dark` syntax theme and apply the correct UI mode. Same for light themes.
 
 The extension will also do the same on the fly as you preview your syntax theme using
-`Ctrl/Cmd + k Ctrl/Cmd + t`.
-
-### Settings
-
-The UI theme uses some expensive filters that can cause performance issues on some machines. If
-notice VS Code is slower after enabling the theme you can turn this option off. Just go to
-Settings > Fluent UI > Disable filters and run `> Fluent: Reload` (that will prompt a VSCode
-restart) to apply the changes.
-
-### Integrated terminal and minimap background colors
-
-Due to limitations on overriding some colours and depending on the syntax theme you choose, the
-Terminal and Minimap's background colors will be off. You can set the colors for these panels
-manually via settings, like so:
-
-```json
-"workbench.colorCustomizations": {
-  "terminal.background": "#ffffff",
-  "minimap.background": "#ffffff"
-}
-```
+`Ctrl/Cmd + k Ctrl/Cmd + t`
 
 ## To complete the look
 
