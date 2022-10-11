@@ -21,9 +21,10 @@
     --s4: var(--base-spacing); /* 8px */
     --s5: calc(var(--base-spacing) * 2); /* 16px */
     --s6: calc(var(--base-spacing) * 4); /* 32px */
-    --s7: calc(var(--base-spacing) * 7);
-    --s8: calc(var(--base-spacing) * 8);
-    --s9: calc(var(--base-spacing) * 10);
+    --s7: calc(var(--base-spacing) * 5); /* 40px */
+    --s8: calc(var(--base-spacing) * 7); /* 56px */
+    --s9: calc(var(--base-spacing) * 8);
+    --s10: calc(var(--base-spacing) * 10);
 
     --acccent-pressed-bg: rgba(0, 95, 184, 0.8);
     --accent-disabled: rgba(0, 0, 0, 0.2169);
@@ -38,7 +39,7 @@
     --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
     --app-bg: #f3f3f3;
     --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
-    --backdrop-filter: blur(24px) saturate(0.8);
+    --backdrop-filter: blur(12px) saturate(1);
     --background-color: rgba(255, 255, 255, 0.4);
     --border-color: rgba(0, 0, 0, 0.0578);
     --border-radius: 8px;
@@ -515,15 +516,15 @@ canvas.decorationsOverviewRuler {
 }
 
 .sidebar.compact {
-    padding: var(--s3) var(--s4) !important;
+    padding: var(--s2) var(--s3) !important;
 }
 
 .sidebar.compact.left {
-    margin-left: 0 !important;
+    margin-left: var(--s2) !important;
 }
 
 .sidebar.compact.right {
-    margin-right: 0;
+    margin-right: 0 !important;
 }
 
 .sidebar > .title {
@@ -717,15 +718,10 @@ canvas.decorationsOverviewRuler {
 }
 
 /* Sidebar icons */
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-label.codicon {
+.monaco-workbench .activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-label {
     font-size: 20px !important;
-    width: 40px !important;
-    height: 40px !important;
+    width: var(--s7) !important;
+    height: var(--s7) !important;
     color: var(--list-item-fg) !important;
 }
 
@@ -734,10 +730,10 @@ canvas.decorationsOverviewRuler {
     > .content
     :not(.monaco-menu)
     > .monaco-action-bar
-    .action-label.codicon {
+    .action-label {
     font-size: 20px !important;
-    width: 32px !important;
-    height: 32px !important;
+    width: var(--s6) !important;
+    height: var(--s6) !important;
     color: var(--list-item-fg) !important;
 }
 
