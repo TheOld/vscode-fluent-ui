@@ -1,5 +1,15 @@
 # ChangeLog
 
+## 3.1.1 (2022-10-11)
+
+-   Updated ReadMe
+
+## 3.1.0 (2022-10-11)
+
+-   Updated styles and fixed inconsistencies
+-   Caret colour is no longer hard-coded and will respect color set by either the syntax theme or
+    user config
+
 ## 3.0.0 (2022-10-11)
 
 -   Refactored codebase; Now using TypeScript;

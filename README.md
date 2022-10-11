@@ -13,38 +13,10 @@ alternative. Also, please bear in mind that this theme is considered an experime
 beta software, since there's no official support for this type of modification, **so used it at your
 own risk**.
 
-## New major version is now live
-
-I have completely reworked the main code to be more reliable, faster and simple. Now instead of
-spitting out a file and then loading that file into VSCode's HTML, the necessary bits are extracted
-from the source files and injected into the HTML as minified and uglyfied `<style>` and `<script>`
-tags. This makes the whole process more generic and OS/architecture independent, so it **should**
-work on other OSs other than Windows, not tested though.
-
-## Notable fixes
-
-1. Scrollbars are now displayed correctly
-2. Active tab item on the bottom panel (Terminal/Debug Console/Output) now have correct color.
-3. Minor cosmetic adjustments
-
-## Upgrading from a previous version
-
-1. Run VSCode as admin. This is important
-2. Run `> Fluent: Disable` and reload
-
-If the above doesn't work you can manually edit the HTML file modified by the extension:
-
-1. On Windows, go to
-   `C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench`.
-2. If it still exists, delete the file `fluent.js` from that folder.
-3. Open the file `workbench.html` as admin
-4. Remove the line `<!-- Fluent UI --><script src="fluent.js"></script><!-- Fluent UI -->`. This
-   should be penultimate line on that file
-5. Save and reload VSCode
-
 ## Install
 
-1. Run VSCode as admin. This is important, the extension won't work otherwise
+1. Run VSCode as admin.
+    1. This is important, the extension won't work otherwise
 2. Install extension from
    [Marketplace](https://marketplace.visualstudio.com/items?itemName=leandro-rodrigues.fluent-ui-vscode)
 3. Run `> Fluent UI: Enable` and reload
@@ -56,18 +28,24 @@ If the above doesn't work you can manually edit the HTML file modified by the ex
 
 ## Uninstall
 
-1. Run `> Fluent: Disable` and reload when prompted
-2. Uninstall the extension like your normally would
+1. Run VSCode as admin.
+    1. This is important, you'll end up with a messed up `workbench.html` file if you run the
+       `Disable` command as regular user.
+2. Run `> Fluent: Disable` and reload when prompted
+3. Uninstall the extension like your normally would
+
+> If you ran the command as regular user, here's how you can fix your installation:
+>
+> 1. On Windows, go to
+>    `C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench`.
+> 2. Open the file `workbench.html` as admin
+> 3. Remove everything between the comments `<!-- FUI-CSS-START -->` and `<!-- FUI-CSS-END -->`.
+> 4. Save and reload VSCode
 
 ## Known issues
 
-When the search widget is visible with the `Replace` option toggled and new vertical panel is opened
-(split editor), the second input on the widget will not automatically resize to fit the new window,
-looking like this:
-
-![Search widget](https://github.com/TheOld/vscode-fluent-ui/blob/main/search-widget-issue.png?raw=true 'Sidebar')
-
-To fix that, just toggle the `Replace` option off and on again by clicking the chevron icon.
+-   Changing between compact and regular (via settings) may require more than one restart (closing
+    and opening VSCode again)
 
 ## Features
 
@@ -102,6 +80,19 @@ manually via settings, like so:
   "minimap.background": "#ffffff"
 }
 ```
+
+## To complete the look
+
+Product icon themes:
+
+-   [Fluent Icons](https://marketplace.visualstudio.com/items?itemName=miguelsolorio.fluent-icons)
+    (the one you see in the screenshots)
+-   [Carbon](https://marketplace.visualstudio.com/items?itemName=antfu.icons-carbon)
+
+The workbench is set to use Segoe UI Variable (the new standard font for Windows 11). I highly
+recommend downloading and installing it. If you don't, the theme will fallback to the default font.
+
+-   [Segoe UI variable](https://docs.microsoft.com/en-us/windows/apps/design/downloads/#fonts)
 
 ### Screenshots
 
@@ -158,16 +149,3 @@ Some of the great themes that go along with this UI (in no particular order):
 ![VSCode light theme preview](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-default-light.png?raw=true 'VSCode light')
 
 ---
-
-## To complete the look
-
-Product icon themes:
-
--   [Fluent Icons](https://marketplace.visualstudio.com/items?itemName=miguelsolorio.fluent-icons)
-    (the one you see on the screenshots)
--   [Carbon](https://marketplace.visualstudio.com/items?itemName=antfu.icons-carbon)
-
-The workbench is set to use Segoe UI Variable (the new standard font for Windows 11). I highly
-recommend downloading and installing it. If you don't, the theme will fallback to the default font.
-
--   [Segoe UI variable](https://docs.microsoft.com/en-us/windows/apps/design/downloads/#fonts)
