@@ -146,7 +146,7 @@
         document.documentElement.style.setProperty(property, value);
     };
 
-    const applyDarkStyles = (opacity = 0.75) => {
+    const applyDarkStyles = (opacity = 0.5) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#0078d4' });
@@ -159,16 +159,16 @@
             });
             overrideDocumentStyle({
                 property: '--card-bg',
-                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
+                value: `rgba(32, 32, 32, ${opacity})`,
             });
             overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'color, luminosity' });
             overrideDocumentStyle({
                 property: '--context-menu-bg',
-                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
+                value: `rgba(32, 32, 32, ${opacity})`,
             });
             overrideDocumentStyle({
                 property: '--editor-bg',
-                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
+                value: `rgba(32, 32, 32, ${opacity})`,
             });
             overrideDocumentStyle({ property: '--editor-widget-bg', value: 'var(--card-bg)' });
             overrideDocumentStyle({ property: '--foreground', value: '#ffffff' });
@@ -178,17 +178,20 @@
                 value: 'rgba(255, 255, 255, 0.0605)',
             });
             overrideDocumentStyle({ property: '--list-item-fg', value: '#ffffff99' });
-            overrideDocumentStyle({ property: '--notification-toast-bg', value: 'var(--card-bg)' });
+            overrideDocumentStyle({
+                property: '--notification-toast-bg',
+                value: `rgba(32, 32, 32, ${opacity})`,
+            });
             overrideDocumentStyle({
                 property: '--quick-input-widget-bg',
-                value: `linear-gradient(0deg, rgba(32, 32, 32, ${opacity}), rgba(32, 32, 32, ${opacity}))`,
+                value: `rgba(32, 32, 32, ${opacity})`,
             });
         } catch (error) {
             console.error(error);
         }
     };
 
-    const applyLightStyles = (opacity = 0.75) => {
+    const applyLightStyles = (opacity = 0.5) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#005fb8' });
@@ -237,12 +240,14 @@
     const applyCompactStyles = () => {
         if (isLayoutCompact) {
             const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.add('compact');
+            const sidebarContainer = sidebar.parentElement;
 
             const activitybar = document.querySelector('.activitybar');
             activitybar.classList.add('compact');
 
-            sidebar.classList.add('compact');
-            const sidebarContainer = sidebar.parentElement;
+            const tabs = document.querySelector('.tabs');
+            tabs.classList.add('compact');
 
             const bottomPanel = document.querySelector('.part.panel.bottom');
             bottomPanel.classList.add('compact');
