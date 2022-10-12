@@ -58,7 +58,6 @@ export async function getBackupUuid(htmlFilePath: string) {
         }
     } catch (e) {
         vscode.window.showInformationMessage(`${messages.genericError}${e}`);
-        throw e;
     }
 }
 

@@ -238,46 +238,44 @@
     };
 
     const applyCompactStyles = () => {
-        if (isLayoutCompact) {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.add('compact');
-            const sidebarContainer = sidebar.parentElement;
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.add('compact');
+        const sidebarContainer = sidebar.parentElement;
 
-            const activitybar = document.querySelector('.activitybar');
-            activitybar.classList.add('compact');
+        const activitybar = document.querySelector('.activitybar');
+        activitybar.classList.add('compact');
 
-            const tabs = document.querySelector('.tabs');
-            tabs.classList.add('compact');
+        const tabs = document.querySelector('.tabs');
+        tabs.classList.add('compact');
 
-            const bottomPanel = document.querySelector('.part.panel.bottom');
-            bottomPanel.classList.add('compact');
+        const bottomPanel = document.querySelector('.part.panel.bottom');
+        bottomPanel.classList.add('compact');
 
-            const breadcrumbs = document.querySelector('.monaco-breadcrumbs');
-            breadcrumbs.classList.add('compact');
+        const breadcrumbs = document.querySelector('.monaco-breadcrumbs');
+        breadcrumbs.classList.add('compact');
 
-            const editor = document.querySelector('.editor');
-            editor.classList.add('compact');
+        const editor = document.querySelector('.editor');
+        editor.classList.add('compact');
 
-            const editorContainer = document.querySelector('.editor-container');
-            editorContainer.classList.add('compact');
+        const editorContainer = document.querySelector('.editor-container');
+        editorContainer.classList.add('compact');
 
-            // Here we override the activitybar width
-            document.documentElement.style.setProperty('--activity-bar-width', '36px');
+        // Here we override the activitybar width
+        document.documentElement.style.setProperty('--activity-bar-width', '36px');
 
-            const activitybarContainer = activitybar.parentElement;
-            activitybarContainer.style.setProperty('width', '36px');
-            activitybarContainer.style.setProperty('max-width', '36px');
+        const activitybarContainer = activitybar.parentElement;
+        activitybarContainer.style.setProperty('width', '36px');
+        activitybarContainer.style.setProperty('max-width', '36px');
 
-            if (sidebar.classList.contains('left')) {
-                sidebarContainer.style.setProperty('left', '42px');
-            }
+        if (sidebar.classList.contains('left')) {
+            sidebarContainer.style.setProperty('left', '42px');
+        }
 
-            if (activitybar.classList.contains('right')) {
-                sidebarContainer.style.setProperty('right', '36px');
-                activitybarContainer.style.removeProperty('left');
-                activitybarContainer.style.setProperty('right', '0');
-                activitybarContainer.style.setProperty('margin-right', '2px');
-            }
+        if (activitybar.classList.contains('right')) {
+            sidebarContainer.style.setProperty('right', '36px');
+            activitybarContainer.style.removeProperty('left');
+            activitybarContainer.style.setProperty('right', '0');
+            activitybarContainer.style.setProperty('margin-right', '2px');
         }
     };
 

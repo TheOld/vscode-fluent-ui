@@ -14,17 +14,19 @@
     --f-title-large-lh: 3.25rem;
     --f-display: 4.25rem;
     --f-display-lh: 5.75rem;
+
     --base-spacing: 0.5rem;
     --s1: calc(var(--base-spacing) / 8);
     --s2: calc(var(--base-spacing) / 4);
     --s3: calc(var(--base-spacing) / 2); /* 4px */
     --s4: var(--base-spacing); /* 8px */
     --s5: calc(var(--base-spacing) * 2); /* 16px */
-    --s6: calc(var(--base-spacing) * 4); /* 32px */
-    --s7: calc(var(--base-spacing) * 5); /* 40px */
-    --s8: calc(var(--base-spacing) * 7); /* 56px */
-    --s9: calc(var(--base-spacing) * 8);
-    --s10: calc(var(--base-spacing) * 10);
+    --s6: calc(var(--base-spacing) * 3); /* 24px */
+    --s7: calc(var(--base-spacing) * 4); /* 32px */
+    --s8: calc(var(--base-spacing) * 5); /* 40px */
+    --s9: calc(var(--base-spacing) * 7); /* 56px */
+    --s10: calc(var(--base-spacing) * 8);
+    --s11: calc(var(--base-spacing) * 10);
 
     --acccent-pressed-bg: rgba(0, 95, 184, 0.8);
     --accent-disabled: rgba(0, 0, 0, 0.2169);
@@ -70,26 +72,31 @@
     --list-item-fg: #0000009b;
     --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
     --notification-toast-bg: var(--flyout-bg);
+    --notification-border-radius: 6px;
+    --notification-transition: opacity var(--easing-timing-fast) var(--easing-curve-in),
+        transform var(--easing-timing-fast) var(--easing-curve-in);
     --quick-input-widget-bg: var(--flyout-bg);
     --quick-input-widget: var(--flyout-bg);
-    --row-height: 24px;
+    --row-height: var(--s6);
     --transition: var(--easing-timing-normal);
     --app-bg-img: url('dummy');
 }
 
 html {
-    background: var(--app-bg-img) center center / cover repeat local;
+    background: var(--app-bg-img) center center / cover no-repeat local;
+    min-height: 100%;
     border: var(--acrylic-stroke);
+    transition: all var(--easing-timing-faster) var(--easing-curve-out);
 }
 
 :host-context(.windows),
 .windows {
     font-family: var(--font-display) !important;
-    transition: all var(--easing-timing-faster) var(--easing-curve-out);
+    /* transition: all var(--easing-timing-faster) var(--easing-curve-out); */
 }
 
 .monaco-workbench {
-    backdrop-filter: blur(40px);
+    /* backdrop-filter: blur(40px); */
     color: rgba(247, 249, 252, 0.859);
     background: var(--noise-bg) repeat var(--app-bg) !important;
 }
@@ -165,11 +172,6 @@ canvas.decorationsOverviewRuler {
     margin-right: var(--s5);
 }
 
-.editor-instance {
-    background: var(--noise-bg) repeat var(--editor-bg) !important;
-    border-radius: var(--border-radius) !important;
-}
-
 .editor-container.compact {
     margin-right: var(--s3) !important;
 }
@@ -199,14 +201,17 @@ canvas.decorationsOverviewRuler {
     background: transparent !important;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    > .tabs-and-actions-container {
+.tabs.compact .tabs-and-actions-container {
+    height: var(--s6) !important;
+}
+
+.tabs-and-actions-container {
     padding-left: var(--s4);
     border-bottom: none !important;
+}
+
+.tabs.compact .tabs-container {
+    height: 100% !important;
 }
 
 .tabs-container > .tab {
@@ -226,20 +231,21 @@ canvas.decorationsOverviewRuler {
     will-change: borderRadius;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    > .tabs-and-actions-container.tabs-border-bottom:after,
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    .tabs-container
-    > .tab.active.tab-border-bottom
-    > .tab-border-bottom-container {
+.tabs.compact .tabs-container > .tab {
+    /* padding-left: var(--s3) !important;
+    padding-right: var(--s2) !important; */
+    padding: var(--s1) var(--s4) !important;
+    height: var(--s6) !important;
+}
+
+.tabs.compact .tabs-container > .tab .tab-label,
+.tabs.compact .tabs-container > .tab .monaco-icon-label:before {
+    height: var(--s6) !important;
+    line-height: var(--s6) !important;
+}
+
+.tabs-and-actions-container.tabs-border-bottom:after,
+.tabs-container > .tab.active.tab-border-bottom > .tab-border-bottom-container {
     display: none !important;
 }
 
@@ -267,18 +273,8 @@ canvas.decorationsOverviewRuler {
     transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container.active
-    > .title
-    .tabs-container
-    > .tab:hover {
+.tabs-container > .tab:hover {
     background-color: transparent !important;
-}
-
-.monaco-workbench .part.editor > .content .editor-group-container .active {
-    border-bottom: var(--border);
 }
 
 .tabs-container > .tab:hover {
@@ -293,14 +289,7 @@ canvas.decorationsOverviewRuler {
     opacity: 1;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    .tabs-container
-    > .tab.active.tab-border-top
-    > .tab-border-top-container {
+.tabs-container > .tab.active.tab-border-top > .tab-border-top-container {
     background-color: transparent !important;
 }
 
@@ -319,15 +308,17 @@ canvas.decorationsOverviewRuler {
     opacity: 1;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    .tabs-container
-    > .tab
-    .tab-label
-    a,
+.tabs.compact .tabs-container > .tab.active,
+.tabs.compact .tabs-container > .tab:after {
+    border-top-left-radius: calc(var(--border-radius) / 2);
+    border-top-right-radius: calc(var(--border-radius) / 2);
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container .active {
+    border-bottom: var(--border);
+}
+
+.tabs-container > .tab .tab-label a,
 .monaco-workbench .part.editor > .content .editor-group-container > .title .title-label a {
     font-size: var(--f-body);
     line-height: var(--f-body-lh);
@@ -517,8 +508,12 @@ canvas.decorationsOverviewRuler {
     border-bottom: var(--border);
 }
 
+.sidebar.compact > .title {
+    margin-top: var(--s2) !important;
+    height: 28px !important;
+}
+
 .sidebar > .title > .title-label {
-    line-height: var(--f-subtitle-lh) !important;
     padding-left: 0 !important;
 }
 
@@ -529,6 +524,11 @@ canvas.decorationsOverviewRuler {
     text-transform: none !important;
     font-weight: unset !important;
     color: var(--foreground) !important;
+}
+
+.sidebar.compact > .title > .title-label h2 {
+    font-size: 18px !important;
+    line-height: 22px !important;
 }
 
 .sidebar > .content {
@@ -571,6 +571,7 @@ canvas.decorationsOverviewRuler {
     transition: transform var(--easing-timing-faster) var(--easing-curve-in),
         opacity var(--easing-timing-faster) var(--easing-curve-in);
     transition-delay: 25ms;
+    z-index: 1;
 }
 
 .settings-editor-tree .monaco-list-row::before,
@@ -922,7 +923,6 @@ canvas.decorationsOverviewRuler {
 }
 
 .editor-widget {
-    background: var(--editor-widget-bg) !important;
     border: var(--border);
 }
 
@@ -955,10 +955,10 @@ canvas.decorationsOverviewRuler {
 }
 
 /* Editor Panel */
-.monaco-editor,
-.monaco-editor-background {
-    background: var(--editor-bg) !important;
-    /* background: transparent !important; */
+.monaco-editor {
+    background: var(--noise-bg) repeat var(--editor-bg) !important;
+    border-bottom-left-radius: var(--border-radius) !important;
+    border-bottom-right-radius: var(--border-radius) !important;
 }
 
 .monaco-hover,
@@ -968,7 +968,7 @@ canvas.decorationsOverviewRuler {
     color: var(--foreground) !important;
     background: var(--noise-bg) repeat var(--hover-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    box-shadow: var(--acrylic-shadow-alt);
+    box-shadow: var(--dialog-shadow);
     border: var(--border) !important;
     border-radius: var(--border-radius);
 }
@@ -987,8 +987,9 @@ canvas.decorationsOverviewRuler {
 }
 
 .monaco-editor .margin {
-    background: var(--card-bg) !important;
+    background: transparent !important;
     border-left: var(--border);
+    border-bottom-left-radius: var(--border-radius) !important;
 }
 
 .monaco-editor .view-overlays .current-line,
@@ -1057,9 +1058,8 @@ canvas.decorationsOverviewRuler {
 /* Dropdown container */
 .monaco-select-box-dropdown-container > .select-box-dropdown-list-container {
     color: var(--foreground) !important;
-    background-color: var(--noise-bg) repeat var(--hover-bg) !important;
+    background: var(--noise-bg) repeat var(--hover-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    box-shadow: var(--acrylic-shadow-alt);
     border: var(--border) !important;
     border-radius: var(--border-radius);
     box-shadow: var(--flyout-shadow) !important;
@@ -1098,7 +1098,6 @@ canvas.decorationsOverviewRuler {
     border-radius: var(--border-radius) !important;
     background: var(--noise-bg) repeat var(--context-menu-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    box-shadow: var(--acrylic-shadow-alt);
 }
 
 .context-view.monaco-menu-container {
@@ -1153,9 +1152,9 @@ canvas.decorationsOverviewRuler {
 
 .monaco-workbench .notifications-list-container .notification-list-item,
 .notification-toast {
-    border: var(--border) !important;
+    /* border: var(--border) !important; */
     box-shadow: var(--flyout-shadow) !important;
-    border-radius: var(--border-radius);
+    border-radius: var(--notification-border-radius);
     background: var(--noise-bg) repeat var(--notification-toast-bg) !important;
     backdrop-filter: var(--backdrop-filter);
 }
@@ -1177,8 +1176,9 @@ canvas.decorationsOverviewRuler {
 }
 
 .notification-toast {
+    border: var(--border) !important;
     background: transparent !important;
-    transition: var(--transition);
+    transition: var(--notification-transition);
 }
 
 /* Feedback Form */

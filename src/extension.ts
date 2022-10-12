@@ -8,6 +8,7 @@ import * as path from 'path';
 import postcss from 'postcss';
 import * as Url from 'url';
 import * as vscode from 'vscode';
+const sharp = require('sharp');
 
 import {
     buildBackupFilePath,
@@ -80,9 +81,12 @@ async function buildCSSTag(url: string) {
 export async function getBase64Image() {
     try {
         const wallPath = await wallpaper.get();
-        const img = await fs.readFile(wallPath, 'base64');
+        const blurredImage = await sharp(wallPath).blur(40).toBuffer();
 
-        return `data:image/png;base64,${img}`;
+        return `data:image/png;base64,${blurredImage.toString('base64')}`;
+
+        // const img = await fs.readFile(wallPath, 'base64');
+        // return `data:image/png;base64,${img}`;
     } catch (e) {
         vscode.window.showInformationMessage(messages.admin);
         throw e;
@@ -181,6 +185,12 @@ export function activate(context: vscode.ExtensionContext) {
      * Installs full version
      */
     async function install() {
+        const backupUuid = await getBackupUuid(htmlFile);
+        if (backupUuid) {
+            vscode.window.showInformationMessage(messages.alreadySet);
+            return;
+        }
+
         await createBackup(base, htmlFile);
         await patch({ htmlFile });
     }
