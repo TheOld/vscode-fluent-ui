@@ -492,7 +492,7 @@ canvas.decorationsOverviewRuler {
 
 .sidebar.left {
     margin-left: var(--s4);
-    animation: sidebarLeftIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
+    animation: sidebarLeftIn var(--easing-timing-fast) var(--easing-curve-in) forwards !important;
     animation-delay: 3s;
 }
 
@@ -734,10 +734,6 @@ canvas.decorationsOverviewRuler {
 
 .activitybar.right {
     margin-left: -4px;
-}
-
-.activitybar .content {
-    padding-top: var(--s4);
 }
 
 .activitybar.compact.right {
@@ -1250,7 +1246,7 @@ canvas.decorationsOverviewRuler {
 
 @keyframes sidebarLeftIn {
     0% {
-        transform: translateX(-75%);
+        transform: translateX(-25%);
         opacity: 0;
     }
     100% {
@@ -1261,7 +1257,7 @@ canvas.decorationsOverviewRuler {
 
 @keyframes sidebarRightIn {
     0% {
-        transform: translateX(75%);
+        transform: translateX(25%);
         opacity: 0;
     }
     100% {
