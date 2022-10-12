@@ -131,15 +131,17 @@ async function patch({ htmlFile, compact = false, lite = false }: PatchArgs) {
     html = html.replace(/<meta.*http-equiv="Content-Security-Policy".*>/, '');
 
     const styleTags = await getTags('styles');
-    const jsTags = await getTags('javascript', compact, lite);
+    // Inject style tag into <head>
+    html = html.replace(
+        /(<\/head>)/,
+        '<!-- FUI-CSS-START -->\n' + styleTags + '<!-- FUI-CSS-END -->\n</head>',
+    );
 
+    const jsTags = await getTags('javascript', compact, lite);
+    // Injext JS tag into <body>
     html = html.replace(
         /(<\/html>)/,
-        `<!-- FUI-ID -->\n` +
-            '<!-- FUI-CSS-START -->\n' +
-            styleTags +
-            jsTags +
-            '<!-- FUI-CSS-END -->\n</html>',
+        `<!-- FUI-ID -->\n` + '<!-- FUI-JS-START -->\n' + jsTags + '<!-- FUI-JS-END -->\n</html>',
     );
 
     try {
