@@ -96,10 +96,8 @@ html {
 
 .card {
     background: var(--noise-bg) repeat var(--card-bg) !important;
-    backdrop-filter: var(--backdrop-filter);
     box-shadow: var(--card-shadow);
     overflow-y: auto;
-    /* JSON theme will add border-right and we need to override it */
     border-right: var(--border);
     border: var(--border) !important;
     border-radius: var(--border-radius);
@@ -905,33 +903,10 @@ canvas.decorationsOverviewRuler {
     border-radius: 16px !important;
 }
 
-/* Notifications */
-
-.notifications-toasts,
-.notifications-toasts .notification-toast-container {
-    overflow: unset !important;
-}
-
-.monaco-workbench .notifications-list-container .notification-list-item,
-.notification-toast {
-    border: var(--border) !important;
-    box-shadow: var(--flyout-shadow) !important;
-    border-radius: var(--border-radius);
-    background: var(--notification-toast-bg) !important;
-    backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-}
-
-.monaco-workbench .notifications-list-container .notification-list-item {
-    padding: var(--s4) var(--s3) !important;
-}
-
 /* Widget */
 .quick-input-widget,
 .editor-widget {
     background: var(--noise-bg) repeat var(--quick-input-widget-bg) !important;
-
     border-radius: var(--border-radius);
     box-shadow: var(--acrylic-shadow-alt) !important;
     backdrop-filter: var(--backdrop-filter);
@@ -991,12 +966,9 @@ canvas.decorationsOverviewRuler {
 .monaco-editor .tree,
 .monaco-editor .details {
     color: var(--foreground) !important;
-    background: var(--hover-bg) !important;
+    background: var(--noise-bg) repeat var(--hover-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
     box-shadow: var(--acrylic-shadow-alt);
-    background-blend-mode: normal, luminosity;
     border: var(--border) !important;
     border-radius: var(--border-radius);
 }
@@ -1073,12 +1045,9 @@ canvas.decorationsOverviewRuler {
 
 /* Tooltips? */
 .workbench-hover {
-    background-color: var(--hover-bg) !important;
+    background-color: var(--noise-bg) repeat var(--hover-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
     box-shadow: var(--acrylic-shadow-alt);
-    background-blend-mode: normal, luminosity;
 }
 
 .workbench-hover:not(.skip-fade-in) {
@@ -1088,12 +1057,9 @@ canvas.decorationsOverviewRuler {
 /* Dropdown container */
 .monaco-select-box-dropdown-container > .select-box-dropdown-list-container {
     color: var(--foreground) !important;
-    background-color: var(--hover-bg) !important;
+    background-color: var(--noise-bg) repeat var(--hover-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
     box-shadow: var(--acrylic-shadow-alt);
-    background-blend-mode: normal, luminosity;
     border: var(--border) !important;
     border-radius: var(--border-radius);
     box-shadow: var(--flyout-shadow) !important;
@@ -1130,11 +1096,8 @@ canvas.decorationsOverviewRuler {
     border: var(--border) !important;
     box-shadow: var(--flyout-shadow) !important;
     border-radius: var(--border-radius) !important;
-    background: var(--context-menu-bg) !important;
-    background-blend-mode: normal, luminosity;
+    background: var(--noise-bg) repeat var(--context-menu-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
     box-shadow: var(--acrylic-shadow-alt);
 }
 
@@ -1181,22 +1144,32 @@ canvas.decorationsOverviewRuler {
     transform: translateY(var(--s4)) !important;
 }
 
+/* Notifications */
+
+.notifications-toasts,
+.notifications-toasts .notification-toast-container {
+    overflow: unset !important;
+}
+
+.monaco-workbench .notifications-list-container .notification-list-item,
+.notification-toast {
+    border: var(--border) !important;
+    box-shadow: var(--flyout-shadow) !important;
+    border-radius: var(--border-radius);
+    background: var(--noise-bg) repeat var(--notification-toast-bg) !important;
+    backdrop-filter: var(--backdrop-filter);
+}
+
+.monaco-workbench .notifications-list-container .notification-list-item {
+    padding: var(--s4) var(--s3) !important;
+}
+
 /* Notification Panel */
 .notifications-center {
     backdrop-filter: var(--backdrop-filter);
-    background-color: var(--background-color) !important;
+    background-color: var(--noise-bg) repeat var(--background-color) !important;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
     box-shadow: var(--acrylic-shadow-alt);
-}
-.notifications-center-header {
-    /* backdrop-filter: var(--backdrop-filter);
-    background-color: var(--background-color) !important;
-    backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt); */
 }
 
 .notifications-list-container {
