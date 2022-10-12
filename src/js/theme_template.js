@@ -131,8 +131,7 @@
             document.documentElement.style.setProperty('--backdrop-filter', 'none');
         }
 
-        // Here we'll attach an event listener to fix the compact layout when the window resizes
-        // window.onresize = applyCompactStyles;
+        overrideDocumentStyle({ property: 'background', value: 'var(--wallpaper)' });
 
         console.log('Fluent UI: initialised!');
 
@@ -146,13 +145,15 @@
         document.documentElement.style.setProperty(property, value);
     };
 
-    const applyDarkStyles = (opacity = 0.5) => {
+    const applyDarkStyles = (opacity = 0.7) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#0078d4' });
             overrideDocumentStyle({ property: '--active-action-item-bg', value: 'var(--card-bg)' });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            overrideDocumentStyle({ property: '--app-bg', value: '#2c2c2c' });
+            overrideDocumentStyle({ property: '--app-bg', value: 'rgba(44, 44, 44, 0.85)' });
+            overrideDocumentStyle({ property: '--body-bg', value: 'rgba(44, 44, 44, 1)' });
+            overrideDocumentStyle({ property: '--body-bg-t', value: 'rgba(44, 44, 44, 0)' });
             overrideDocumentStyle({
                 property: '--background-color',
                 value: 'rgba(0, 0, 0, 0.0578)',
@@ -191,7 +192,7 @@
         }
     };
 
-    const applyLightStyles = (opacity = 0.5) => {
+    const applyLightStyles = (opacity = 0.7) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#005fb8' });
@@ -200,7 +201,7 @@
                 value: 'rgba(0, 0, 0, 0.0605)',
             });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            overrideDocumentStyle({ property: '--app-bg', value: '#f3f3f3' });
+            overrideDocumentStyle({ property: '--app-bg', value: 'rgba(243, 243, 243, 0.85)' });
             overrideDocumentStyle({
                 property: '--flyout-bg',
                 value: `rgba(252, 252, 252, ${opacity})`,
@@ -238,46 +239,44 @@
     };
 
     const applyCompactStyles = () => {
-        if (isLayoutCompact) {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.add('compact');
-            const sidebarContainer = sidebar.parentElement;
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.add('compact');
+        const sidebarContainer = sidebar.parentElement;
 
-            const activitybar = document.querySelector('.activitybar');
-            activitybar.classList.add('compact');
+        const activitybar = document.querySelector('.activitybar');
+        activitybar.classList.add('compact');
 
-            const tabs = document.querySelector('.tabs');
-            tabs.classList.add('compact');
+        const tabs = document.querySelector('.tabs');
+        tabs.classList.add('compact');
 
-            const bottomPanel = document.querySelector('.part.panel.bottom');
-            bottomPanel.classList.add('compact');
+        const bottomPanel = document.querySelector('.part.panel.bottom');
+        bottomPanel.classList.add('compact');
 
-            const breadcrumbs = document.querySelector('.monaco-breadcrumbs');
-            breadcrumbs.classList.add('compact');
+        const breadcrumbs = document.querySelector('.monaco-breadcrumbs');
+        breadcrumbs.classList.add('compact');
 
-            const editor = document.querySelector('.editor');
-            editor.classList.add('compact');
+        const editor = document.querySelector('.editor');
+        editor.classList.add('compact');
 
-            const editorContainer = document.querySelector('.editor-container');
-            editorContainer.classList.add('compact');
+        const editorContainer = document.querySelector('.editor-container');
+        editorContainer.classList.add('compact');
 
-            // Here we override the activitybar width
-            document.documentElement.style.setProperty('--activity-bar-width', '36px');
+        // Here we override the activitybar width
+        document.documentElement.style.setProperty('--activity-bar-width', '36px');
 
-            const activitybarContainer = activitybar.parentElement;
-            activitybarContainer.style.setProperty('width', '36px');
-            activitybarContainer.style.setProperty('max-width', '36px');
+        const activitybarContainer = activitybar.parentElement;
+        activitybarContainer.style.setProperty('width', '36px');
+        activitybarContainer.style.setProperty('max-width', '36px');
 
-            if (sidebar.classList.contains('left')) {
-                sidebarContainer.style.setProperty('left', '42px');
-            }
+        if (sidebar.classList.contains('left')) {
+            sidebarContainer.style.setProperty('left', '42px');
+        }
 
-            if (activitybar.classList.contains('right')) {
-                sidebarContainer.style.setProperty('right', '36px');
-                activitybarContainer.style.removeProperty('left');
-                activitybarContainer.style.setProperty('right', '0');
-                activitybarContainer.style.setProperty('margin-right', '2px');
-            }
+        if (activitybar.classList.contains('right')) {
+            sidebarContainer.style.setProperty('right', '36px');
+            activitybarContainer.style.removeProperty('left');
+            activitybarContainer.style.setProperty('right', '0');
+            activitybarContainer.style.setProperty('margin-right', '2px');
         }
     };
 

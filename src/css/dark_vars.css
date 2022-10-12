@@ -2,7 +2,7 @@
     --accent: #0078d4;
     --active-action-item-bg: var(--card-bg);
     --activitybar-indicator-bg: #60cdff;
-    --app-bg: #2c2c2c;
+    --app-bg: rgba(44, 44, 44, 0.85);
     --background-color: rgba(0, 0, 0, 0.0578);
     --card-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.75), rgba(32, 32, 32, 0.75));
     --card-blend-mode: color, luminosity;
@@ -14,5 +14,5 @@
     --list-item-bg: rgba(255, 255, 255, 0.0605);
     --list-item-fg: #ffffff99;
     --notification-toast-bg: var(--card-bg);
-    --quick-input-widget-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.5), rgba(32, 32, 32, 0.5));
+    --quick-input-widget-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.75), rgba(32, 32, 32, 0.75));
 }

@@ -14,17 +14,19 @@
     --f-title-large-lh: 3.25rem;
     --f-display: 4.25rem;
     --f-display-lh: 5.75rem;
+
     --base-spacing: 0.5rem;
     --s1: calc(var(--base-spacing) / 8);
     --s2: calc(var(--base-spacing) / 4);
     --s3: calc(var(--base-spacing) / 2); /* 4px */
     --s4: var(--base-spacing); /* 8px */
     --s5: calc(var(--base-spacing) * 2); /* 16px */
-    --s6: calc(var(--base-spacing) * 4); /* 32px */
-    --s7: calc(var(--base-spacing) * 5); /* 40px */
-    --s8: calc(var(--base-spacing) * 7); /* 56px */
-    --s9: calc(var(--base-spacing) * 8);
-    --s10: calc(var(--base-spacing) * 10);
+    --s6: calc(var(--base-spacing) * 3); /* 24px */
+    --s7: calc(var(--base-spacing) * 4); /* 32px */
+    --s8: calc(var(--base-spacing) * 5); /* 40px */
+    --s9: calc(var(--base-spacing) * 7); /* 56px */
+    --s10: calc(var(--base-spacing) * 8);
+    --s11: calc(var(--base-spacing) * 10);
 
     --acccent-pressed-bg: rgba(0, 95, 184, 0.8);
     --accent-disabled: rgba(0, 0, 0, 0.2169);
@@ -33,12 +35,24 @@
     --active-action-item-bg: rgba(0, 0, 0, 0.0605);
     --activity-bar-width: 100%;
 
+    --depth-2: 0 0 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.14);
+    --depth-4: 0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
+    /* Cards */
+    --depth-8: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108); /* Command bars/Command dropdowns/Context menus */
+    --depth-16: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108); /*Hover cards
+Tooltips */
+    --depth-28: 0 0 8px rgba(0, 0, 0, 0.12), 0 14px 28px rgba(0, 0, 0, 0.14);
+    --depth-64: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18); /* Panels/Dialogs/Popups */
+
     --accent: #005fb8;
     --acrylic-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
     --acrylic-shadow-alt: 0px 25.6px 57.6px rgb(0 0 0 / 14%), 0px 0px 16.4px rgb(0 0 0 / 12%);
     --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
-    --app-bg: #f3f3f3;
-    --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+    --app-bg: rgb(243, 243, 243, 1);
+    --app-bg-img: url('dummy');
+
+    --body-bg: rgb(243, 243, 243, 1);
+    --body-bg-t: rgb(243, 243, 243, 0);
     --backdrop-filter: blur(12px) saturate(1);
     --background-color: rgba(255, 255, 255, 0.4);
     --border-color: rgba(0, 0, 0, 0.0578);
@@ -46,59 +60,82 @@
     --input-border-radius: 4px;
     --border: 1px solid var(--border-color);
     --button-radius: var(--s3);
+
     --card-bg-blend-mode: multiply;
     --card-bg: rgba(255, 255, 255, 0.7);
-    --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+    --card-shadow: var(--depth-4);
+
     --content-height: calc(100% - var(--s3));
     --context-menu-bg: var(--menu-bg);
     --dialog-border: 1px solid rgba(117, 117, 117, 0.4);
-    --dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+    --dialog-shadow: var(--depth-64);
+
     --editor-bg: var(--card-bg);
     --editor-widget-bg: var(--flyout-bg);
+
     --easing-curve-in: cubic-bezier(0, 0, 0, 1);
     --easing-curve-out: cubic-bezier(1, 0, 1, 1);
     --easing-timing-fast: 167ms;
     --easing-timing-faster: 83ms;
     --easing-timing-normal: 250ms;
-    --flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+
+    --flyout-shadow: var(--depth-8);
     --flyout-stroke: 1px solid rgba(0, 0, 0, 0.0578);
-    --font-display-semibold: Segoe UI Variable Display Semibold, Segoe WPC, Segoe UI, sans-serif;
+
+    --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
     --font-display: Segoe UI Variable Display, Segoe WPC, Segoe UI, sans-serif;
+    --font-display-semibold: Segoe UI Variable Display Semibold, Segoe WPC, Segoe UI, sans-serif;
     --foreground: #000000;
+
     --hover-bg: var(--flyout-bg);
     --list-item-bg: rgba(0, 0, 0, 0.0373);
     --list-item-fg: #0000009b;
-    --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
+
     --notification-toast-bg: var(--flyout-bg);
+    --notification-border-radius: 6px;
+    --notification-transition: opacity var(--easing-timing-fast) var(--easing-curve-in),
+        transform var(--easing-timing-fast) var(--easing-curve-in);
+
     --quick-input-widget-bg: var(--flyout-bg);
-    --quick-input-widget: var(--flyout-bg);
-    --row-height: 24px;
+
+    --row-height: var(--s6);
     --transition: var(--easing-timing-normal);
-    /* Light/Shadow/Card Rest */
+
+    --wallpaper: var(--app-bg-img) center center / cover no-repeat local;
 }
 
 html {
-    background: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)),
-        var(--app-bg);
-    background-blend-mode: color, luminosity;
-    box-shadow: var(--app-shadow);
-    border: var(--acrylic-stroke);
+    min-height: 100%;
 }
 
 :host-context(.windows),
 .windows {
     font-family: var(--font-display) !important;
-    transition: all var(--easing-timing-faster) var(--easing-curve-out);
+}
+
+.acrylic {
+    background-blend-mode: exclusion;
+    background-color: var(--card-bg);
+    background-image: var(--noise-bg);
+}
+
+.acrylic::before {
+}
+
+.acrylic::after {
+}
+
+.monaco-workbench {
+    color: rgba(247, 249, 252, 0.859);
+    background: var(--noise-bg) repeat var(--app-bg) !important;
+    background-blend-mode: exclusion;
 }
 
 .card {
-    background: var(--card-bg) !important;
-    backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
+    background: var(--noise-bg) repeat var(--card-bg) !important;
+    background-blend-mode: exclusion;
+    box-shadow: var(--card-shadow);
     overflow-y: auto;
-    /* JSON theme will add border-right and we need to override it */
     border-right: var(--border);
     border: var(--border) !important;
     border-radius: var(--border-radius);
@@ -116,6 +153,7 @@ html {
 .monaco-workbench .part.titlebar {
     background: #ffffff00 !important;
     border: none !important;
+    height: var(--s7) !important;
 }
 
 .monaco-workbench .part > .content {
@@ -145,7 +183,8 @@ canvas.decorationsOverviewRuler {
 .monaco-diff-editor .diffOverview {
     right: var(--s2) !important;
     left: unset !important;
-    background: var(--editor-bg) !important;
+    background: var(--noise-bg) repeat var(--editor-bg) !important;
+    background-blend-mode: exclusion;
     mix-blend-mode: var(--card-bg-blend-mode);
 }
 
@@ -155,7 +194,9 @@ canvas.decorationsOverviewRuler {
 }
 
 .editor-container {
-    background: var(--editor-bg) !important;
+    background: var(--noise-bg) repeat var(--editor-bg) !important;
+    background-blend-mode: exclusion;
+    mix-blend-mode: var(--card-bg-blend-mode);
     border-top-color: transparent !important;
     border-top: none !important;
     border-left: none !important;
@@ -164,11 +205,6 @@ canvas.decorationsOverviewRuler {
     /* overflow: hidden; */
     border-radius: var(--border-radius) !important;
     margin-right: var(--s5);
-}
-
-.editor-instance {
-    background: var(--editor-bg) !important;
-    border-radius: var(--border-radius) !important;
 }
 
 .editor-container.compact {
@@ -180,14 +216,12 @@ canvas.decorationsOverviewRuler {
 }
 
 /* Settings page */
-.settings-editor,
+/* .settings-editor, */
 .extension-editor {
-    background: var(--card-bg) !important;
+    background: var(--noise-bg) repeat var(--card-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-
-    box-shadow: var(--acrylic-shadow-alt);
+    box-shadow: var(--card-shadow);
     /* JSON theme will add border-right and we need to override it */
     border-right: var(--border);
     border: var(--border) !important;
@@ -198,21 +232,12 @@ canvas.decorationsOverviewRuler {
     padding-left: var(--s5);
 }
 
-.monaco-workbench {
-    background-color: transparent !important;
-}
-
 /* TABS */
 .tabs {
     background: transparent !important;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    > .tabs-and-actions-container {
+.tabs-and-actions-container {
     padding-left: var(--s4);
     border-bottom: none !important;
 }
@@ -234,20 +259,8 @@ canvas.decorationsOverviewRuler {
     will-change: borderRadius;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    > .tabs-and-actions-container.tabs-border-bottom:after,
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    .tabs-container
-    > .tab.active.tab-border-bottom
-    > .tab-border-bottom-container {
+.tabs-and-actions-container.tabs-border-bottom:after,
+.tabs-container > .tab.active.tab-border-bottom > .tab-border-bottom-container {
     display: none !important;
 }
 
@@ -275,18 +288,8 @@ canvas.decorationsOverviewRuler {
     transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container.active
-    > .title
-    .tabs-container
-    > .tab:hover {
+.tabs-container > .tab:hover {
     background-color: transparent !important;
-}
-
-.monaco-workbench .part.editor > .content .editor-group-container .active {
-    border-bottom: var(--border);
 }
 
 .tabs-container > .tab:hover {
@@ -301,14 +304,7 @@ canvas.decorationsOverviewRuler {
     opacity: 1;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    .tabs-container
-    > .tab.active.tab-border-top
-    > .tab-border-top-container {
+.tabs-container > .tab.active.tab-border-top > .tab-border-top-container {
     background-color: transparent !important;
 }
 
@@ -327,15 +323,11 @@ canvas.decorationsOverviewRuler {
     opacity: 1;
 }
 
-.monaco-workbench
-    .part.editor
-    > .content
-    .editor-group-container
-    > .title
-    .tabs-container
-    > .tab
-    .tab-label
-    a,
+.monaco-workbench .part.editor > .content .editor-group-container .active {
+    border-bottom: var(--border);
+}
+
+.tabs-container > .tab .tab-label a,
 .monaco-workbench .part.editor > .content .editor-group-container > .title .title-label a {
     font-size: var(--f-body);
     line-height: var(--f-body-lh);
@@ -495,24 +487,18 @@ canvas.decorationsOverviewRuler {
 .sidebar {
     padding: 0 var(--s5);
     height: var(--content-height);
-    background: var(--card-bg) !important;
-    backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
     overflow-y: auto;
-    /* JSON theme will add border-right and we need to override it */
-    border-right: var(--border);
-    border: var(--border) !important;
-    border-radius: var(--border-radius);
 }
 
 .sidebar.left {
     margin-left: var(--s4);
+    animation: sidebarLeftIn var(--easing-timing-fast) var(--easing-curve-in) forwards !important;
+    animation-delay: 3s;
 }
 
 .sidebar.right {
     margin-right: var(--s4);
+    animation: sidebarRighIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
 }
 
 .sidebar.compact {
@@ -534,8 +520,12 @@ canvas.decorationsOverviewRuler {
     border-bottom: var(--border);
 }
 
+.sidebar.compact > .title {
+    margin-top: var(--s2) !important;
+    height: 28px !important;
+}
+
 .sidebar > .title > .title-label {
-    line-height: var(--f-subtitle-lh) !important;
     padding-left: 0 !important;
 }
 
@@ -546,6 +536,11 @@ canvas.decorationsOverviewRuler {
     text-transform: none !important;
     font-weight: unset !important;
     color: var(--foreground) !important;
+}
+
+.sidebar.compact > .title > .title-label h2 {
+    font-size: 18px !important;
+    line-height: 22px !important;
 }
 
 .sidebar > .content {
@@ -588,6 +583,7 @@ canvas.decorationsOverviewRuler {
     transition: transform var(--easing-timing-faster) var(--easing-curve-in),
         opacity var(--easing-timing-faster) var(--easing-curve-in);
     transition-delay: 25ms;
+    z-index: 1;
 }
 
 .settings-editor-tree .monaco-list-row::before,
@@ -673,13 +669,13 @@ canvas.decorationsOverviewRuler {
     backdrop-filter: var(--backdrop-filter);
 }
 
-.monaco-workbench .monaco-list .monaco-list-row .monaco-highlighted-label .highlight {
+/* .monaco-workbench .monaco-list .monaco-list-row .monaco-highlighted-label .highlight {
     color: var(--acccent-pressed-bg) !important;
 }
 
 .monaco-workbench .monaco-list .monaco-list-row.focused .monaco-highlighted-label .highlight {
     color: var(--accent) !important;
-}
+} */
 
 .monaco-select-box-dropdown-container
     > .select-box-dropdown-list-container
@@ -704,6 +700,7 @@ canvas.decorationsOverviewRuler {
     font-feature-settings: 'rclt' off;
     font-size: var(--f-body);
     line-height: var(--f-body-lh);
+    box-shadow: var(--depth-2);
 }
 
 .monaco-button:hover,
@@ -717,94 +714,6 @@ canvas.decorationsOverviewRuler {
     background: var(--accent-pressed-bg);
 }
 
-/* Sidebar icons */
-.monaco-workbench .activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-label {
-    font-size: 20px !important;
-    width: var(--s7) !important;
-    height: var(--s7) !important;
-    color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar.compact
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-label {
-    font-size: 20px !important;
-    width: var(--s6) !important;
-    height: var(--s6) !important;
-    color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item.active
-    .action-label.codicon,
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:focus
-    .action-label.codicon,
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:hover
-    .action-label.codicon {
-    color: var(--foreground) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-label:not(.codicon) {
-    -webkit-mask-size: 20px !important;
-    background-color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item.active
-    .action-label:not(.codicon),
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:focus
-    .action-label:not(.codicon),
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:hover
-    .action-label:not(.codicon) {
-    background-color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .badge
-    .badge-content {
-    background-color: var(--accent) !important;
-}
-
 /* Activity bar */
 .activitybar {
     background-color: transparent !important;
@@ -815,7 +724,7 @@ canvas.decorationsOverviewRuler {
     width: 100% !important;
 }
 
-.monaco-workbench .activitybar.bordered:before {
+.activitybar.bordered:before {
     display: none !important;
 }
 
@@ -851,12 +760,7 @@ canvas.decorationsOverviewRuler {
     position: relative;
 }
 
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .active-item-indicator::before {
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .active-item-indicator::before {
     content: '';
     display: block;
     border: none !important;
@@ -873,43 +777,26 @@ canvas.decorationsOverviewRuler {
     transition-delay: 25ms;
 }
 
-.monaco-workbench
-    .activitybar
+.activitybar
     > .content
     :not(.monaco-menu)
     > .monaco-action-bar
     .action-item.checked
     .active-item-indicator:before,
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:hover::before {
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-item:hover::before {
     transform: translateY(-11px) scaleY(1);
     opacity: 1;
 }
 
-.monaco-workbench .activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-item {
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-item {
     display: flex !important;
 }
 
-.monaco-workbench
-    .activitybar.compact
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item {
+.activitybar.compact > .content :not(.monaco-menu) > .monaco-action-bar .action-item {
     margin-bottom: 2px;
 }
 
-.monaco-workbench
-    .activitybar.compact
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .badge
-    .badge-content {
+.activitybar.compact > .content :not(.monaco-menu) > .monaco-action-bar .badge .badge-content {
     top: 16px !important;
     right: 2px !important;
     font-size: 8px !important;
@@ -920,37 +807,72 @@ canvas.decorationsOverviewRuler {
     border-radius: 16px !important;
 }
 
-/* Notifications */
-
-.notifications-toasts,
-.notifications-toasts .notification-toast-container {
-    overflow: unset !important;
+/* Sidebar icons */
+.activitybar.compact > .content :not(.monaco-menu) > .monaco-action-bar .action-label {
+    font-size: 20px !important;
+    width: var(--s7) !important;
+    height: var(--s7) !important;
+    color: var(--list-item-fg) !important;
 }
 
-.monaco-workbench .notifications-list-container .notification-list-item,
-.notification-toast {
-    border: var(--border) !important;
-    box-shadow: var(--flyout-shadow) !important;
-    border-radius: var(--border-radius);
-    background: var(--notification-toast-bg) !important;
-    backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item.active
+    .action-label.codicon,
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:focus
+    .action-label.codicon,
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:hover
+    .action-label.codicon {
+    color: var(--foreground) !important;
 }
 
-.monaco-workbench .notifications-list-container .notification-list-item {
-    padding: var(--s4) var(--s3) !important;
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-label:not(.codicon) {
+    -webkit-mask-size: 20px !important;
+    background-color: var(--list-item-fg) !important;
+}
+
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item.active
+    .action-label:not(.codicon),
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:focus
+    .action-label:not(.codicon),
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:hover
+    .action-label:not(.codicon) {
+    background-color: var(--list-item-fg) !important;
+}
+
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .badge .badge-content {
+    background-color: var(--accent) !important;
 }
 
 /* Widget */
 .quick-input-widget,
 .editor-widget {
-    background: var(--quick-input-widget-bg) !important;
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    background-blend-mode: normal, luminosity;
+    background: var(--noise-bg) repeat var(--quick-input-widget-bg) !important;
+    background-blend-mode: exclusion;
     border-radius: var(--border-radius);
-    box-shadow: var(--acrylic-shadow-alt) !important;
+    box-shadow: var(--depth-16) !important;
     backdrop-filter: var(--backdrop-filter);
     color: var(--foreground) !important;
 }
@@ -964,7 +886,6 @@ canvas.decorationsOverviewRuler {
 }
 
 .editor-widget {
-    background: var(--editor-widget-bg) !important;
     border: var(--border);
 }
 
@@ -999,8 +920,10 @@ canvas.decorationsOverviewRuler {
 /* Editor Panel */
 .monaco-editor,
 .monaco-editor-background {
-    background: var(--editor-bg) !important;
-    /* background: transparent !important; */
+    background: var(--noise-bg) repeat var(--editor-bg) !important;
+    background-blend-mode: exclusion;
+    border-bottom-left-radius: var(--border-radius) !important;
+    border-bottom-right-radius: var(--border-radius) !important;
 }
 
 .monaco-hover,
@@ -1008,12 +931,10 @@ canvas.decorationsOverviewRuler {
 .monaco-editor .tree,
 .monaco-editor .details {
     color: var(--foreground) !important;
-    background: var(--hover-bg) !important;
+    background: var(--noise-bg) repeat var(--hover-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
-    background-blend-mode: normal, luminosity;
+    box-shadow: var(--depth-16);
     border: var(--border) !important;
     border-radius: var(--border-radius);
 }
@@ -1032,9 +953,9 @@ canvas.decorationsOverviewRuler {
 }
 
 .monaco-editor .margin {
-    background: var(--card-bg) !important;
-    background-blend-mode: color, luminosity;
+    background: transparent !important;
     border-left: var(--border);
+    border-bottom-left-radius: var(--border-radius) !important;
 }
 
 .monaco-editor .view-overlays .current-line,
@@ -1044,9 +965,11 @@ canvas.decorationsOverviewRuler {
 
 /* Statusbar */
 .statusbar {
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--depth-8);
     background: var(--card-bg) !important;
     border: var(--border);
+    animation: statusBarIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
+    animation-delay: 3s;
 }
 
 .monaco-workbench .part.statusbar > .items-container > .statusbar-item {
@@ -1087,16 +1010,15 @@ canvas.decorationsOverviewRuler {
     border-bottom: 1px solid var(--border-color) !important;
     padding: 4px 8px !important;
     transition: border var(--easing-timing-fast) var(--easing-curve-in);
+    box-shadow: var(--depth-2);
 }
 
 /* Tooltips? */
 .workbench-hover {
-    background-color: var(--hover-bg) !important;
+    background-color: var(--noise-bg) repeat var(--hover-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
-    background-blend-mode: normal, luminosity;
+    box-shadow: var(--depth-16);
 }
 
 .workbench-hover:not(.skip-fade-in) {
@@ -1106,12 +1028,9 @@ canvas.decorationsOverviewRuler {
 /* Dropdown container */
 .monaco-select-box-dropdown-container > .select-box-dropdown-list-container {
     color: var(--foreground) !important;
-    background-color: var(--hover-bg) !important;
+    background: var(--noise-bg) repeat var(--hover-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
-    background-blend-mode: normal, luminosity;
     border: var(--border) !important;
     border-radius: var(--border-radius);
     box-shadow: var(--flyout-shadow) !important;
@@ -1148,12 +1067,9 @@ canvas.decorationsOverviewRuler {
     border: var(--border) !important;
     box-shadow: var(--flyout-shadow) !important;
     border-radius: var(--border-radius) !important;
-    background: var(--context-menu-bg) !important;
-    background-blend-mode: normal, luminosity;
+    background: var(--noise-bg) repeat var(--context-menu-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
 }
 
 .context-view.monaco-menu-container {
@@ -1199,22 +1115,32 @@ canvas.decorationsOverviewRuler {
     transform: translateY(var(--s4)) !important;
 }
 
-/* Notification Panel */
+/* Notifications */
+
+.notifications-toasts,
+.notifications-toasts .notification-toast-container {
+    overflow: unset !important;
+}
+
+.monaco-workbench .notifications-list-container .notification-list-item,
+.notification-toast,
 .notifications-center {
     backdrop-filter: var(--backdrop-filter);
-    background-color: var(--background-color) !important;
-    backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
+    background: var(--noise-bg) repeat var(--notification-toast-bg) !important;
+    background-blend-mode: exclusion;
+    border-radius: var(--notification-border-radius);
+    box-shadow: var(--flyout-shadow) !important;
 }
-.notifications-center-header {
-    /* backdrop-filter: var(--backdrop-filter);
-    background-color: var(--background-color) !important;
+
+.monaco-workbench .notifications-list-container .notification-list-item {
+    padding: var(--s4) var(--s3) !important;
+}
+
+/* Notification Panel */
+.notifications-center {
+    background: var(--noise-bg) repeat var(--background-color) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt); */
 }
 
 .notifications-list-container {
@@ -1222,18 +1148,21 @@ canvas.decorationsOverviewRuler {
 }
 
 .notification-toast {
+    border: var(--border) !important;
     background: transparent !important;
-    transition: var(--transition);
+    transition: var(--notification-transition);
 }
 
 /* Feedback Form */
 .feedback-form {
     backdrop-filter: var(--backdrop-filter);
+    background-blend-mode: exclusion;
     background-color: var(--background-color) !important;
 }
 
 /* Minimap */
 .minimap {
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
     border-bottom-right-radius: var(--border-radius);
     left: unset !important;
@@ -1249,6 +1178,7 @@ canvas.decorationsOverviewRuler {
 /* Vertical Scroll Bar */
 .scrollbar.horizontal {
     backdrop-filter: var(--backdrop-filter);
+    background-blend-mode: exclusion;
 }
 
 /* Setting Page */
@@ -1276,6 +1206,7 @@ canvas.decorationsOverviewRuler {
 /* Breadcrumbs Picker */
 .monaco-breadcrumbs-picker > div:nth-child(2) {
     backdrop-filter: var(--backdrop-filter);
+    background-blend-mode: exclusion;
     background-color: var(--background-color) !important;
 }
 
@@ -1295,9 +1226,42 @@ canvas.decorationsOverviewRuler {
     transform: rotate(90deg);
 }
 
+/* --- Keyframes --- */
 @keyframes slide-in {
     100% {
         transform: translateX(0%);
+        opacity: 1;
+    }
+}
+@keyframes statusBarIn {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes sidebarLeftIn {
+    0% {
+        transform: translateX(-25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes sidebarRightIn {
+    0% {
+        transform: translateX(25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
         opacity: 1;
     }
 }

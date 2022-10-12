@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import * as fs from 'fs/promises';
+import * as fs from 'node:fs/promises';
 import { messages } from './messages';
 import { CONTAINER } from './extension';
 
@@ -14,7 +14,7 @@ export async function deleteBackupFiles(htmlFile: string) {
     const htmlDirItems = await fs.readdir(htmlDir);
 
     for (const item of htmlDirItems) {
-        if (item.endsWith('.bak-fui')) {
+        if (item.includes('bak-fui')) {
             await fs.unlink(path.join(htmlDir, item));
         }
     }
@@ -58,7 +58,6 @@ export async function getBackupUuid(htmlFilePath: string) {
         }
     } catch (e) {
         vscode.window.showInformationMessage(`${messages.genericError}${e}`);
-        throw e;
     }
 }
 
