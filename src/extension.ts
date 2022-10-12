@@ -81,7 +81,7 @@ async function buildCSSTag(url: string) {
 export async function getBase64Image() {
     try {
         const wallPath = await wallpaper.get();
-        const blurredImage = await sharp(wallPath).blur(40).toBuffer();
+        const blurredImage = await sharp(wallPath).blur(100).toBuffer();
 
         return `data:image/png;base64,${blurredImage.toString('base64')}`;
 

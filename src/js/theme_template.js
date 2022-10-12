@@ -131,8 +131,7 @@
             document.documentElement.style.setProperty('--backdrop-filter', 'none');
         }
 
-        // Here we'll attach an event listener to fix the compact layout when the window resizes
-        // window.onresize = applyCompactStyles;
+        overrideDocumentStyle({ property: 'background', value: 'var(--wallpaper)' });
 
         console.log('Fluent UI: initialised!');
 
@@ -153,6 +152,8 @@
             overrideDocumentStyle({ property: '--active-action-item-bg', value: 'var(--card-bg)' });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
             overrideDocumentStyle({ property: '--app-bg', value: 'rgba(44, 44, 44, 0.85)' });
+            overrideDocumentStyle({ property: '--body-bg', value: 'rgba(44, 44, 44, 1)' });
+            overrideDocumentStyle({ property: '--body-bg-t', value: 'rgba(44, 44, 44, 0)' });
             overrideDocumentStyle({
                 property: '--background-color',
                 value: 'rgba(0, 0, 0, 0.0578)',

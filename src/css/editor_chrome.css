@@ -35,12 +35,24 @@
     --active-action-item-bg: rgba(0, 0, 0, 0.0605);
     --activity-bar-width: 100%;
 
+    --depth-2: 0 0 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.14);
+    --depth-4: 0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
+    /* Cards */
+    --depth-8: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108); /* Command bars/Command dropdowns/Context menus */
+    --depth-16: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108); /*Hover cards
+Tooltips */
+    --depth-28: 0 0 8px rgba(0, 0, 0, 0.12), 0 14px 28px rgba(0, 0, 0, 0.14);
+    --depth-64: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18); /* Panels/Dialogs/Popups */
+
     --accent: #005fb8;
     --acrylic-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
     --acrylic-shadow-alt: 0px 25.6px 57.6px rgb(0 0 0 / 14%), 0px 0px 16.4px rgb(0 0 0 / 12%);
     --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
-    --app-bg: #f3f3f3;
-    --app-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+    --app-bg: rgb(243, 243, 243, 1);
+    --app-bg-img: url('dummy');
+
+    --body-bg: rgb(243, 243, 243, 1);
+    --body-bg-t: rgb(243, 243, 243, 0);
     --backdrop-filter: blur(12px) saturate(1);
     --background-color: rgba(255, 255, 255, 0.4);
     --border-color: rgba(0, 0, 0, 0.0578);
@@ -48,61 +60,80 @@
     --input-border-radius: 4px;
     --border: 1px solid var(--border-color);
     --button-radius: var(--s3);
+
     --card-bg-blend-mode: multiply;
     --card-bg: rgba(255, 255, 255, 0.7);
-    --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+    --card-shadow: var(--depth-4);
+
     --content-height: calc(100% - var(--s3));
     --context-menu-bg: var(--menu-bg);
     --dialog-border: 1px solid rgba(117, 117, 117, 0.4);
-    --dialog-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
+    --dialog-shadow: var(--depth-64);
+
     --editor-bg: var(--card-bg);
     --editor-widget-bg: var(--flyout-bg);
+
     --easing-curve-in: cubic-bezier(0, 0, 0, 1);
     --easing-curve-out: cubic-bezier(1, 0, 1, 1);
     --easing-timing-fast: 167ms;
     --easing-timing-faster: 83ms;
     --easing-timing-normal: 250ms;
-    --flyout-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+
+    --flyout-shadow: var(--depth-8);
     --flyout-stroke: 1px solid rgba(0, 0, 0, 0.0578);
-    --font-display-semibold: Segoe UI Variable Display Semibold, Segoe WPC, Segoe UI, sans-serif;
+
+    --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
     --font-display: Segoe UI Variable Display, Segoe WPC, Segoe UI, sans-serif;
+    --font-display-semibold: Segoe UI Variable Display Semibold, Segoe WPC, Segoe UI, sans-serif;
     --foreground: #000000;
+
     --hover-bg: var(--flyout-bg);
     --list-item-bg: rgba(0, 0, 0, 0.0373);
     --list-item-fg: #0000009b;
-    --monaco-monospace-font: Cascadia Code, Consolas, 'Courier New', monospace;
+
     --notification-toast-bg: var(--flyout-bg);
     --notification-border-radius: 6px;
     --notification-transition: opacity var(--easing-timing-fast) var(--easing-curve-in),
         transform var(--easing-timing-fast) var(--easing-curve-in);
+
     --quick-input-widget-bg: var(--flyout-bg);
-    --quick-input-widget: var(--flyout-bg);
+
     --row-height: var(--s6);
     --transition: var(--easing-timing-normal);
-    --app-bg-img: url('dummy');
+
+    --wallpaper: var(--app-bg-img) center center / cover no-repeat local;
 }
 
 html {
-    background: var(--app-bg-img) center center / cover no-repeat local;
     min-height: 100%;
-    border: var(--acrylic-stroke);
-    transition: all var(--easing-timing-faster) var(--easing-curve-out);
 }
 
 :host-context(.windows),
 .windows {
     font-family: var(--font-display) !important;
-    /* transition: all var(--easing-timing-faster) var(--easing-curve-out); */
+}
+
+.acrylic {
+    background-blend-mode: exclusion;
+    background-color: var(--card-bg);
+    background-image: var(--noise-bg);
+}
+
+.acrylic::before {
+}
+
+.acrylic::after {
 }
 
 .monaco-workbench {
-    /* backdrop-filter: blur(40px); */
     color: rgba(247, 249, 252, 0.859);
     background: var(--noise-bg) repeat var(--app-bg) !important;
+    background-blend-mode: exclusion;
 }
 
 .card {
     background: var(--noise-bg) repeat var(--card-bg) !important;
+    background-blend-mode: exclusion;
     box-shadow: var(--card-shadow);
     overflow-y: auto;
     border-right: var(--border);
@@ -122,6 +153,7 @@ html {
 .monaco-workbench .part.titlebar {
     background: #ffffff00 !important;
     border: none !important;
+    height: var(--s7) !important;
 }
 
 .monaco-workbench .part > .content {
@@ -152,6 +184,7 @@ canvas.decorationsOverviewRuler {
     right: var(--s2) !important;
     left: unset !important;
     background: var(--noise-bg) repeat var(--editor-bg) !important;
+    background-blend-mode: exclusion;
     mix-blend-mode: var(--card-bg-blend-mode);
 }
 
@@ -162,6 +195,8 @@ canvas.decorationsOverviewRuler {
 
 .editor-container {
     background: var(--noise-bg) repeat var(--editor-bg) !important;
+    background-blend-mode: exclusion;
+    mix-blend-mode: var(--card-bg-blend-mode);
     border-top-color: transparent !important;
     border-top: none !important;
     border-left: none !important;
@@ -181,9 +216,10 @@ canvas.decorationsOverviewRuler {
 }
 
 /* Settings page */
-.settings-editor,
+/* .settings-editor, */
 .extension-editor {
     background: var(--noise-bg) repeat var(--card-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
     box-shadow: var(--card-shadow);
     /* JSON theme will add border-right and we need to override it */
@@ -201,17 +237,9 @@ canvas.decorationsOverviewRuler {
     background: transparent !important;
 }
 
-.tabs.compact .tabs-and-actions-container {
-    height: var(--s6) !important;
-}
-
 .tabs-and-actions-container {
     padding-left: var(--s4);
     border-bottom: none !important;
-}
-
-.tabs.compact .tabs-container {
-    height: 100% !important;
 }
 
 .tabs-container > .tab {
@@ -229,19 +257,6 @@ canvas.decorationsOverviewRuler {
     padding-left: var(--s5) !important;
     padding-right: var(--s3) !important;
     will-change: borderRadius;
-}
-
-.tabs.compact .tabs-container > .tab {
-    /* padding-left: var(--s3) !important;
-    padding-right: var(--s2) !important; */
-    padding: var(--s1) var(--s4) !important;
-    height: var(--s6) !important;
-}
-
-.tabs.compact .tabs-container > .tab .tab-label,
-.tabs.compact .tabs-container > .tab .monaco-icon-label:before {
-    height: var(--s6) !important;
-    line-height: var(--s6) !important;
 }
 
 .tabs-and-actions-container.tabs-border-bottom:after,
@@ -306,12 +321,6 @@ canvas.decorationsOverviewRuler {
 .tabs-container > .tab.active::after {
     transform: translate3d(0, 0, 0);
     opacity: 1;
-}
-
-.tabs.compact .tabs-container > .tab.active,
-.tabs.compact .tabs-container > .tab:after {
-    border-top-left-radius: calc(var(--border-radius) / 2);
-    border-top-right-radius: calc(var(--border-radius) / 2);
 }
 
 .monaco-workbench .part.editor > .content .editor-group-container .active {
@@ -483,10 +492,13 @@ canvas.decorationsOverviewRuler {
 
 .sidebar.left {
     margin-left: var(--s4);
+    animation: sidebarLeftIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
+    animation-delay: 3s;
 }
 
 .sidebar.right {
     margin-right: var(--s4);
+    animation: sidebarRighIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
 }
 
 .sidebar.compact {
@@ -657,13 +669,13 @@ canvas.decorationsOverviewRuler {
     backdrop-filter: var(--backdrop-filter);
 }
 
-.monaco-workbench .monaco-list .monaco-list-row .monaco-highlighted-label .highlight {
+/* .monaco-workbench .monaco-list .monaco-list-row .monaco-highlighted-label .highlight {
     color: var(--acccent-pressed-bg) !important;
 }
 
 .monaco-workbench .monaco-list .monaco-list-row.focused .monaco-highlighted-label .highlight {
     color: var(--accent) !important;
-}
+} */
 
 .monaco-select-box-dropdown-container
     > .select-box-dropdown-list-container
@@ -688,6 +700,7 @@ canvas.decorationsOverviewRuler {
     font-feature-settings: 'rclt' off;
     font-size: var(--f-body);
     line-height: var(--f-body-lh);
+    box-shadow: var(--depth-2);
 }
 
 .monaco-button:hover,
@@ -701,94 +714,6 @@ canvas.decorationsOverviewRuler {
     background: var(--accent-pressed-bg);
 }
 
-/* Sidebar icons */
-.monaco-workbench .activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-label {
-    font-size: 20px !important;
-    width: var(--s7) !important;
-    height: var(--s7) !important;
-    color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar.compact
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-label {
-    font-size: 20px !important;
-    width: var(--s6) !important;
-    height: var(--s6) !important;
-    color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item.active
-    .action-label.codicon,
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:focus
-    .action-label.codicon,
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:hover
-    .action-label.codicon {
-    color: var(--foreground) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-label:not(.codicon) {
-    -webkit-mask-size: 20px !important;
-    background-color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item.active
-    .action-label:not(.codicon),
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:focus
-    .action-label:not(.codicon),
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:hover
-    .action-label:not(.codicon) {
-    background-color: var(--list-item-fg) !important;
-}
-
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .badge
-    .badge-content {
-    background-color: var(--accent) !important;
-}
-
 /* Activity bar */
 .activitybar {
     background-color: transparent !important;
@@ -799,7 +724,7 @@ canvas.decorationsOverviewRuler {
     width: 100% !important;
 }
 
-.monaco-workbench .activitybar.bordered:before {
+.activitybar.bordered:before {
     display: none !important;
 }
 
@@ -809,6 +734,10 @@ canvas.decorationsOverviewRuler {
 
 .activitybar.right {
     margin-left: -4px;
+}
+
+.activitybar .content {
+    padding-top: var(--s4);
 }
 
 .activitybar.compact.right {
@@ -835,12 +764,7 @@ canvas.decorationsOverviewRuler {
     position: relative;
 }
 
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .active-item-indicator::before {
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .active-item-indicator::before {
     content: '';
     display: block;
     border: none !important;
@@ -857,43 +781,26 @@ canvas.decorationsOverviewRuler {
     transition-delay: 25ms;
 }
 
-.monaco-workbench
-    .activitybar
+.activitybar
     > .content
     :not(.monaco-menu)
     > .monaco-action-bar
     .action-item.checked
     .active-item-indicator:before,
-.monaco-workbench
-    .activitybar
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item:hover::before {
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-item:hover::before {
     transform: translateY(-11px) scaleY(1);
     opacity: 1;
 }
 
-.monaco-workbench .activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-item {
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-item {
     display: flex !important;
 }
 
-.monaco-workbench
-    .activitybar.compact
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .action-item {
+.activitybar.compact > .content :not(.monaco-menu) > .monaco-action-bar .action-item {
     margin-bottom: 2px;
 }
 
-.monaco-workbench
-    .activitybar.compact
-    > .content
-    :not(.monaco-menu)
-    > .monaco-action-bar
-    .badge
-    .badge-content {
+.activitybar.compact > .content :not(.monaco-menu) > .monaco-action-bar .badge .badge-content {
     top: 16px !important;
     right: 2px !important;
     font-size: 8px !important;
@@ -904,12 +811,72 @@ canvas.decorationsOverviewRuler {
     border-radius: 16px !important;
 }
 
+/* Sidebar icons */
+.activitybar.compact > .content :not(.monaco-menu) > .monaco-action-bar .action-label {
+    font-size: 20px !important;
+    width: var(--s7) !important;
+    height: var(--s7) !important;
+    color: var(--list-item-fg) !important;
+}
+
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item.active
+    .action-label.codicon,
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:focus
+    .action-label.codicon,
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:hover
+    .action-label.codicon {
+    color: var(--foreground) !important;
+}
+
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .action-label:not(.codicon) {
+    -webkit-mask-size: 20px !important;
+    background-color: var(--list-item-fg) !important;
+}
+
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item.active
+    .action-label:not(.codicon),
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:focus
+    .action-label:not(.codicon),
+.activitybar
+    > .content
+    :not(.monaco-menu)
+    > .monaco-action-bar
+    .action-item:hover
+    .action-label:not(.codicon) {
+    background-color: var(--list-item-fg) !important;
+}
+
+.activitybar > .content :not(.monaco-menu) > .monaco-action-bar .badge .badge-content {
+    background-color: var(--accent) !important;
+}
+
 /* Widget */
 .quick-input-widget,
 .editor-widget {
     background: var(--noise-bg) repeat var(--quick-input-widget-bg) !important;
+    background-blend-mode: exclusion;
     border-radius: var(--border-radius);
-    box-shadow: var(--acrylic-shadow-alt) !important;
+    box-shadow: var(--depth-16) !important;
     backdrop-filter: var(--backdrop-filter);
     color: var(--foreground) !important;
 }
@@ -955,8 +922,10 @@ canvas.decorationsOverviewRuler {
 }
 
 /* Editor Panel */
-.monaco-editor {
+.monaco-editor,
+.monaco-editor-background {
     background: var(--noise-bg) repeat var(--editor-bg) !important;
+    background-blend-mode: exclusion;
     border-bottom-left-radius: var(--border-radius) !important;
     border-bottom-right-radius: var(--border-radius) !important;
 }
@@ -967,8 +936,9 @@ canvas.decorationsOverviewRuler {
 .monaco-editor .details {
     color: var(--foreground) !important;
     background: var(--noise-bg) repeat var(--hover-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    box-shadow: var(--dialog-shadow);
+    box-shadow: var(--depth-16);
     border: var(--border) !important;
     border-radius: var(--border-radius);
 }
@@ -999,9 +969,11 @@ canvas.decorationsOverviewRuler {
 
 /* Statusbar */
 .statusbar {
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--depth-8);
     background: var(--card-bg) !important;
     border: var(--border);
+    animation: statusBarIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
+    animation-delay: 3s;
 }
 
 .monaco-workbench .part.statusbar > .items-container > .statusbar-item {
@@ -1042,13 +1014,15 @@ canvas.decorationsOverviewRuler {
     border-bottom: 1px solid var(--border-color) !important;
     padding: 4px 8px !important;
     transition: border var(--easing-timing-fast) var(--easing-curve-in);
+    box-shadow: var(--depth-2);
 }
 
 /* Tooltips? */
 .workbench-hover {
     background-color: var(--noise-bg) repeat var(--hover-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    box-shadow: var(--acrylic-shadow-alt);
+    box-shadow: var(--depth-16);
 }
 
 .workbench-hover:not(.skip-fade-in) {
@@ -1059,6 +1033,7 @@ canvas.decorationsOverviewRuler {
 .monaco-select-box-dropdown-container > .select-box-dropdown-list-container {
     color: var(--foreground) !important;
     background: var(--noise-bg) repeat var(--hover-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
     border: var(--border) !important;
     border-radius: var(--border-radius);
@@ -1097,6 +1072,7 @@ canvas.decorationsOverviewRuler {
     box-shadow: var(--flyout-shadow) !important;
     border-radius: var(--border-radius) !important;
     background: var(--noise-bg) repeat var(--context-menu-bg) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
 }
 
@@ -1151,12 +1127,13 @@ canvas.decorationsOverviewRuler {
 }
 
 .monaco-workbench .notifications-list-container .notification-list-item,
-.notification-toast {
-    /* border: var(--border) !important; */
-    box-shadow: var(--flyout-shadow) !important;
-    border-radius: var(--notification-border-radius);
-    background: var(--noise-bg) repeat var(--notification-toast-bg) !important;
+.notification-toast,
+.notifications-center {
     backdrop-filter: var(--backdrop-filter);
+    background: var(--noise-bg) repeat var(--notification-toast-bg) !important;
+    background-blend-mode: exclusion;
+    border-radius: var(--notification-border-radius);
+    box-shadow: var(--flyout-shadow) !important;
 }
 
 .monaco-workbench .notifications-list-container .notification-list-item {
@@ -1165,10 +1142,9 @@ canvas.decorationsOverviewRuler {
 
 /* Notification Panel */
 .notifications-center {
+    background: var(--noise-bg) repeat var(--background-color) !important;
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    background-color: var(--noise-bg) repeat var(--background-color) !important;
-    backdrop-filter: var(--backdrop-filter);
-    box-shadow: var(--acrylic-shadow-alt);
 }
 
 .notifications-list-container {
@@ -1184,11 +1160,13 @@ canvas.decorationsOverviewRuler {
 /* Feedback Form */
 .feedback-form {
     backdrop-filter: var(--backdrop-filter);
+    background-blend-mode: exclusion;
     background-color: var(--background-color) !important;
 }
 
 /* Minimap */
 .minimap {
+    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
     border-bottom-right-radius: var(--border-radius);
     left: unset !important;
@@ -1204,6 +1182,7 @@ canvas.decorationsOverviewRuler {
 /* Vertical Scroll Bar */
 .scrollbar.horizontal {
     backdrop-filter: var(--backdrop-filter);
+    background-blend-mode: exclusion;
 }
 
 /* Setting Page */
@@ -1231,6 +1210,7 @@ canvas.decorationsOverviewRuler {
 /* Breadcrumbs Picker */
 .monaco-breadcrumbs-picker > div:nth-child(2) {
     backdrop-filter: var(--backdrop-filter);
+    background-blend-mode: exclusion;
     background-color: var(--background-color) !important;
 }
 
@@ -1250,9 +1230,42 @@ canvas.decorationsOverviewRuler {
     transform: rotate(90deg);
 }
 
+/* --- Keyframes --- */
 @keyframes slide-in {
     100% {
         transform: translateX(0%);
+        opacity: 1;
+    }
+}
+@keyframes statusBarIn {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes sidebarLeftIn {
+    0% {
+        transform: translateX(-75%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes sidebarRightIn {
+    0% {
+        transform: translateX(75%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
         opacity: 1;
     }
 }
