@@ -1,5 +1,17 @@
 # ChangeLog
 
+## 3.4.0 (2022-10-13)
+
+-   Added faux-Mica material implementation
+-   Multiple UI fixes and adjustments to better align with Fluent UI guidelines
+-   Custom styles are now injected into the `<header>` tag allowing for a slight startup perfomance
+    gain while making the styles render much earlier.
+-   Improved backup and backup restore functionality. Should be more robust and reliable now.
+-   Fixed CSS background declaration on many instances, which was causing the background effects to
+    not work as intended
+-   Fixed activity bar icon spacing in compact mode
+-   General style updates and other minor fixes
+
 ## 3.1.1 (2022-10-11)
 
 -   Updated ReadMe
