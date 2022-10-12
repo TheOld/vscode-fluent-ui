@@ -74,14 +74,11 @@
     --quick-input-widget: var(--flyout-bg);
     --row-height: 24px;
     --transition: var(--easing-timing-normal);
-    /* Light/Shadow/Card Rest */
+    --app-bg-img: url('dummy');
 }
 
 html {
-    background: linear-gradient(0deg, rgba(243, 243, 243, 0.5), rgba(243, 243, 243, 0.5)),
-        var(--app-bg);
-    background-blend-mode: color, luminosity;
-    box-shadow: var(--app-shadow);
+    background: var(--app-bg-img) center center / cover repeat local;
     border: var(--acrylic-stroke);
 }
 
@@ -91,12 +88,16 @@ html {
     transition: all var(--easing-timing-faster) var(--easing-curve-out);
 }
 
+.monaco-workbench {
+    backdrop-filter: blur(40px);
+    color: rgba(247, 249, 252, 0.859);
+    background: var(--noise-bg) repeat var(--app-bg) !important;
+}
+
 .card {
-    background: var(--card-bg) !important;
+    background: var(--noise-bg) repeat var(--card-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
+    box-shadow: var(--card-shadow);
     overflow-y: auto;
     /* JSON theme will add border-right and we need to override it */
     border-right: var(--border);
@@ -145,7 +146,7 @@ canvas.decorationsOverviewRuler {
 .monaco-diff-editor .diffOverview {
     right: var(--s2) !important;
     left: unset !important;
-    background: var(--editor-bg) !important;
+    background: var(--noise-bg) repeat var(--editor-bg) !important;
     mix-blend-mode: var(--card-bg-blend-mode);
 }
 
@@ -155,7 +156,7 @@ canvas.decorationsOverviewRuler {
 }
 
 .editor-container {
-    background: var(--editor-bg) !important;
+    background: var(--noise-bg) repeat var(--editor-bg) !important;
     border-top-color: transparent !important;
     border-top: none !important;
     border-left: none !important;
@@ -167,7 +168,7 @@ canvas.decorationsOverviewRuler {
 }
 
 .editor-instance {
-    background: var(--editor-bg) !important;
+    background: var(--noise-bg) repeat var(--editor-bg) !important;
     border-radius: var(--border-radius) !important;
 }
 
@@ -182,12 +183,9 @@ canvas.decorationsOverviewRuler {
 /* Settings page */
 .settings-editor,
 .extension-editor {
-    background: var(--card-bg) !important;
+    background: var(--noise-bg) repeat var(--card-bg) !important;
     backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-
-    box-shadow: var(--acrylic-shadow-alt);
+    box-shadow: var(--card-shadow);
     /* JSON theme will add border-right and we need to override it */
     border-right: var(--border);
     border: var(--border) !important;
@@ -196,10 +194,6 @@ canvas.decorationsOverviewRuler {
 
 .window-appicon {
     padding-left: var(--s5);
-}
-
-.monaco-workbench {
-    background-color: transparent !important;
 }
 
 /* TABS */
@@ -495,16 +489,7 @@ canvas.decorationsOverviewRuler {
 .sidebar {
     padding: 0 var(--s5);
     height: var(--content-height);
-    background: var(--card-bg) !important;
-    backdrop-filter: var(--backdrop-filter);
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    box-shadow: var(--acrylic-shadow-alt);
     overflow-y: auto;
-    /* JSON theme will add border-right and we need to override it */
-    border-right: var(--border);
-    border: var(--border) !important;
-    border-radius: var(--border-radius);
 }
 
 .sidebar.left {
@@ -945,10 +930,8 @@ canvas.decorationsOverviewRuler {
 /* Widget */
 .quick-input-widget,
 .editor-widget {
-    background: var(--quick-input-widget-bg) !important;
-    background-image: var(--noise-bg);
-    background-repeat: repeat;
-    background-blend-mode: normal, luminosity;
+    background: var(--noise-bg) repeat var(--quick-input-widget-bg) !important;
+
     border-radius: var(--border-radius);
     box-shadow: var(--acrylic-shadow-alt) !important;
     backdrop-filter: var(--backdrop-filter);
@@ -1033,7 +1016,6 @@ canvas.decorationsOverviewRuler {
 
 .monaco-editor .margin {
     background: var(--card-bg) !important;
-    background-blend-mode: color, luminosity;
     border-left: var(--border);
 }
 

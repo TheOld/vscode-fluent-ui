@@ -8,6 +8,7 @@ import * as path from 'path';
 import postcss from 'postcss';
 import * as Url from 'url';
 import * as vscode from 'vscode';
+
 import {
     buildBackupFilePath,
     createBackup,
@@ -15,7 +16,7 @@ import {
     getBackupUuid,
     restoreBackup,
 } from './backup-helper';
-
+const wallpaper = require('wallpaper');
 import { messages } from './messages';
 
 // The module 'vscode' contains the VS Code extensibility API
@@ -76,10 +77,24 @@ async function buildCSSTag(url: string) {
     }
 }
 
+export async function getBase64Image() {
+    try {
+        const wallPath = await wallpaper.get();
+        const img = await fs.readFile(wallPath, 'base64');
+
+        return `data:image/png;base64,${img}`;
+    } catch (e) {
+        vscode.window.showInformationMessage(messages.admin);
+        throw e;
+    }
+}
+
 async function getTags(target: string, compact?: boolean, lite?: boolean) {
     const config = vscode.workspace.getConfiguration('fluent');
     const themeMode = vscode.window.activeColorTheme;
     const isDark = themeMode.kind === 2;
+
+    const encodedImage = await getBase64Image();
 
     if (target === 'styles') {
         let res = '';
@@ -93,6 +108,9 @@ async function getTags(target: string, compact?: boolean, lite?: boolean) {
                 res += imp;
             }
         }
+
+        // Replace --app-bg value on res
+        res = res.replace('dummy', encodedImage);
 
         return res;
     }
@@ -134,14 +152,14 @@ async function patch({ htmlFile, compact = false, lite = false }: PatchArgs) {
     // Inject style tag into <head>
     html = html.replace(
         /(<\/head>)/,
-        '<!-- FUI-CSS-START -->\n' + styleTags + '<!-- FUI-CSS-END -->\n</head>',
+        '<!-- FUI-CSS-START -->\n' + styleTags + '\n<!-- FUI-CSS-END -->\n</head>',
     );
 
     const jsTags = await getTags('javascript', compact, lite);
     // Injext JS tag into <body>
     html = html.replace(
         /(<\/html>)/,
-        `<!-- FUI-ID -->\n` + '<!-- FUI-JS-START -->\n' + jsTags + '<!-- FUI-JS-END -->\n</html>',
+        `<!-- FUI-ID -->\n` + '<!-- FUI-JS-START -->\n' + jsTags + '\n<!-- FUI-JS-END -->\n</html>',
     );
 
     try {

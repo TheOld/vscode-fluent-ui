@@ -146,13 +146,13 @@
         document.documentElement.style.setProperty(property, value);
     };
 
-    const applyDarkStyles = (opacity = 0.5) => {
+    const applyDarkStyles = (opacity = 0.7) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#0078d4' });
             overrideDocumentStyle({ property: '--active-action-item-bg', value: 'var(--card-bg)' });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            overrideDocumentStyle({ property: '--app-bg', value: '#2c2c2c' });
+            overrideDocumentStyle({ property: '--app-bg', value: 'rgba(44, 44, 44, 0.85)' });
             overrideDocumentStyle({
                 property: '--background-color',
                 value: 'rgba(0, 0, 0, 0.0578)',
@@ -191,7 +191,7 @@
         }
     };
 
-    const applyLightStyles = (opacity = 0.5) => {
+    const applyLightStyles = (opacity = 0.7) => {
         try {
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
             overrideDocumentStyle({ property: '--accent', value: '#005fb8' });
@@ -200,7 +200,7 @@
                 value: 'rgba(0, 0, 0, 0.0605)',
             });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            overrideDocumentStyle({ property: '--app-bg', value: '#f3f3f3' });
+            overrideDocumentStyle({ property: '--app-bg', value: 'rgba(243, 243, 243, 0.85)' });
             overrideDocumentStyle({
                 property: '--flyout-bg',
                 value: `rgba(252, 252, 252, ${opacity})`,

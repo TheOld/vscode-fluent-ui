@@ -73,11 +73,12 @@
         "test-compile": "tsc -p ./"
     },
     "dependencies": {
-        "uglify-js": "^3.17.3",
-        "postcss": "^8.4.17",
-        "node-fetch": "^3.2.10",
+        "cssnano": "^5.1.13",
         "file-url": "^4.0.0",
-        "cssnano": "^5.1.13"
+        "node-fetch": "^3.2.10",
+        "postcss": "^8.4.17",
+        "uglify-js": "^3.17.3",
+        "wallpaper": "^5.0.1"
     },
     "devDependencies": {
         "@types/glob": "^8.0.0",
