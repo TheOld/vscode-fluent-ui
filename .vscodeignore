@@ -15,6 +15,5 @@
 **/.prettierrc
 
 package-lock.json
-out/**
 src/**
 vsc-extension-quickstart.md
