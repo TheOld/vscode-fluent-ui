@@ -23,11 +23,11 @@
     ],
     "activationEvents": [
         "onCommand:fluent.enableEffects",
+        "onCommand:fluent.enableNoBg",
         "onCommand:fluent.enableCompact",
         "onCommand:fluent.enableLite",
-        "onCommand:fluent.enableCompactLite",
-        "onCommand:fluent.disableEffects",
-        "onCommand:fluent.reload"
+        "onCommand:fluent.enableBasic",
+        "onCommand:fluent.disableEffects"
     ],
     "galleryBanner": {
         "color": "#ffffff",
@@ -41,24 +41,24 @@
                 "title": "Fluent UI: Enable"
             },
             {
+                "command": "fluent.enableNoBg",
+                "title": "Fluent UI: No background"
+            },
+            {
                 "command": "fluent.enableCompact",
                 "title": "Fluent UI: Compact"
             },
             {
                 "command": "fluent.enableLite",
-                "title": "Fluent UI: Lite (no effects)"
+                "title": "Fluent UI: Lite"
             },
             {
-                "command": "fluent.enableCompactLite",
-                "title": "Fluent UI: Compact + Lite"
+                "command": "fluent.enableBasic",
+                "title": "Fluent UI: Basic"
             },
             {
                 "command": "fluent.disableEffects",
                 "title": "Fluent UI: Disable"
-            },
-            {
-                "command": "fluent.reload",
-                "title": "Fluent UI: Reload"
             }
         ]
     },

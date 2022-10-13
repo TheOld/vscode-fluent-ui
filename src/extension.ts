@@ -93,7 +93,7 @@ export async function getBase64Image() {
     }
 }
 
-async function getTags(target: string, compact?: boolean, lite?: boolean) {
+async function getTags(target: string, compact?: boolean, lite?: boolean, useBg?: boolean) {
     const config = vscode.workspace.getConfiguration('fluent');
     const themeMode = vscode.window.activeColorTheme;
     const isDark = themeMode.kind === 2;
@@ -113,8 +113,10 @@ async function getTags(target: string, compact?: boolean, lite?: boolean) {
             }
         }
 
-        // Replace --app-bg value on res
-        res = res.replace('dummy', encodedImage);
+        if (useBg) {
+            // Replace --app-bg value on res
+            res = res.replace('dummy', encodedImage);
+        }
 
         return res;
     }
@@ -146,13 +148,14 @@ interface PatchArgs {
     htmlFile: string;
     compact?: boolean;
     lite?: boolean;
+    useBg?: boolean;
 }
-async function patch({ htmlFile, compact = false, lite = false }: PatchArgs) {
+async function patch({ htmlFile, compact = false, lite = false, useBg = true }: PatchArgs) {
     let html = await fs.readFile(htmlFile, 'utf-8');
     html = clearHTML(html);
     html = html.replace(/<meta.*http-equiv="Content-Security-Policy".*>/, '');
 
-    const styleTags = await getTags('styles');
+    const styleTags = await getTags('styles', compact, lite, useBg);
     // Inject style tag into <head>
     html = html.replace(
         /(<\/head>)/,
@@ -195,6 +198,12 @@ export function activate(context: vscode.ExtensionContext) {
         await patch({ htmlFile });
     }
 
+    async function installNoBg() {
+        await clearPatch();
+        await createBackup(base, htmlFile);
+        await patch({ htmlFile, useBg: false });
+    }
+
     async function installCompact() {
         await clearPatch();
         await createBackup(base, htmlFile);
@@ -207,15 +216,13 @@ export function activate(context: vscode.ExtensionContext) {
         await patch({ htmlFile, lite: true });
     }
 
-    async function installCompactLite() {
+    /**
+     * All optional effects are OFF
+     */
+    async function installBasic() {
         await clearPatch();
         await createBackup(base, htmlFile);
-        await patch({ htmlFile, compact: true, lite: true });
-    }
-
-    async function reinstall() {
-        await clearPatch();
-        await install();
+        await patch({ htmlFile, compact: false, lite: true, useBg: false });
     }
 
     async function uninstall() {
@@ -235,24 +242,21 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     const installFUI = vscode.commands.registerCommand('fluent.enableEffects', install);
+    const installFUINoBg = vscode.commands.registerCommand('fluent.enableNoBg', installNoBg);
     const installFUICompact = vscode.commands.registerCommand(
         'fluent.enableCompact',
         installCompact,
     );
     const installFUILite = vscode.commands.registerCommand('fluent.enableLite', installLite);
-    const installFUICompactLite = vscode.commands.registerCommand(
-        'fluent.enableCompactLite',
-        installCompactLite,
-    );
+    const installFUIBasic = vscode.commands.registerCommand('fluent.enableBasic', installBasic);
     const uninstallFUI = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
-    const updateFUI = vscode.commands.registerCommand('fluent.reload', reinstall);
 
     context.subscriptions.push(installFUI);
+    context.subscriptions.push(installFUINoBg);
     context.subscriptions.push(installFUICompact);
     context.subscriptions.push(installFUILite);
-    context.subscriptions.push(installFUICompactLite);
+    context.subscriptions.push(installFUIBasic);
     context.subscriptions.push(uninstallFUI);
-    context.subscriptions.push(updateFUI);
 }
 
 // This method is called when your extension is deactivated

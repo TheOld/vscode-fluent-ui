@@ -13,7 +13,7 @@ alternative. Also, please bear in mind that this theme is considered an experime
 beta software, since there's no official support for this type of modification, **so used it at your
 own risk**.
 
-## Install
+# Install
 
 1. Run VSCode as admin.
     1. This is important, the extension won't work otherwise
@@ -26,7 +26,7 @@ own risk**.
 >
 > Just click the lil' cog on the message and select `Don't show again` and you should be good to go.
 
-## Uninstall
+# Uninstall
 
 1. Run VSCode as admin.
     1. This is important, you'll end up with a messed up `workbench.html` file if you run the
@@ -57,10 +57,55 @@ own risk**.
 
 ## Features
 
+The default installtion (via `> Fluent UI: enable`) has all features enabled, so if you want to
+disable one of the options, please install using the alternate install commands listed bellow.
+
+### App background
+
+The background feature is intended to mimic, to an extent, the Mica material used by Windows 11
+native applications. Your current wallpaper will be sampled once during installation and used as a
+background for VSCode.
+
+For example, my current wallpaper is this:
+
+![Wallpaper](https://github.com/TheOld/vscode-fluent-ui/blob/main/wallpaper.png?raw=true 'Wallpaper')
+
+VSCode will look like this after sampling the image:
+
+![Wallpaper](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-sample-wp.png?raw=true 'Wallpaper')
+
+![Wallpaper](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-sample-wp-content.png?raw=true 'Wallpaper')
+
+Running `> Fluent UI: No background` results in VSCode looking like this:
+
+![Wallpaper](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-sample-no-wp.png?raw=true 'Wallpaper')
+
+![Wallpaper](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-sample-no-wp-content.png?raw=true 'Wallpaper')
+
+If you change your wallpaper and want to refresh your VSCode you'll have to disable and enable the
+theme again (as admin):
+
+1. `> Fluent UI: disable`
+2. Restart (close and open VSCode)
+3. `> Fluent UI: enable`
+4. Restart (again :/)
+
+### Please note
+
+> When you install the extension, it will sample the current desktop wallpaper you have set,
+> generate a blurred version of it and set VSCode window to use that as background. In some cases
+> thay may cause low contrast or make stuff hard to read, depending on what you have for a
+> wallpaper, so keep that in mind when running the default installtion.
+
+If you don't want that feature, simply run `> Fluent UI: no background` and the extension will use a
+solid color instead (light or dark, depending on the theme).
+
 ### Compact mode
 
-Running `> Fluent UI: Compact` will apply the theme using slight less padding around some of the
-elements. Difference is subtle but can help those with limited space.
+`> Fluent UI: Compact`
+
+This will apply the theme using slight less padding around some of the elements. The difference is
+subtle but can help those with limited space.
 
 #### Normal mode
 
@@ -74,9 +119,16 @@ mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/compact-mode.png?raw=
 
 ### Lite mode
 
-The UI theme uses some filters that can cause performance issues on some machines. If notice VS Code
-is slower after enabling the theme you can apply a version withoud the filters. Just run
-`> Fluent: Lite (no effects)` (that will prompt a VSCode restart) to apply the changes.
+`> Fluent: Lite`
+
+The UI theme uses some filters that can be resource hungry on some machines. If notice VS Code is
+slower after enabling the theme you can apply a version withoud the filters.
+
+### Basic mode
+
+`> Fluent UI: Basic`
+
+Only basic styles are used. No background, no effects. Basic.
 
 ### Dynamic light/dark theme
 
