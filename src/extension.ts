@@ -81,12 +81,14 @@ async function buildCSSTag(url: string) {
 export async function getBase64Image() {
     try {
         const wallPath = await wallpaper.get();
-        const blurredImage = await sharp(wallPath).blur(100).toBuffer();
 
-        return `data:image/png;base64,${blurredImage.toString('base64')}`;
+        if (wallPath) {
+            const blurredImage = await sharp(wallPath).blur(100).toBuffer();
 
-        // const img = await fs.readFile(wallPath, 'base64');
-        // return `data:image/png;base64,${img}`;
+            return `data:image/png;base64,${blurredImage.toString('base64')}`;
+        }
+
+        return false;
     } catch (e) {
         vscode.window.showInformationMessage(messages.admin);
         throw e;
@@ -113,7 +115,7 @@ async function getTags(target: string, compact?: boolean, lite?: boolean, useBg?
             }
         }
 
-        if (useBg) {
+        if (useBg && encodedImage) {
             // Replace --app-bg value on res
             res = res.replace('dummy', encodedImage);
         }

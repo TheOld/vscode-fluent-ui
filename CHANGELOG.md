@@ -1,6 +1,10 @@
 # ChangeLog
 
-## 3.4.0 (2022-10-13)
+## 3.6.1 (2022-10-19)
+
+-   Fixed wrong delay value set on sidebar transition
+
+## 3.6.0 (2022-10-13)
 
 -   Added faux-Mica material implementation
 -   Multiple UI fixes and adjustments to better align with Fluent UI guidelines
