@@ -493,7 +493,7 @@ canvas.decorationsOverviewRuler {
 .sidebar.left {
     margin-left: var(--s4);
     animation: sidebarLeftIn var(--easing-timing-fast) var(--easing-curve-in) forwards !important;
-    animation-delay: 3s;
+    animation-delay: 300ms;
 }
 
 .sidebar.right {
