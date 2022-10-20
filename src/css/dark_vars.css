@@ -6,12 +6,12 @@
     --background-color: rgba(0, 0, 0, 0.0578);
     --card-blend-mode: color, luminosity;
     --context-menu-bg: rgba(32, 32, 32, 0.75);
-    --editor-bg: rgba(32, 32, 32, 0.75);
+    /* --editor-bg: rgba(32, 32, 32, 0.75); */
     --editor-widget-bg: var(--card-bg);
     --foreground: #ffffff;
     --hover-bg: var(--card-bg);
     --list-item-bg: rgba(255, 255, 255, 0.0605);
     --list-item-fg: #ffffff99;
     --notification-toast-bg: var(--card-bg);
-    --quick-input-widget-bg: rgba(32, 32, 32, 0.75);
+    --quick-input-widget-bg: var(--dark-bg);
 }

@@ -57,8 +57,8 @@ own risk**.
 
 ## Features
 
-The default installtion (via `> Fluent UI: enable`) has all features enabled, so if you want to
-disable one of the options, please install using the alternate install commands listed bellow.
+The default installtion (via `> Fluent UI: enable`) has all features enabled. You disable some
+feature via settings, just search for `Fluent` there.
 
 ### App background
 
@@ -76,7 +76,7 @@ VSCode will look like this after sampling the image:
 
 ![Wallpaper](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-sample-wp-content.png?raw=true 'Wallpaper')
 
-Running `> Fluent UI: No background` results in VSCode looking like this:
+Disabling the background in the settings results in VSCode looking like this:
 
 ![Wallpaper](https://github.com/TheOld/vscode-fluent-ui/blob/main/vscode-sample-no-wp.png?raw=true 'Wallpaper')
 
@@ -95,14 +95,13 @@ theme again (as admin):
 > When you install the extension, it will sample the current desktop wallpaper you have set,
 > generate a blurred version of it and set VSCode window to use that as background. In some cases
 > thay may cause low contrast or make stuff hard to read, depending on what you have for a
-> wallpaper, so keep that in mind when running the default installtion.
+> wallpaper, so keep that in mind when running the default installation.
 
-If you don't want that feature, simply run `> Fluent UI: no background` and the extension will use a
-solid color instead (light or dark, depending on the theme).
+You can disale this feature by unchecking the `Enable background image` in the settings page.
 
 ### Compact mode
 
-`> Fluent UI: Compact`
+`Settings -> Fluent UI Compact`
 
 This will apply the theme using slight less padding around some of the elements. The difference is
 subtle but can help those with limited space.
@@ -117,18 +116,11 @@ mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/normal-mode.png?raw=t
 ![Compact
 mode](https://github.com/TheOld/vscode-fluent-ui/blob/main/compact-mode.png?raw=true 'Normal mode')
 
-### Lite mode
+### Custom colors
 
-`> Fluent: Lite`
-
-The UI theme uses some filters that can be resource hungry on some machines. If notice VS Code is
-slower after enabling the theme you can apply a version withoud the filters.
-
-### Basic mode
-
-`> Fluent UI: Basic`
-
-Only basic styles are used. No background, no effects. Basic.
+You can set custom colors for the accent, dark and light background colors via settings. Any HEX
+value will work, but bear in mind that the extension can't account for contrast issues as a result
+of a custom color.
 
 ### Dynamic light/dark theme
 

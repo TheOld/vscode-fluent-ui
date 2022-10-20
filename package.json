@@ -57,10 +57,10 @@
                     "description": "Applies slight less padding around some of the elements. The difference is subtle but can help those with limited space.",
                     "scope": "application"
                 },
-                "fluent-ui.disable-wallpaper": {
+                "fluent-ui.enableWallpaper": {
                     "type": "boolean",
-                    "default": false,
-                    "description": "Disable background image",
+                    "default": true,
+                    "description": "Enable background image",
                     "scope": "application"
                 },
                 "fluent-ui.accent": {

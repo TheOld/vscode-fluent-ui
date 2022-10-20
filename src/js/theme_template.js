@@ -4,9 +4,9 @@
     let isLayoutCompact = false;
     let isUILite = false;
     let withResizeListener = false;
-    let darkBg = '#202020b3';
-    let lightBg = '#ffffffb3';
-    let accent = '#005fb8';
+    let darkBg = '#202020';
+    let lightBg = '#ffffff';
+    let accentColor = '#005fb8';
     let accentHover = '#005fb8e6';
     let accentPressed = '#005fb8cc';
 
@@ -85,11 +85,11 @@
     // Add custom styles
     const initFluentUI = (isCompact, lightBgColor, darkBgColor, accent, obs) => {
         isLayoutCompact = isCompact;
-        darkBg = darkBgColor;
-        lightBg = lightBgColor;
         accentColor = accent;
         accentHover = accent + 'e6';
-        accentColor = accent + 'cc';
+        accentPressed = accent + 'cc';
+        darkBg = darkBgColor;
+        lightBg = lightBgColor;
 
         var themeStyleTag = document.querySelector('.vscode-tokens-styles');
 
@@ -127,11 +127,11 @@
         const chromeThemeObserver = new MutationObserver(watchAttributes);
         chromeThemeObserver.observe(chromium, { attributes: true });
 
-        if (disableFilters) {
-            console.log('Disabling filters');
-            isUILite = true;
-            document.documentElement.style.setProperty('--backdrop-filter', 'none');
-        }
+        // if (disableFilters) {
+        //     console.log('Disabling filters');
+        //     isUILite = true;
+        //     document.documentElement.style.setProperty('--backdrop-filter', 'none');
+        // }
 
         overrideDocumentStyle({ property: 'background', value: 'var(--wallpaper)' });
 
@@ -151,7 +151,7 @@
         try {
             console.log('Applying dark styles');
             // Yeap, I have to override each one individually until VSCode allows me to dynamically
-            overrideDocumentStyle({ property: '--accent', value: accent });
+            overrideDocumentStyle({ property: '--accent', value: accentColor });
             overrideDocumentStyle({ property: '--accent-hover', value: accentHover });
             overrideDocumentStyle({ property: '--accent-pressed-bg', value: accentPressed });
             overrideDocumentStyle({
@@ -163,12 +163,16 @@
                 value: darkBg,
             });
             overrideDocumentStyle({
+                property: '--flyout-bg',
+                value: darkBg,
+            });
+            overrideDocumentStyle({
                 property: '--editor-bg',
                 value: darkBg,
             });
             overrideDocumentStyle({ property: '--active-action-item-bg', value: 'var(--card-bg)' });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            overrideDocumentStyle({ property: '--app-bg', value: 'rgba(44, 44, 44, 0.85)' });
+            overrideDocumentStyle({ property: '--app-bg', value: 'var(--card-bg)' });
             overrideDocumentStyle({ property: '--body-bg', value: 'rgba(44, 44, 44, 1)' });
             overrideDocumentStyle({ property: '--body-bg-t', value: 'rgba(44, 44, 44, 0)' });
             overrideDocumentStyle({
@@ -188,12 +192,14 @@
             overrideDocumentStyle({ property: '--list-item-fg', value: '#ffffff99' });
             overrideDocumentStyle({
                 property: '--notification-toast-bg',
-                value: darkBg,
+                value: 'var(--flyout-bg)',
             });
             overrideDocumentStyle({
                 property: '--quick-input-widget-bg',
-                value: darkBg,
+                value: 'var(--flyout-bg)',
             });
+
+            overrideDocumentStyle({ property: 'background', value: 'var(--wallpaper)' });
         } catch (error) {
             console.error(error);
         }
@@ -202,9 +208,9 @@
     const applyLightStyles = () => {
         try {
             console.log('Applying light styles');
-            console.log('Current accent', accent);
+            console.log('Current accent', accentColor);
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
-            overrideDocumentStyle({ property: '--accent', value: accent });
+            overrideDocumentStyle({ property: '--accent', value: accentColor });
             overrideDocumentStyle({ property: '--accent-hover', value: accentHover });
             overrideDocumentStyle({ property: '--accent-pressed-bg', value: accentPressed });
             overrideDocumentStyle({
@@ -224,7 +230,9 @@
                 value: 'rgba(0, 0, 0, 0.0605)',
             });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            overrideDocumentStyle({ property: '--app-bg', value: 'rgba(243, 243, 243, 0.85)' });
+            // overrideDocumentStyle({ property: '--app-bg', value: 'rgba(243,
+            // 243, 243, 0.85)' });
+            overrideDocumentStyle({ property: '--app-bg', value: 'var(--card-bg)' });
 
             overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'multiply' });
             overrideDocumentStyle({
@@ -245,6 +253,8 @@
                 property: '--quick-input-widget-bg',
                 value: 'var(--flyout-bg)',
             });
+
+            overrideDocumentStyle({ property: 'background', value: 'var(--wallpaper)' });
         } catch (error) {
             console.error(error);
         }

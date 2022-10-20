@@ -98,16 +98,18 @@ export async function getBase64Image() {
 
 async function getTags(target: string, compact?: boolean, lite?: boolean) {
     const config = vscode.workspace.getConfiguration('fluent-ui');
-    const themeMode = vscode.window.activeColorTheme;
-    const isDark = themeMode.kind === 2;
+    const activeTheme = vscode.window.activeColorTheme;
+    const isDark = activeTheme.kind === 2;
     const isCompact = config.get('compact');
-    const disableBg = config.get('disable-wallpaper');
+    const enableBg = config.get('enableWallpaper');
+
     const accent = `${config.get('accent')}`;
     const darkBgColor = `${config.get('darkBackground')}b3`;
     const lightBgColor = `${config.get('lightBackground')}b3`;
+
     let encodedImage: boolean | string = false;
 
-    if (!disableBg) {
+    if (enableBg) {
         encodedImage = await getBase64Image();
     }
 
@@ -246,14 +248,20 @@ export function activate(context: vscode.ExtensionContext) {
             if (!backupUuid) {
                 vscode.window
                     .showInformationMessage(messages.disabled, { title: messages.restartIde })
-                    .then(() => install(true));
+                    .then(async () => {
+                        await clearPatch();
+                        install(true);
+                    });
 
                 return;
             }
 
             vscode.window
                 .showInformationMessage(messages.restart, { title: messages.restartIde })
-                .then(() => install(true));
+                .then(async () => {
+                    await clearPatch();
+                    install(true);
+                });
         }
     });
 

@@ -166,6 +166,7 @@ html {
     height: var(--content-height);
     margin-right: var(--s4);
     margin-left: var(--s4);
+    border-radius: var(--border-radius);
 }
 
 .monaco-editor .vertical,
@@ -198,14 +199,16 @@ canvas.decorationsOverviewRuler {
 .editor-container {
     background: var(--noise-bg) repeat var(--editor-bg) !important;
     background-blend-mode: exclusion;
-    mix-blend-mode: var(--card-bg-blend-mode);
+    /* mix-blend-mode: var(--card-bg-blend-mode); */
     border-top-color: transparent !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
     border-bottom: var(--border) !important;
     /* overflow: hidden; */
-    border-radius: var(--border-radius) !important;
+    /* border-radius: var(--border-radius) !important; */
+    border-bottom-left-radius: var(--border-radius) !important;
+    border-bottom-right-radius: var(--border-radius) !important;
     margin-right: var(--s5);
 }
 
@@ -661,7 +664,7 @@ canvas.decorationsOverviewRuler {
 
 /* Cursor */
 .monaco-editor .cursors-layer .cursor {
-    border-radius: var(--s3);
+    border-radius: var(--s2);
 }
 
 /* Form elements */
@@ -748,13 +751,14 @@ canvas.decorationsOverviewRuler {
 
 .monaco-action-bar .action-item {
     background: transparent;
-    border-radius: 4px;
-    transition: background var(--easing-timing-faster) var(--easing-curve-in),
+    border-radius: var(--s3) !important;
+    transition: background var(--easing-timing-fast) var(--easing-curve-in),
         color var(--easing-timing-faster) var(--easing-curve-in);
 }
 
 .monaco-action-bar .action-item.checked,
-.monaco-action-bar .action-item:hover {
+.monaco-action-bar .action-item:hover,
+.monaco-action-bar .action-item.checked .active-item-indicator {
     background: var(--active-action-item-bg) !important;
 }
 
@@ -767,7 +771,7 @@ canvas.decorationsOverviewRuler {
     display: block;
     border: none !important;
     height: 20px !important;
-    width: 4px !important;
+    width: var(--s3) !important;
     border-radius: 2px;
     background-color: var(--accent) !important;
     top: 50% !important;
@@ -922,8 +926,9 @@ canvas.decorationsOverviewRuler {
 /* Editor Panel */
 .monaco-editor,
 .monaco-editor-background {
-    background: var(--noise-bg) repeat var(--editor-bg) !important;
-    background-blend-mode: exclusion;
+    /* background: var(--noise-bg) repeat var(--editor-bg) !important; */
+    background: transparent !important;
+    /* background-blend-mode: exclusion; */
     border-bottom-left-radius: var(--border-radius) !important;
     border-bottom-right-radius: var(--border-radius) !important;
 }
@@ -1186,6 +1191,10 @@ canvas.decorationsOverviewRuler {
 /* Setting Page */
 .setting-item-contents.settings-row-inner-container {
     transition: var(--transition);
+}
+
+.setting-item-contents.settings-row-inner-container:hover {
+    background-color: var(--list-item-bg) !important;
 }
 
 .settings-editor
