@@ -7,6 +7,7 @@ import { RequestInfo, RequestInit } from 'node-fetch';
 import * as path from 'path';
 import postcss from 'postcss';
 import * as Url from 'url';
+
 import * as vscode from 'vscode';
 const sharp = require('sharp');
 
@@ -63,7 +64,7 @@ function clearHTML(html: string) {
     return html;
 }
 
-async function buildCSSTag(url: string) {
+async function buildCSSTag(url: string, useThemeColors?: boolean) {
     try {
         const fileName = path.join(__dirname, url);
         const fetched = await fs.readFile(fileName);
@@ -95,12 +96,20 @@ export async function getBase64Image() {
     }
 }
 
-async function getTags(target: string, compact?: boolean, lite?: boolean, useBg?: boolean) {
-    const config = vscode.workspace.getConfiguration('fluent');
+async function getTags(target: string, compact?: boolean, lite?: boolean) {
+    const config = vscode.workspace.getConfiguration('fluent-ui');
     const themeMode = vscode.window.activeColorTheme;
     const isDark = themeMode.kind === 2;
+    const isCompact = config.get('compact');
+    const disableBg = config.get('disable-wallpaper');
+    const accent = `${config.get('accent')}`;
+    const darkBgColor = `${config.get('darkBackground')}b3`;
+    const lightBgColor = `${config.get('lightBackground')}b3`;
+    let encodedImage: boolean | string = false;
 
-    const encodedImage = await getBase64Image();
+    if (!disableBg) {
+        encodedImage = await getBase64Image();
+    }
 
     if (target === 'styles') {
         let res = '';
@@ -108,14 +117,21 @@ async function getTags(target: string, compact?: boolean, lite?: boolean, useBg?
         const styles = ['/css/editor_chrome.css', isDark ? '/css/dark_vars.css' : ''];
 
         for (const url of styles) {
-            const imp = await buildCSSTag(url);
+            let imp = await buildCSSTag(url);
 
             if (imp) {
+                if (url.includes('dark')) {
+                    imp = imp.replace('CARD_DARK_BG_COLOR', darkBgColor);
+                } else {
+                    imp = imp.replace('CARD_LIGHT_BG_COLOR', lightBgColor);
+                    imp = imp.replace('ACCENT_COLOR', accent);
+                }
+
                 res += imp;
             }
         }
 
-        if (useBg && encodedImage) {
+        if (encodedImage) {
             // Replace --app-bg value on res
             res = res.replace('dummy', encodedImage);
         }
@@ -129,10 +145,14 @@ async function getTags(target: string, compact?: boolean, lite?: boolean, useBg?
 
         const jsTemplate = await fs.readFile(__dirname + url);
 
-        const buffer = jsTemplate.toString();
-        const themeWithFilter = buffer.replace(/\[DISABLE_FILTERS\]/g, String(lite));
-        const themeIsCompact = themeWithFilter.replace(/\[IS_COMPACT\]/g, String(compact));
-        const uglyJS = UglifyJS.minify(themeIsCompact);
+        let buffer = jsTemplate.toString();
+
+        buffer = buffer.replace(/\[IS_COMPACT\]/g, String(isCompact));
+        buffer = buffer.replace(/\[LIGHT_BG\]/g, `"${lightBgColor}"`);
+        buffer = buffer.replace(/\[DARK_BG\]/g, `"${darkBgColor}"`);
+        buffer = buffer.replace(/\[ACCENT\]/g, `"${accent}"`);
+
+        const uglyJS = UglifyJS.minify(buffer);
         const tag = `<script type="application/javascript">${uglyJS.code}</script>\n`;
 
         if (tag) {
@@ -148,23 +168,21 @@ async function getTags(target: string, compact?: boolean, lite?: boolean, useBg?
  */
 interface PatchArgs {
     htmlFile: string;
-    compact?: boolean;
-    lite?: boolean;
-    useBg?: boolean;
+    bypassMessage?: boolean;
 }
-async function patch({ htmlFile, compact = false, lite = false, useBg = true }: PatchArgs) {
+async function patch({ htmlFile, bypassMessage }: PatchArgs) {
     let html = await fs.readFile(htmlFile, 'utf-8');
     html = clearHTML(html);
     html = html.replace(/<meta.*http-equiv="Content-Security-Policy".*>/, '');
 
-    const styleTags = await getTags('styles', compact, lite, useBg);
+    const styleTags = await getTags('styles');
     // Inject style tag into <head>
     html = html.replace(
         /(<\/head>)/,
         '<!-- FUI-CSS-START -->\n' + styleTags + '\n<!-- FUI-CSS-END -->\n</head>',
     );
 
-    const jsTags = await getTags('javascript', compact, lite);
+    const jsTags = await getTags('javascript');
     // Injext JS tag into <body>
     html = html.replace(
         /(<\/html>)/,
@@ -174,7 +192,11 @@ async function patch({ htmlFile, compact = false, lite = false, useBg = true }: 
     try {
         await fs.writeFile(htmlFile, html, 'utf-8');
 
-        enabledRestart();
+        if (bypassMessage) {
+            reloadWindow();
+        } else {
+            enabledRestart();
+        }
     } catch (e) {
         vscode.window.showInformationMessage(messages.admin);
     }
@@ -189,42 +211,17 @@ export function activate(context: vscode.ExtensionContext) {
     /**
      * Installs full version
      */
-    async function install() {
-        const backupUuid = await getBackupUuid(htmlFile);
-        if (backupUuid) {
-            vscode.window.showInformationMessage(messages.alreadySet);
-            return;
+    async function install(bypassMessage?: boolean) {
+        if (!bypassMessage) {
+            const backupUuid = await getBackupUuid(htmlFile);
+            if (backupUuid) {
+                vscode.window.showInformationMessage(messages.alreadySet);
+                return;
+            }
         }
 
         await createBackup(base, htmlFile);
-        await patch({ htmlFile });
-    }
-
-    async function installNoBg() {
-        await clearPatch();
-        await createBackup(base, htmlFile);
-        await patch({ htmlFile, useBg: false });
-    }
-
-    async function installCompact() {
-        await clearPatch();
-        await createBackup(base, htmlFile);
-        await patch({ htmlFile, compact: true });
-    }
-
-    async function installLite() {
-        await clearPatch();
-        await createBackup(base, htmlFile);
-        await patch({ htmlFile, lite: true });
-    }
-
-    /**
-     * All optional effects are OFF
-     */
-    async function installBasic() {
-        await clearPatch();
-        await createBackup(base, htmlFile);
-        await patch({ htmlFile, compact: false, lite: true, useBg: false });
+        await patch({ htmlFile, bypassMessage });
     }
 
     async function uninstall() {
@@ -243,21 +240,29 @@ export function activate(context: vscode.ExtensionContext) {
         await deleteBackupFiles(htmlFile);
     }
 
-    const installFUI = vscode.commands.registerCommand('fluent.enableEffects', install);
-    const installFUINoBg = vscode.commands.registerCommand('fluent.enableNoBg', installNoBg);
-    const installFUICompact = vscode.commands.registerCommand(
-        'fluent.enableCompact',
-        installCompact,
-    );
-    const installFUILite = vscode.commands.registerCommand('fluent.enableLite', installLite);
-    const installFUIBasic = vscode.commands.registerCommand('fluent.enableBasic', installBasic);
-    const uninstallFUI = vscode.commands.registerCommand('fluent.disableEffects', uninstall);
+    vscode.workspace.onDidChangeConfiguration(async (event) => {
+        if (event.affectsConfiguration('fluent-ui')) {
+            const backupUuid = await getBackupUuid(htmlFile);
+            if (!backupUuid) {
+                vscode.window
+                    .showInformationMessage(messages.disabled, { title: messages.restartIde })
+                    .then(() => install(true));
+
+                return;
+            }
+
+            vscode.window
+                .showInformationMessage(messages.restart, { title: messages.restartIde })
+                .then(() => install(true));
+        }
+    });
+
+    const installFUI = vscode.commands.registerCommand('fluent-ui.enableEffects', install);
+    const reloadFUI = vscode.commands.registerCommand('fluent-ui.reloadEffects', reloadWindow);
+    const uninstallFUI = vscode.commands.registerCommand('fluent-ui.disableEffects', uninstall);
 
     context.subscriptions.push(installFUI);
-    context.subscriptions.push(installFUINoBg);
-    context.subscriptions.push(installFUICompact);
-    context.subscriptions.push(installFUILite);
-    context.subscriptions.push(installFUIBasic);
+    context.subscriptions.push(reloadFUI);
     context.subscriptions.push(uninstallFUI);
 }
 

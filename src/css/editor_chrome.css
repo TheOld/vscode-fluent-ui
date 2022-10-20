@@ -28,9 +28,7 @@
     --s10: calc(var(--base-spacing) * 8);
     --s11: calc(var(--base-spacing) * 10);
 
-    --acccent-pressed-bg: rgba(0, 95, 184, 0.8);
     --accent-disabled: rgba(0, 0, 0, 0.2169);
-    --accent-hover: rgba(0, 95, 184, 0.9);
     --accent-pressed-border: 1px solid rgba(255, 255, 255, 0.08);
     --active-action-item-bg: rgba(0, 0, 0, 0.0605);
     --activity-bar-width: 100%;
@@ -44,12 +42,17 @@ Tooltips */
     --depth-28: 0 0 8px rgba(0, 0, 0, 0.12), 0 14px 28px rgba(0, 0, 0, 0.14);
     --depth-64: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18); /* Panels/Dialogs/Popups */
 
-    --accent: #005fb8;
+    /* The following variables are dynamic */
+    --accent: ACCENT_COLOR;
+    --acccent-pressed-bg: ACCENT_PRESSED_COLOR;
+    --accent-hover: ACCENT_HOVER_COLOR;
+    --card-bg: CARD_LIGHT_BG_COLOR;
+    --app-bg-img: url('dummy');
+
     --acrylic-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
     --acrylic-shadow-alt: 0px 25.6px 57.6px rgb(0 0 0 / 14%), 0px 0px 16.4px rgb(0 0 0 / 12%);
     --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
     --app-bg: rgb(243, 243, 243, 1);
-    --app-bg-img: url('dummy');
 
     --body-bg: rgb(243, 243, 243, 1);
     --body-bg-t: rgb(243, 243, 243, 0);
@@ -62,7 +65,6 @@ Tooltips */
     --button-radius: var(--s3);
 
     --card-bg-blend-mode: multiply;
-    --card-bg: rgba(255, 255, 255, 0.7);
     --card-shadow: var(--depth-4);
 
     --content-height: calc(100% - var(--s3));

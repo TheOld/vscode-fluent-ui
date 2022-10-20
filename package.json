@@ -1,7 +1,7 @@
 {
     "author": "Leandro Rodrigues",
     "publisher": "leandro-rodrigues",
-    "name": "fluent-ui-vscode",
+    "name": "fluent-ui",
     "displayName": "Fluent UI for VSCode",
     "description": "Fluent UI for VSCode based on concept designs from u/zeealeidahmad.",
     "version": "3.6.1",
@@ -22,12 +22,10 @@
         "Themes"
     ],
     "activationEvents": [
-        "onCommand:fluent.enableEffects",
-        "onCommand:fluent.enableNoBg",
-        "onCommand:fluent.enableCompact",
-        "onCommand:fluent.enableLite",
-        "onCommand:fluent.enableBasic",
-        "onCommand:fluent.disableEffects"
+        "onCommand:fluent-ui.enableEffects",
+        "onCommand:fluent-ui.reloadEffects",
+        "onCommand:fluent-ui.disableEffects",
+        "*"
     ],
     "galleryBanner": {
         "color": "#ffffff",
@@ -37,30 +35,54 @@
     "contributes": {
         "commands": [
             {
-                "command": "fluent.enableEffects",
+                "command": "fluent-ui.enableEffects",
                 "title": "Fluent UI: Enable"
             },
             {
-                "command": "fluent.enableNoBg",
-                "title": "Fluent UI: No background"
+                "command": "fluent-ui.reloadEffects",
+                "title": "Fluent UI: Reload"
             },
             {
-                "command": "fluent.enableCompact",
-                "title": "Fluent UI: Compact"
-            },
-            {
-                "command": "fluent.enableLite",
-                "title": "Fluent UI: Lite"
-            },
-            {
-                "command": "fluent.enableBasic",
-                "title": "Fluent UI: Basic"
-            },
-            {
-                "command": "fluent.disableEffects",
+                "command": "fluent-ui.disableEffects",
                 "title": "Fluent UI: Disable"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "Fluent UI",
+            "type": "object",
+            "properties": {
+                "fluent-ui.compact": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Applies slight less padding around some of the elements. The difference is subtle but can help those with limited space.",
+                    "scope": "application"
+                },
+                "fluent-ui.disable-wallpaper": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Disable background image",
+                    "scope": "application"
+                },
+                "fluent-ui.accent": {
+                    "type": "string",
+                    "default": "#005fb8",
+                    "description": "Accent color (default #005fb8). Only HEX values are supported.",
+                    "scope": "application"
+                },
+                "fluent-ui.darkBackground": {
+                    "type": "string",
+                    "default": "#202020",
+                    "description": "Background color for dark mode (default #202020). Only HEX values are supported.",
+                    "scope": "application"
+                },
+                "fluent-ui.lightBackground": {
+                    "type": "string",
+                    "default": "#ffffff",
+                    "description": "Background color for light mode (default #ffffff). Only HEX values are supported.",
+                    "scope": "application"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run esbuild-base -- --minify",

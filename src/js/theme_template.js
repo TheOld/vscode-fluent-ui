@@ -4,6 +4,11 @@
     let isLayoutCompact = false;
     let isUILite = false;
     let withResizeListener = false;
+    let darkBg = '#202020b3';
+    let lightBg = '#ffffffb3';
+    let accent = '#005fb8';
+    let accentHover = '#005fb8e6';
+    let accentPressed = '#005fb8cc';
 
     let debounceTimer;
     const debounce = (callback, time) => {
@@ -37,19 +42,11 @@
 
                 const { classList } = chromium;
                 if (classList.contains('vs')) {
-                    if (isUILite) {
-                        applyLightStyles(1);
-                    } else {
-                        applyLightStyles();
-                    }
+                    applyLightStyles();
                 }
 
                 if (classList.contains('vs-dark')) {
-                    if (isUILite) {
-                        applyDarkStyles(1);
-                    } else {
-                        applyDarkStyles();
-                    }
+                    applyDarkStyles();
                 }
             }
         }
@@ -79,15 +76,20 @@
 
                 // Everything we need is ready, so initialise
                 if (tokensLoaded && tokenStyles) {
-                    initFluentUI([DISABLE_FILTERS], [IS_COMPACT], observer);
+                    initFluentUI([IS_COMPACT], [LIGHT_BG], [DARK_BG], [ACCENT], observer);
                 }
             }
         }
     };
 
     // Add custom styles
-    const initFluentUI = (disableFilters, isCompact, obs) => {
+    const initFluentUI = (isCompact, lightBgColor, darkBgColor, accent, obs) => {
         isLayoutCompact = isCompact;
+        darkBg = darkBgColor;
+        lightBg = lightBgColor;
+        accentColor = accent;
+        accentHover = accent + 'e6';
+        accentColor = accent + 'cc';
 
         var themeStyleTag = document.querySelector('.vscode-tokens-styles');
 
@@ -145,10 +147,25 @@
         document.documentElement.style.setProperty(property, value);
     };
 
-    const applyDarkStyles = (opacity = 0.7) => {
+    const applyDarkStyles = () => {
         try {
-            // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
-            overrideDocumentStyle({ property: '--accent', value: '#0078d4' });
+            console.log('Applying dark styles');
+            // Yeap, I have to override each one individually until VSCode allows me to dynamically
+            overrideDocumentStyle({ property: '--accent', value: accent });
+            overrideDocumentStyle({ property: '--accent-hover', value: accentHover });
+            overrideDocumentStyle({ property: '--accent-pressed-bg', value: accentPressed });
+            overrideDocumentStyle({
+                property: '--card-bg',
+                value: darkBg,
+            });
+            overrideDocumentStyle({
+                property: '--context-menu-bg',
+                value: darkBg,
+            });
+            overrideDocumentStyle({
+                property: '--editor-bg',
+                value: darkBg,
+            });
             overrideDocumentStyle({ property: '--active-action-item-bg', value: 'var(--card-bg)' });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
             overrideDocumentStyle({ property: '--app-bg', value: 'rgba(44, 44, 44, 0.85)' });
@@ -158,19 +175,9 @@
                 property: '--background-color',
                 value: 'rgba(0, 0, 0, 0.0578)',
             });
-            overrideDocumentStyle({
-                property: '--card-bg',
-                value: `rgba(32, 32, 32, ${opacity})`,
-            });
+
             overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'color, luminosity' });
-            overrideDocumentStyle({
-                property: '--context-menu-bg',
-                value: `rgba(32, 32, 32, ${opacity})`,
-            });
-            overrideDocumentStyle({
-                property: '--editor-bg',
-                value: `rgba(32, 32, 32, ${opacity})`,
-            });
+
             overrideDocumentStyle({ property: '--editor-widget-bg', value: 'var(--card-bg)' });
             overrideDocumentStyle({ property: '--foreground', value: '#ffffff' });
             overrideDocumentStyle({ property: '--hover-bg', value: 'var(--card-bg)' });
@@ -181,39 +188,44 @@
             overrideDocumentStyle({ property: '--list-item-fg', value: '#ffffff99' });
             overrideDocumentStyle({
                 property: '--notification-toast-bg',
-                value: `rgba(32, 32, 32, ${opacity})`,
+                value: darkBg,
             });
             overrideDocumentStyle({
                 property: '--quick-input-widget-bg',
-                value: `rgba(32, 32, 32, ${opacity})`,
+                value: darkBg,
             });
         } catch (error) {
             console.error(error);
         }
     };
 
-    const applyLightStyles = (opacity = 0.7) => {
+    const applyLightStyles = () => {
         try {
+            console.log('Applying light styles');
+            console.log('Current accent', accent);
             // Yeap, I have to override each one individually until VSCode allows me to dynamically add <style> tags to the document
-            overrideDocumentStyle({ property: '--accent', value: '#005fb8' });
+            overrideDocumentStyle({ property: '--accent', value: accent });
+            overrideDocumentStyle({ property: '--accent-hover', value: accentHover });
+            overrideDocumentStyle({ property: '--accent-pressed-bg', value: accentPressed });
+            overrideDocumentStyle({
+                property: '--card-bg',
+                value: lightBg,
+            });
+            overrideDocumentStyle({
+                property: '--flyout-bg',
+                value: lightBg,
+            });
+            overrideDocumentStyle({
+                property: '--background-color',
+                value: lightBg,
+            });
             overrideDocumentStyle({
                 property: '--active-action-item-bg',
                 value: 'rgba(0, 0, 0, 0.0605)',
             });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
             overrideDocumentStyle({ property: '--app-bg', value: 'rgba(243, 243, 243, 0.85)' });
-            overrideDocumentStyle({
-                property: '--flyout-bg',
-                value: `rgba(252, 252, 252, ${opacity})`,
-            });
-            overrideDocumentStyle({
-                property: '--background-color',
-                value: `rgba(255, 255, 255, ${opacity})`,
-            });
-            overrideDocumentStyle({
-                property: '--card-bg',
-                value: `rgba(255, 255, 255, ${opacity})`,
-            });
+
             overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'multiply' });
             overrideDocumentStyle({
                 property: '--context-menu-bg',
@@ -281,7 +293,7 @@
     };
 
     // try to initialise the theme
-    initFluentUI([DISABLE_FILTERS], [IS_COMPACT]);
+    initFluentUI([IS_COMPACT], [LIGHT_BG], [DARK_BG], [ACCENT]);
 
     // Use a mutation observer to check when we can bootstrap the theme
     const observer = new MutationObserver(watchForBootstrap);

@@ -1,18 +1,17 @@
 :root {
-    --accent: #0078d4;
+    --card-bg: CARD_DARK_BG_COLOR;
     --active-action-item-bg: var(--card-bg);
     --activitybar-indicator-bg: #60cdff;
     --app-bg: rgba(44, 44, 44, 0.85);
     --background-color: rgba(0, 0, 0, 0.0578);
-    --card-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.75), rgba(32, 32, 32, 0.75));
     --card-blend-mode: color, luminosity;
-    --context-menu-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.75), rgba(32, 32, 32, 0.75));
-    --editor-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.75), rgba(32, 32, 32, 0.75));
+    --context-menu-bg: rgba(32, 32, 32, 0.75);
+    --editor-bg: rgba(32, 32, 32, 0.75);
     --editor-widget-bg: var(--card-bg);
     --foreground: #ffffff;
     --hover-bg: var(--card-bg);
     --list-item-bg: rgba(255, 255, 255, 0.0605);
     --list-item-fg: #ffffff99;
     --notification-toast-bg: var(--card-bg);
-    --quick-input-widget-bg: linear-gradient(0deg, rgba(32, 32, 32, 0.75), rgba(32, 32, 32, 0.75));
+    --quick-input-widget-bg: rgba(32, 32, 32, 0.75);
 }
