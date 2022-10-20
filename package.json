@@ -24,8 +24,7 @@
     "activationEvents": [
         "onCommand:fluent-ui.enableEffects",
         "onCommand:fluent-ui.reloadEffects",
-        "onCommand:fluent-ui.disableEffects",
-        "*"
+        "onCommand:fluent-ui.disableEffects"
     ],
     "galleryBanner": {
         "color": "#ffffff",
