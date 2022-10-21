@@ -172,7 +172,9 @@
             });
             overrideDocumentStyle({ property: '--active-action-item-bg', value: 'var(--card-bg)' });
             // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            overrideDocumentStyle({ property: '--app-bg', value: 'var(--card-bg)' });
+            // overrideDocumentStyle({ property: '--app-bg', value:
+            // 'var(--card-bg)' });
+            overrideDocumentStyle({ property: '--app-bg', value: 'rgba(44, 44, 44, 0.85)' });
             overrideDocumentStyle({ property: '--body-bg', value: 'rgba(44, 44, 44, 1)' });
             overrideDocumentStyle({ property: '--body-bg-t', value: 'rgba(44, 44, 44, 0)' });
             overrideDocumentStyle({

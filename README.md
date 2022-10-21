@@ -60,6 +60,9 @@ own risk**.
 The default installtion (via `> Fluent UI: enable`) has all features enabled. You disable some
 feature via settings, just search for `Fluent` there.
 
+> After changing one of the settings, you'll have to run `> Fluent UI: reload` to apply the styles
+> again.
+
 ### App background
 
 The background feature is intended to mimic, to an extent, the Mica material used by Windows 11

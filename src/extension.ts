@@ -97,7 +97,7 @@ export async function getBase64Image() {
 }
 
 async function getTags(target: string, compact?: boolean, lite?: boolean) {
-    const config = vscode.workspace.getConfiguration('fluent-ui');
+    const config = vscode.workspace.getConfiguration('fluent-ui-vscode');
     const activeTheme = vscode.window.activeColorTheme;
     const isDark = activeTheme.kind === 2;
     const isCompact = config.get('compact');
@@ -242,32 +242,41 @@ export function activate(context: vscode.ExtensionContext) {
         await deleteBackupFiles(htmlFile);
     }
 
-    vscode.workspace.onDidChangeConfiguration(async (event) => {
-        if (event.affectsConfiguration('fluent-ui')) {
-            const backupUuid = await getBackupUuid(htmlFile);
-            if (!backupUuid) {
-                vscode.window
-                    .showInformationMessage(messages.disabled, { title: messages.restartIde })
-                    .then(async () => {
-                        await clearPatch();
-                        install(true);
-                    });
+    // vscode.workspace.onDidChangeConfiguration(async (event) => {
+    //     if (event.affectsConfiguration('fluent-ui-vscode')) {
+    //         const backupUuid = await getBackupUuid(htmlFile);
+    //         if (!backupUuid) {
+    //             vscode.window
+    //                 .showInformationMessage(messages.disabled, { title: messages.restartIde })
+    //                 .then(async () => {
+    //                     await clearPatch();
+    //                     install(true);
+    //                 });
 
-                return;
-            }
+    //             return;
+    //         }
 
-            vscode.window
-                .showInformationMessage(messages.restart, { title: messages.restartIde })
-                .then(async () => {
-                    await clearPatch();
-                    install(true);
-                });
-        }
-    });
+    //         vscode.window
+    //             .showInformationMessage(messages.restart, { title: messages.restartIde })
+    //             .then(async () => {
+    //                 await clearPatch();
+    //                 install(true);
+    //             });
+    //     }
+    // });
 
-    const installFUI = vscode.commands.registerCommand('fluent-ui.enableEffects', install);
-    const reloadFUI = vscode.commands.registerCommand('fluent-ui.reloadEffects', reloadWindow);
-    const uninstallFUI = vscode.commands.registerCommand('fluent-ui.disableEffects', uninstall);
+    const installFUI = vscode.commands.registerCommand('fluent-ui-vscode.enableEffects', install);
+    const reloadFUI = vscode.commands.registerCommand(
+        'fluent-ui-vscode.reloadEffects',
+        async () => {
+            await clearPatch();
+            install(true);
+        },
+    );
+    const uninstallFUI = vscode.commands.registerCommand(
+        'fluent-ui-vscode.disableEffects',
+        uninstall,
+    );
 
     context.subscriptions.push(installFUI);
     context.subscriptions.push(reloadFUI);

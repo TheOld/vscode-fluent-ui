@@ -445,7 +445,8 @@ canvas.decorationsOverviewRuler {
     border-top: 1px solid var(--border-color) !important;
     border-left: 1px solid var(--border-color) !important;
     border-right: 1px solid var(--border-color) !important;
-    background: var(--background-color) !important;
+
+    background: var(--noise-bg) repeat var(--card-bg) !important;
 }
 
 .monaco-workbench
@@ -760,12 +761,19 @@ canvas.decorationsOverviewRuler {
 .monaco-action-bar .action-item:hover,
 .monaco-action-bar .action-item.checked .active-item-indicator {
     background: var(--active-action-item-bg) !important;
+    border-radius: var(--s3) !important;
 }
 
 .active-item-indicator {
     position: relative;
 }
 
+.part.basepanel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item
+    .active-item-indicator,
 .activitybar > .content :not(.monaco-menu) > .monaco-action-bar .active-item-indicator::before {
     content: '';
     display: block;
@@ -781,6 +789,15 @@ canvas.decorationsOverviewRuler {
     transition: transform var(--easing-timing-faster) var(--easing-curve-in),
         opacity var(--easing-timing-faster) var(--easing-curve-in);
     transition-delay: 25ms;
+}
+
+.part.basepanel
+    > .composite.title
+    > .panel-switcher-container
+    > .monaco-action-bar
+    .action-item
+    .active-item-indicator::before {
+    display: none;
 }
 
 .activitybar
