@@ -4,7 +4,7 @@
 
 -   Optional features can now be controlled via settings.
 -   Added support for custom colors (accent, dark and light background)
--   General bug fixes and minor UI adjustments.
+-   General bug fixes and minor UI adjustments
 
 ## 3.6.1 (2022-10-19)
 
