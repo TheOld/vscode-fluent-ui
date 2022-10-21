@@ -129,6 +129,12 @@ async function getTags(target: string, compact?: boolean, lite?: boolean) {
                     imp = imp.replace('ACCENT_COLOR', accent);
                 }
 
+                if (!enableBg) {
+                    imp = imp.replace('APP_BG', 'transparent');
+                } else {
+                    imp = imp.replace('APP_BG', 'var(--card-bg)');
+                }
+
                 res += imp;
             }
         }
@@ -241,29 +247,6 @@ export function activate(context: vscode.ExtensionContext) {
         await restoreBackup(backupPath, htmlFile);
         await deleteBackupFiles(htmlFile);
     }
-
-    // vscode.workspace.onDidChangeConfiguration(async (event) => {
-    //     if (event.affectsConfiguration('fluent-ui-vscode')) {
-    //         const backupUuid = await getBackupUuid(htmlFile);
-    //         if (!backupUuid) {
-    //             vscode.window
-    //                 .showInformationMessage(messages.disabled, { title: messages.restartIde })
-    //                 .then(async () => {
-    //                     await clearPatch();
-    //                     install(true);
-    //                 });
-
-    //             return;
-    //         }
-
-    //         vscode.window
-    //             .showInformationMessage(messages.restart, { title: messages.restartIde })
-    //             .then(async () => {
-    //                 await clearPatch();
-    //                 install(true);
-    //             });
-    //     }
-    // });
 
     const installFUI = vscode.commands.registerCommand('fluent-ui-vscode.enableEffects', install);
     const reloadFUI = vscode.commands.registerCommand(

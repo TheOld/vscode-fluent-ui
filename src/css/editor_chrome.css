@@ -44,6 +44,7 @@ Tooltips */
 
     /* The following variables are dynamic */
     --accent: ACCENT_COLOR;
+    --app-bg: APP_BG;
     --acccent-pressed-bg: ACCENT_PRESSED_COLOR;
     --accent-hover: ACCENT_HOVER_COLOR;
     --card-bg: CARD_LIGHT_BG_COLOR;
@@ -52,7 +53,6 @@ Tooltips */
     --acrylic-shadow: 0px 32px 64px rgba(0, 0, 0, 0.1876), 0px 2px 21px rgba(0, 0, 0, 0.1474);
     --acrylic-shadow-alt: 0px 25.6px 57.6px rgb(0 0 0 / 14%), 0px 0px 16.4px rgb(0 0 0 / 12%);
     --acrylic-stroke: 1px solid rgba(117, 117, 117, 0.4);
-    --app-bg: rgb(243, 243, 243, 1);
 
     --body-bg: rgb(243, 243, 243, 1);
     --body-bg-t: rgb(243, 243, 243, 0);
@@ -80,6 +80,7 @@ Tooltips */
     --easing-timing-fast: 167ms;
     --easing-timing-faster: 83ms;
     --easing-timing-normal: 250ms;
+    --easing-timing-slow: 320ms;
 
     --flyout-shadow: var(--depth-8);
     --flyout-stroke: 1px solid rgba(0, 0, 0, 0.0578);
@@ -504,7 +505,7 @@ canvas.decorationsOverviewRuler {
 
 .sidebar.right {
     margin-right: var(--s4);
-    animation: sidebarRighIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
+    animation: sidebarRightIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
 }
 
 .sidebar.compact {
@@ -570,7 +571,8 @@ canvas.decorationsOverviewRuler {
 }
 
 .monaco-list-rows .monaco-list-row {
-    transition: background var(--easing-timing-normal) var(--easing-curve-in);
+    transition: background var(--easing-timing-normal) var(--easing-curve-in),
+        color var(--easing-timing-normal) var(--easing-curve-in);
 }
 
 .monaco-list-rows .monaco-list-row::before {
@@ -596,6 +598,16 @@ canvas.decorationsOverviewRuler {
 .notifications-toasts .monaco-list-row::before {
     height: 100% !important;
     top: 0 !important;
+}
+
+.quick-input-widget {
+    animation: quickInputWidget var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
+    /* animation-delay: 60s; */
+}
+
+.quick-input-widget .quick-input-list {
+    animation: quickInputListIn var(--easing-timing-fast) var(--easing-curve-in) forwards !important;
+    animation-delay: 120s;
 }
 
 .quick-input-widget .monaco-list-row.selected,
@@ -736,10 +748,14 @@ canvas.decorationsOverviewRuler {
 
 .activitybar.left {
     margin-left: var(--s3) !important;
+    animation: sidebarLeftIn var(--easing-timing-slow) var(--easing-curve-in) forwards !important;
+    animation-delay: 80ms;
 }
 
 .activitybar.right {
     margin-left: -4px;
+    animation: sidebarRightIn var(--easing-timing-slow) var(--easing-curve-in) forwards !important;
+    animation-delay: 80ms;
 }
 
 .activitybar.compact.right {
@@ -1261,6 +1277,29 @@ canvas.decorationsOverviewRuler {
         opacity: 1;
     }
 }
+
+@keyframes quickInputWidget {
+    0% {
+        transform: translateY(-25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes quickInputListIn {
+    0% {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 @keyframes statusBarIn {
     0% {
         transform: translateY(100%);

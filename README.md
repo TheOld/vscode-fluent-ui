@@ -17,9 +17,10 @@ own risk**.
 
 1. Run VSCode as admin.
     1. This is important, the extension won't work otherwise
-2. Install extension from
+2. Install the extension from the
    [Marketplace](https://marketplace.visualstudio.com/items?itemName=leandro-rodrigues.fluent-ui-vscode)
-3. Run `> Fluent UI: Enable` and reload
+    1. Optiona: Go to settings and adjust the colors (this can be done at any time)
+3. Run `> Fluent UI: Enable` and reload when prompted
 
 > VSCode will display a notification saying that the installtion is corrupt. That's normal, VSCode
 > sees the installation as corrupt because the HTML (workbench.html) file is now changed.
@@ -34,19 +35,47 @@ own risk**.
 2. Run `> Fluent: Disable` and reload when prompted
 3. Uninstall the extension like your normally would
 
-> If you ran the command as regular user, here's how you can fix your installation:
->
-> 1. On Windows, go to
->    `C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench`.
-> 2. Open the file `workbench.html` as admin
-> 3. Remove everything between the comments `<!-- FUI-CSS-START -->` and `<!-- FUI-CSS-END -->`.
-> 4. Save and reload VSCode
+If you ran the command as regular user, here's how you can fix your installation:
+
+1.  On Windows, go to
+    `C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench`.
+2.  Open the file `workbench.html` as admin
+3.  Remove everything between the comments `<!-- FUI-CSS-START -->` and `<!-- FUI-CSS-END -->`.
+
+    1. Your `workbench.html` file should look like this after removing the patched code:
+
+    ```html
+    <!-- Copyright (C) Microsoft Corporation. All rights reserved. -->
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta
+                http-equiv="Content-Security-Policy"
+                content="default-src 'none'; img-src 'self' https: data: blob: vscode-remote-resource:; media-src 'self'; frame-src 'self' vscode-webview:; object-src 'self'; script-src 'self' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; connect-src 'self' https: ws:; font-src 'self' https: vscode-remote-resource:;"
+            />
+            <meta
+                http-equiv="Content-Security-Policy"
+                content="require-trusted-types-for 'script'; trusted-types amdLoader cellRendererEditorText defaultWorkerFactory diffEditorWidget stickyScrollViewLayer editorGhostText domLineBreaksComputer editorViewLayer diffReview dompurify notebookRenderer safeInnerHtml standaloneColorizer tokenizeToString;"
+            />
+        </head>
+
+        <body aria-label=""></body>
+
+        <!-- Startup (do not modify order of script tags!) -->
+        <script src="workbench.js"></script>
+    </html>
+    ```
+
+    2. If that doesn't work, reinstalling VSCode will fix it.
+
+4.  Save and reload VSCode
 
 ## Known issues
 
--   I'm unable to override the minimap and in some cases, the scrollbar background. So depending on
-    the syntax theme you choose, the Terminal and Minimap's background colors will be off. You can
-    set the colors for these panels (and others) manually via settings, like so:
+-   I'm unable to override the terminal, minimap and in some cases, the scrollbar background. So
+    depending on the syntax theme you choose, the background colors will be off for those elements.
+    You can set the colors for these panels (and others) manually via settings, like so:
 
 ```json
 "workbench.colorCustomizations": {
@@ -57,11 +86,12 @@ own risk**.
 
 ## Features
 
-The default installtion (via `> Fluent UI: enable`) has all features enabled. You disable some
-feature via settings, just search for `Fluent` there.
+The default installtion (via `> Fluent UI: enable`) has all features enabled by default (provided
+you didn't disable some of them via settings before activating). You can disable some features via
+settings, just search for `Fluent` there.
 
-> After changing one of the settings, you'll have to run `> Fluent UI: reload` to apply the styles
-> again.
+> After changing one of the settings, you'll have to run `> Fluent UI: reload` to reapply the
+> styles.
 
 ### App background
 
@@ -104,7 +134,7 @@ You can disale this feature by unchecking the `Enable background image` in the s
 
 ### Compact mode
 
-`Settings -> Fluent UI Compact`
+`Settings -> Fluent UI: Compact`
 
 This will apply the theme using slight less padding around some of the elements. The difference is
 subtle but can help those with limited space.
@@ -137,7 +167,7 @@ when you run `> Fluent UI: Enable`, the extension will identify
 The extension will also do the same on the fly as you preview your syntax theme using
 `Ctrl/Cmd + k Ctrl/Cmd + t`
 
-## To complete the look
+## And to complete the look
 
 Product icon themes:
 
