@@ -1,6 +1,6 @@
 # ChangeLog
 
-## 3.7.0 (2022-10-21)
+## 3.8.0 (2022-10-21)
 
 -   Optional features can now be controlled via settings.
 -   Added support for custom colors (accent, dark and light background)
