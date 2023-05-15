@@ -7,7 +7,6 @@
 *.vsix
 **/.eslintrc.json
 **/*.map
-**/*.map
 **/*.ts
 **/tsconfig.json
 **/.editorconfig.json

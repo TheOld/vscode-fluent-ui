@@ -11,7 +11,7 @@
         "url": "https://github.com/TheOld/vscode-fluent-ui"
     },
     "engines": {
-        "vscode": "^1.72.0"
+        "vscode": "^1.78.0"
     },
     "keywords": [
         "fluent",
@@ -20,11 +20,6 @@
     ],
     "categories": [
         "Themes"
-    ],
-    "activationEvents": [
-        "onCommand:fluent-ui-vscode.enableEffects",
-        "onCommand:fluent-ui-vscode.reloadEffects",
-        "onCommand:fluent-ui-vscode.disableEffects"
     ],
     "galleryBanner": {
         "color": "#ffffff",
@@ -58,8 +53,14 @@
                 },
                 "fluent-ui-vscode.enableWallpaper": {
                     "type": "boolean",
-                    "default": true,
+                    "default": false,
                     "description": "Enable background image",
+                    "scope": "application"
+                },
+                "fluent-ui-vscode.wallpaperPath": {
+                    "type": "string",
+                    "default": "C:\\Windows\\Web\\Wallpaper\\Windows\\img0.jpg",
+                    "description": "Path to image. By default, it will use the default Windows 11 wallpaper for the Windows light theme.",
                     "scope": "application"
                 },
                 "fluent-ui-vscode.accent": {
@@ -94,27 +95,27 @@
         "test-compile": "tsc -p ./"
     },
     "dependencies": {
-        "cssnano": "^5.1.13",
+        "@node-minify/core": "^8.0.6",
+        "@node-minify/cssnano": "^8.0.6",
+        "@node-minify/uglify-js": "^8.0.6",
         "file-url": "^4.0.0",
-        "node-fetch": "^3.2.10",
-        "postcss": "^8.4.17",
-        "sharp": "^0.31.1",
-        "uglify-js": "^3.17.3",
-        "wallpaper": "^5.0.1"
+        "node-fetch": "^3.3.1",
+        "sharp": "^0.32.1",
+        "uglify-js": "^3.17.4"
     },
     "devDependencies": {
-        "@types/glob": "^8.0.0",
-        "@types/mocha": "^10.0.0",
-        "@types/node": "16.x",
-        "@types/node-fetch": "^2.6.2",
-        "@types/vscode": "^1.72.0",
-        "@typescript-eslint/eslint-plugin": "^5.38.1",
-        "@typescript-eslint/parser": "^5.38.1",
-        "@vscode/test-electron": "^2.1.5",
-        "esbuild": "^0.15.10",
-        "eslint": "^8.24.0",
-        "glob": "^8.0.3",
-        "mocha": "^10.0.0",
-        "typescript": "^4.8.4"
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "20.1.4",
+        "@types/node-fetch": "^2.6.3",
+        "@types/vscode": "^1.78.0",
+        "@typescript-eslint/eslint-plugin": "^5.59.5",
+        "@typescript-eslint/parser": "^5.59.5",
+        "@vscode/test-electron": "^2.3.2",
+        "esbuild": "^0.17.19",
+        "eslint": "^8.40.0",
+        "glob": "^10.2.3",
+        "mocha": "^10.2.0",
+        "typescript": "^5.0.4"
     }
 }
