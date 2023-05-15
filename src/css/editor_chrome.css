@@ -170,14 +170,9 @@ html {
     border-radius: var(--border-radius);
 }
 
-.monaco-editor .vertical,
-canvas.decorationsOverviewRuler {
-    right: var(--s5) !important;
-}
-
-.monaco-editor .overflow-guard {
+/* .monaco-editor .overflow-guard {
     right: var(--s2);
-}
+} */
 
 .monaco-diff-editor .original canvas.decorationsOverviewRuler,
 .monaco-diff-editor .original .scrollbar {
@@ -200,17 +195,13 @@ canvas.decorationsOverviewRuler {
 .editor-container {
     background: var(--noise-bg) repeat var(--editor-bg) !important;
     background-blend-mode: exclusion;
-    /* mix-blend-mode: var(--card-bg-blend-mode); */
     border-top-color: transparent !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
     border-bottom: var(--border) !important;
-    /* overflow: hidden; */
-    /* border-radius: var(--border-radius) !important; */
-    border-bottom-left-radius: var(--border-radius) !important;
-    border-bottom-right-radius: var(--border-radius) !important;
-    margin-right: var(--s5);
+    border-radius: var(--border-radius) !important;
+    margin-right: var(--s3);
 }
 
 .editor-container.compact {
@@ -248,21 +239,26 @@ canvas.decorationsOverviewRuler {
     border-bottom: none !important;
 }
 
+.tabs-container {
+    height: 32px !important;
+}
+
 .tabs-container > .tab {
-    position: relative;
     background-color: transparent !important;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
     border-top: transparent !important;
-    border-right: transparent;
+    border: 1px solid transparent !important;
+    height: 32px !important;
     overflow: hidden;
+    padding-left: var(--s4) !important;
+    padding-right: var(--s4) !important;
+    position: relative;
+    transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
     transition: borderRadius var(--easing-timing-fast) var(--easing-curve-in),
         transform var(--easing-timing-fast) var(--easing-curve-in);
-    z-index: 1;
-
-    padding-left: var(--s5) !important;
-    padding-right: var(--s3) !important;
     will-change: borderRadius;
+    z-index: 1;
 }
 
 .tabs-and-actions-container.tabs-border-bottom:after,
@@ -285,13 +281,6 @@ canvas.decorationsOverviewRuler {
     border-top-right-radius: var(--border-radius);
     transition: transform var(--easing-timing-fast) var(--easing-curve-in),
         opacity var(--easing-timing-fast) var(--easing-curve-in);
-}
-
-.tabs-container > .tab {
-    border: 1px solid transparent !important;
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-    transition: borderColor var(--easing-timing-fast) var(--easing-curve-in);
 }
 
 .tabs-container > .tab:hover {
@@ -338,6 +327,21 @@ canvas.decorationsOverviewRuler {
     font-size: var(--f-body);
     line-height: var(--f-body-lh);
     font-family: var(--font-display-semibold);
+}
+
+.monaco-workbench
+    .part.editor
+    > .content
+    .editor-group-container
+    > .title
+    .tabs-container
+    > .tab
+    .tab-label {
+    line-height: 32px !important;
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container > .title .editor-actions {
+    height: 32px !important;
 }
 
 .monaco-workbench .part.panel .composite.title {
@@ -500,12 +504,13 @@ canvas.decorationsOverviewRuler {
 .sidebar.left {
     margin-left: var(--s4);
     animation: sidebarLeftIn var(--easing-timing-fast) var(--easing-curve-in) forwards !important;
-    animation-delay: 300ms;
+    animation-delay: 180ms;
 }
 
 .sidebar.right {
     margin-right: var(--s4);
     animation: sidebarRightIn var(--easing-timing-normal) var(--easing-curve-in) forwards !important;
+    animation-delay: 180ms;
 }
 
 .sidebar.compact {
@@ -607,7 +612,7 @@ canvas.decorationsOverviewRuler {
 
 .quick-input-widget .quick-input-list {
     animation: quickInputListIn var(--easing-timing-fast) var(--easing-curve-in) forwards !important;
-    animation-delay: 120s;
+    /* animation-delay: 60s; */
 }
 
 .quick-input-widget .monaco-list-row.selected,
@@ -917,11 +922,15 @@ canvas.decorationsOverviewRuler {
 }
 
 .sticky-widget {
-    background: var(--card-bg) !important;
+    background: var(--noise-bg) repeat var(--card-bg) !important;
+    background-blend-mode: exclusion;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
 
 .sticky-line-root {
     background: inherit !important;
+    border-radius: inherit;
 }
 
 .editor-widget {
@@ -995,6 +1004,7 @@ canvas.decorationsOverviewRuler {
 .monaco-editor .margin {
     background: transparent !important;
     border-left: var(--border);
+    border-top-left-radius: var(--border-radius) !important;
     border-bottom-left-radius: var(--border-radius) !important;
 }
 
@@ -1202,17 +1212,22 @@ canvas.decorationsOverviewRuler {
 
 /* Minimap */
 .minimap {
-    background-blend-mode: exclusion;
     backdrop-filter: var(--backdrop-filter);
-    border-bottom-right-radius: var(--border-radius);
+    background-blend-mode: exclusion;
     left: unset !important;
-    right: var(--s6) !important;
+    right: 25px;
     z-index: 12;
 }
 
 .minimap canvas {
     background: transparent !important;
-    border-bottom-right-radius: var(--border-radius);
+}
+
+.monaco-editor .vertical,
+canvas.decorationsOverviewRuler {
+    right: 1rem !important;
+    border-top-right-radius: var(--border-radius) !important;
+    border-bottom-right-radius: var(--border-radius) !important;
 }
 
 /* Vertical Scroll Bar */

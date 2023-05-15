@@ -1,15 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const UglifyJS = require('uglify-js');
-import * as cssnano from 'cssnano';
+const sharp = require('sharp');
+import minify from '@node-minify/core';
+import cssnano from '@node-minify/cssnano';
 import * as fs from 'fs/promises';
+import * as path from 'path';
+import * as Url from 'url';
+import * as vscode from 'vscode';
 import { nanoid } from 'nanoid';
 import { RequestInfo, RequestInit } from 'node-fetch';
-import * as path from 'path';
-import postcss from 'postcss';
-import * as Url from 'url';
-
-import * as vscode from 'vscode';
-const sharp = require('sharp');
 
 import {
     buildBackupFilePath,
@@ -18,13 +17,8 @@ import {
     getBackupUuid,
     restoreBackup,
 } from './backup-helper';
-const wallpaper = require('wallpaper');
 import { messages } from './messages';
 
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-// const path = require('path');
-// import fetch from 'node-fetch';
 const fetch = (url: RequestInfo, init?: RequestInit) =>
     import('node-fetch').then(({ default: fetch }) => fetch(url, init));
 
@@ -48,9 +42,13 @@ function reloadWindow() {
 }
 
 const minifyCss = async (css: Buffer) => {
-    const output = await postcss([cssnano]).process(css);
+    try {
+        const output = await postcss([cssnano]).process(css);
 
-    return output.css;
+        return output.css;
+    } catch (error) {
+        vscode.window.showErrorMessage(error);
+    }
 };
 
 /**
@@ -69,20 +67,30 @@ async function buildCSSTag(url: string, useThemeColors?: boolean) {
         const fileName = path.join(__dirname, url);
         const fetched = await fs.readFile(fileName);
 
-        const miniCSS = await minifyCss(fetched);
+        const mini = await minify({
+            compressor: cssnano,
+            input: fileName,
+            output: path.join(__dirname, '/css/chrome-min.css'),
+        })
+            .then(function (min) {
+                console.log('CSS min');
+                return min;
+            })
+            .catch(function (error) {
+                throw error;
+            });
 
-        return `<style>${miniCSS}</style>\n`;
-    } catch (e) {
-        console.error(e);
+        // const miniCSS = fetched.toString(); //await minifyCss(fetched);
+
+        return `<style>${mini}</style>\n`;
+    } catch (error) {
+        vscode.window.showErrorMessage(error);
         vscode.window.showWarningMessage(messages.cannotLoad + url);
-        return '';
     }
 }
 
-export async function getBase64Image() {
+export async function getBase64Image(wallPath: string) {
     try {
-        const wallPath = await wallpaper.get();
-
         if (wallPath) {
             const blurredImage = await sharp(wallPath).blur(100).toBuffer();
 
@@ -96,12 +104,13 @@ export async function getBase64Image() {
     }
 }
 
-async function getTags(target: string, compact?: boolean, lite?: boolean) {
+async function getCSSTag() {
     const config = vscode.workspace.getConfiguration('fluent-ui-vscode');
     const activeTheme = vscode.window.activeColorTheme;
     const isDark = activeTheme.kind === 2;
     const isCompact = config.get('compact');
     const enableBg = config.get('enableWallpaper');
+    const bgURL = config.get('wallpaperPath');
 
     const accent = `${config.get('accent')}`;
     const darkBgColor = `${config.get('darkBackground')}b3`;
@@ -110,50 +119,53 @@ async function getTags(target: string, compact?: boolean, lite?: boolean) {
     let encodedImage: boolean | string = false;
 
     if (enableBg) {
-        encodedImage = await getBase64Image();
+        encodedImage = await getBase64Image(bgURL);
     }
 
-    if (target === 'styles') {
-        let res = '';
+    let res = '';
 
-        const styles = ['/css/editor_chrome.css', isDark ? '/css/dark_vars.css' : ''];
+    const styles = ['/css/editor_chrome.css', isDark ? '/css/dark_vars.css' : ''];
 
-        for (const url of styles) {
-            let imp = await buildCSSTag(url);
+    for (const url of styles) {
+        let imp = await buildCSSTag(url);
 
-            if (imp) {
-                if (url.includes('dark')) {
-                    imp = imp.replace('CARD_DARK_BG_COLOR', darkBgColor);
-                } else {
-                    imp = imp.replace('CARD_LIGHT_BG_COLOR', lightBgColor);
-                    imp = imp.replace('ACCENT_COLOR', accent);
-                }
-
-                if (!enableBg) {
-                    imp = imp.replace('APP_BG', 'transparent');
-                } else {
-                    imp = imp.replace('APP_BG', 'var(--card-bg)');
-                }
-
-                res += imp;
+        if (imp) {
+            if (url.includes('dark')) {
+                imp = imp.replace('CARD_DARK_BG_COLOR', darkBgColor);
+            } else {
+                imp = imp.replace('CARD_LIGHT_BG_COLOR', lightBgColor);
+                imp = imp.replace('ACCENT_COLOR', accent);
             }
-        }
 
-        if (encodedImage) {
-            // Replace --app-bg value on res
-            res = res.replace('dummy', encodedImage);
-        }
+            if (!enableBg) {
+                imp = imp.replace('APP_BG', 'transparent');
+            } else {
+                imp = imp.replace('APP_BG', 'var(--card-bg)');
+            }
 
-        return res;
+            res += imp;
+        }
     }
 
-    if (target === 'javascript') {
-        let res = '';
+    if (encodedImage) {
+        // Replace --app-bg value on res
+        res = res.replace('dummy', encodedImage);
+    }
+
+    return res;
+}
+
+async function buildJsFile(jsFile: string) {
+    try {
         const url = '/js/theme_template.js';
-
+        const config = vscode.workspace.getConfiguration('fluent-ui-vscode');
         const jsTemplate = await fs.readFile(__dirname + url);
-
         let buffer = jsTemplate.toString();
+
+        const isCompact = config.get('compact');
+        const accent = `${config.get('accent')}`;
+        const darkBgColor = `${config.get('darkBackground')}b3`;
+        const lightBgColor = `${config.get('lightBackground')}b3`;
 
         buffer = buffer.replace(/\[IS_COMPACT\]/g, String(isCompact));
         buffer = buffer.replace(/\[LIGHT_BG\]/g, `"${lightBgColor}"`);
@@ -161,13 +173,12 @@ async function getTags(target: string, compact?: boolean, lite?: boolean) {
         buffer = buffer.replace(/\[ACCENT\]/g, `"${accent}"`);
 
         const uglyJS = UglifyJS.minify(buffer);
-        const tag = `<script type="application/javascript">${uglyJS.code}</script>\n`;
 
-        if (tag) {
-            res += tag;
-        }
+        await fs.writeFile(jsFile, uglyJS.code, 'utf-8');
 
-        return res;
+        return;
+    } catch (error) {
+        vscode.window.showErrorMessage(error);
     }
 }
 
@@ -176,26 +187,20 @@ async function getTags(target: string, compact?: boolean, lite?: boolean) {
  */
 interface PatchArgs {
     htmlFile: string;
+    jsFile: string;
     bypassMessage?: boolean;
 }
-async function patch({ htmlFile, bypassMessage }: PatchArgs) {
+async function patch({ htmlFile, jsFile, bypassMessage }: PatchArgs) {
     let html = await fs.readFile(htmlFile, 'utf-8');
     html = clearHTML(html);
-    html = html.replace(/<meta.*http-equiv="Content-Security-Policy".*>/, '');
 
-    const styleTags = await getTags('styles');
+    const styleTags = await getCSSTag();
     // Inject style tag into <head>
-    html = html.replace(
-        /(<\/head>)/,
-        '<!-- FUI-CSS-START -->\n' + styleTags + '\n<!-- FUI-CSS-END -->\n</head>',
-    );
+    html = html.replace(/(<\/head>)/, '\n' + styleTags + '\n</head>');
 
-    const jsTags = await getTags('javascript');
+    await buildJsFile(jsFile);
     // Injext JS tag into <body>
-    html = html.replace(
-        /(<\/html>)/,
-        `<!-- FUI-ID -->\n` + '<!-- FUI-JS-START -->\n' + jsTags + '\n<!-- FUI-JS-END -->\n</html>',
-    );
+    html = html.replace(/(<\/html>)/, '\n' + '<script src="fui.js"></script>' + '\n</html>');
 
     try {
         await fs.writeFile(htmlFile, html, 'utf-8');
@@ -215,6 +220,8 @@ export function activate(context: vscode.ExtensionContext) {
 
     const base = path.join(appDir, 'vs', 'code');
     const htmlFile = path.join(base, CONTAINER, 'workbench', 'workbench.html');
+    const htmlBakFile = path.join(base, CONTAINER, 'workbench', 'workbench.fui');
+    const jsFile = path.join(base, CONTAINER, 'workbench', 'fui.js');
 
     /**
      * Installs full version
@@ -229,7 +236,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         await createBackup(base, htmlFile);
-        await patch({ htmlFile, bypassMessage });
+        await patch({ htmlFile, jsFile, bypassMessage });
     }
 
     async function uninstall() {
@@ -238,14 +245,13 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     async function clearPatch() {
-        const backupUuid = await getBackupUuid(htmlFile);
-        if (!backupUuid) {
-            return;
+        try {
+            const backupPath = buildBackupFilePath(base);
+            await restoreBackup(backupPath, htmlFile);
+            await deleteBackupFiles(htmlBakFile, jsFile);
+        } catch (error) {
+            vscode.window.showErrorMessage(error);
         }
-
-        const backupPath = buildBackupFilePath(base);
-        await restoreBackup(backupPath, htmlFile);
-        await deleteBackupFiles(htmlFile);
     }
 
     const installFUI = vscode.commands.registerCommand('fluent-ui-vscode.enableEffects', install);

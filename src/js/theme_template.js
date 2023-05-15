@@ -9,6 +9,8 @@
     let accentColor = '#005fb8';
     let accentHover = '#005fb8e6';
     let accentPressed = '#005fb8cc';
+    const splitViewSelector =
+        '.grid-view-container > .monaco-grid-view > .monaco-grid-branch-node > .monaco-split-view2 > .monaco-scrollable-element > .split-view-container';
 
     let debounceTimer;
     const debounce = (callback, time) => {
@@ -19,7 +21,6 @@
     const resizeObserver = new ResizeObserver((entries) => {
         for (let entry of entries) {
             if (entry.contentBoxSize) {
-                // applyCompactStyles();
                 debounce(applyCompactStyles, 300);
             }
         }
@@ -28,7 +29,6 @@
     const watchLayout = (mutationsList, observer) => {
         for (const mutation of mutationsList) {
             if (mutation.type === 'childList') {
-                // applyCompactStyles();
                 debounce(applyCompactStyles, 300);
             }
         }
@@ -52,8 +52,17 @@
         }
     };
 
+    const watchSplitViewChildren = (mutationsList, observer) => {
+        for (let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                debounce(adjustScrollableWidth, 180);
+            }
+        }
+    };
+    const editorChildrenObserver = new MutationObserver(watchSplitViewChildren);
+
     // Callback function to execute when mutations are observed
-    const watchForBootstrap = function (mutationsList, observer) {
+    const watchForBootstrap = (mutationsList, observer) => {
         for (let mutation of mutationsList) {
             if (mutation.type === 'attributes') {
                 debugger;
@@ -61,7 +70,7 @@
                 const tokensLoaded = document.querySelector('.vscode-tokens-styles');
 
                 // does it have content ?
-                const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
+                // const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
 
                 // sometimes VS code takes a while to init the styles content, so stop this observer and add an observer for that
                 if (tokensLoaded) {
@@ -72,10 +81,10 @@
 
             if (mutation.type === 'childList') {
                 const tokensLoaded = document.querySelector('.vscode-tokens-styles');
-                const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
+                // const tokenStyles = document.querySelector('.vscode-tokens-styles').innerText;
 
                 // Everything we need is ready, so initialise
-                if (tokensLoaded && tokenStyles) {
+                if (tokensLoaded) {
                     initFluentUI([IS_COMPACT], [LIGHT_BG], [DARK_BG], [ACCENT], observer);
                 }
             }
@@ -97,15 +106,18 @@
             return;
         }
 
-        // var initialThemeStyles = themeStyleTag.innerText;
-        // var updatedThemeStyles = initialThemeStyles;
-
         // Add style classes
         const settingsEditor = document.querySelector('.settings-editor');
         const sidebar = document.querySelector('.sidebar');
         sidebar.classList.add('card');
 
         const splitViewContainer = sidebar.parentElement.closest('.split-view-container');
+        const editorSplitViewContainer = document.querySelector(splitViewSelector);
+        editorChildrenObserver.observe(editorSplitViewContainer, { childList: true });
+
+        if (editorSplitViewContainer) {
+            adjustScrollableWidth();
+        }
 
         if (isLayoutCompact) {
             const sidebarContainer = sidebar.parentElement;
@@ -126,12 +138,6 @@
         const chromium = document.querySelector('div.chromium');
         const chromeThemeObserver = new MutationObserver(watchAttributes);
         chromeThemeObserver.observe(chromium, { attributes: true });
-
-        // if (disableFilters) {
-        //     console.log('Disabling filters');
-        //     isUILite = true;
-        //     document.documentElement.style.setProperty('--backdrop-filter', 'none');
-        // }
 
         overrideDocumentStyle({ property: 'background', value: 'var(--wallpaper)' });
 
@@ -231,9 +237,7 @@
                 property: '--active-action-item-bg',
                 value: 'rgba(0, 0, 0, 0.0605)',
             });
-            // overrideDocumentStyle({ property: '--activitybar-indicator-bg', value: '#60cdff' });
-            // overrideDocumentStyle({ property: '--app-bg', value: 'rgba(243,
-            // 243, 243, 0.85)' });
+
             overrideDocumentStyle({ property: '--app-bg', value: 'var(--card-bg)' });
 
             overrideDocumentStyle({ property: '--card-bg-blend-mode', value: 'multiply' });
@@ -261,6 +265,41 @@
             console.error(error);
         }
     };
+
+    const adjustScrollableWidth = () => {
+        const overflowGuards = document.querySelectorAll('.overflow-guard');
+
+        overflowGuards.forEach((element) => {
+            const width = element.offsetWidth;
+            element.style.width = `${width - 4}px`;
+        });
+
+        setTimeout(() => {
+            const minimaps = [...document.querySelectorAll('.minimap')];
+
+            if (minimaps.length > 1) {
+                const notLastMinimaps = minimaps.slice(0, -1);
+                notLastMinimaps.forEach((minimap) => {
+                    minimap.style.setProperty('right', '13px', 'important');
+                });
+            }
+
+            const decorationsOverviewRulers = [
+                ...document.querySelectorAll('.decorationsOverviewRuler'),
+            ];
+
+            if (decorationsOverviewRulers.length > 1) {
+                const notLastRulers = decorationsOverviewRulers.slice(0, -1);
+                notLastRulers.forEach((ruler) => {
+                    ruler.style.setProperty('right', '4px', 'important');
+                });
+            }
+        }, 1000);
+    };
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     adjustScrollableWidth();
+    // });
 
     const applyCompactStyles = () => {
         const sidebar = document.querySelector('.sidebar');

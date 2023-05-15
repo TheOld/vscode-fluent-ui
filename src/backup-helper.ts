@@ -9,24 +9,24 @@ import { CONTAINER } from './extension';
  *
  * @param {*} htmlFile
  */
-export async function deleteBackupFiles(htmlFile: string) {
-    const htmlDir = path.dirname(htmlFile);
-    const htmlDirItems = await fs.readdir(htmlDir);
+export async function deleteBackupFiles(htmlFile: string, jsFile: string) {
+    try {
+        const htmlDir = path.dirname(htmlFile);
 
-    for (const item of htmlDirItems) {
-        if (item.includes('bak-fui')) {
-            await fs.unlink(path.join(htmlDir, item));
-        }
+        await fs.unlink(htmlFile);
+        console.log('Successfully removed backup file');
+        await fs.unlink(jsFile);
+        console.log('Successfully removed js file');
+    } catch (error) {
+        vscode.window.showErrorMessage(error);
     }
 }
 
 function clearExistingPatches(html: string) {
     html = html.replace(
-        /^.*(<!-- Fluent UI --><script src="fluent.js"><\/script><!-- Fluent UI -->).*\n?/gm,
+        /^.*(<!-- FUI-JS-START --><script src="fui.js"><\/script><!-- FUI-JS-END -->).*\n?/gm,
         '',
     );
-    html = html.replace(/<!-- FUI -->[\s\S]*?<!-- FUI -->\n*/, '');
-    html = html.replace(/<!-- FUI-ID [\w-]+ -->\n*/g, '');
 
     return html;
 }
@@ -49,7 +49,7 @@ export async function getBackupUuid(htmlFilePath: string) {
     try {
         const htmlContent = await fs.readFile(htmlFilePath, 'utf-8');
 
-        const match = htmlContent.match(/<!-- FUI-ID -->/);
+        const match = htmlContent.match(/fui/);
 
         if (!match) {
             return null;
@@ -81,4 +81,4 @@ export async function restoreBackup(backupFilePath: string, htmlFile: string) {
  * Generates the path for the backup file we're creating
  */
 export const buildBackupFilePath = (base: string) =>
-    path.join(base, CONTAINER, 'workbench', `workbench.bak-fui`);
+    path.join(base, CONTAINER, 'workbench', `workbench.fui`);
