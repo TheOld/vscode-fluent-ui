@@ -1348,6 +1348,10 @@ canvas.decorationsOverviewRuler {
     }
 }
 
+.replace-input {
+    max-width: calc(100% - 60px) !important;
+}
+
 :root {
     --flyout-bg: rgba(252, 252, 252, 0.5);
     --menu-bg: rgba(252, 252, 252, 0.5);
