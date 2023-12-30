@@ -1348,10 +1348,6 @@ canvas.decorationsOverviewRuler {
     }
 }
 
-.replace-input {
-    max-width: calc(100% - 60px) !important;
-}
-
 .split-view-container .split-view-view .pane-composite-part {
     display: flex !important;
     flex-direction: column !important;
