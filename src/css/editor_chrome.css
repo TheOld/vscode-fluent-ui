@@ -1352,6 +1352,11 @@ canvas.decorationsOverviewRuler {
     max-width: calc(100% - 60px) !important;
 }
 
+.split-view-container .split-view-view .pane-composite-part {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
 :root {
     --flyout-bg: rgba(252, 252, 252, 0.5);
     --menu-bg: rgba(252, 252, 252, 0.5);
